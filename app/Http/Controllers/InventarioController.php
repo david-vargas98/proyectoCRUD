@@ -21,7 +21,8 @@ class InventarioController extends Controller
      */
     public function create()
     {
-        //
+        //Retorna la vista a esa ruta en inventario-index.blade.php
+        return view('inventario-create');
     }
 
     /**
