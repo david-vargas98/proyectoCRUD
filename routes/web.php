@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InventarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//El "resorce" es un estándar que sirve para crear las rutas de nuestra tabla
+Route::resource('inventario', InventarioController::class); //php artisan route:list para verlas
