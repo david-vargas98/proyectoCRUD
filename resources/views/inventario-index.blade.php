@@ -8,5 +8,12 @@
 </head>
 <body>
     <h1>Listado de inventarios, funciona :D</h1>
+    <!-- Se realiza iteraciones en una lista no ordenada -->
+    <ul>
+        <!-- Se retoma la variable que se usó en 'compact' -->
+        @foreach ($inventarios as $inventario)
+            <li>{{$inventario->descripcion}}</li>
+        @endforeach
+    </ul>
 </body>
 </html>

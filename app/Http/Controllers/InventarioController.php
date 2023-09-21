@@ -12,8 +12,10 @@ class InventarioController extends Controller
      */
     public function index()
     {
+        //Se regresa todo, se puede usar get() en su lugar, hace casi lo mismo
+        $inventarios = Inventario::all(); //Se obtiene los inventarios en la variable
         //Retorna la vista a esa ruta en inventario-index.blade.php
-        return view('inventario-index');
+        return view('inventario-index', compact('inventarios')); //Se usa compact para usar la variable en el html xdd *investigar*
     }
 
     /**
@@ -32,7 +34,7 @@ class InventarioController extends Controller
     {
         //Validación
         $request->validate([
-
+            'descripcion' => 'required|unique:'
         ]);
 
         //Almacenamiento del registro
