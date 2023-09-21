@@ -32,7 +32,7 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
-        //Validación
+        //Validación para los valores de entrada (investigar)
         $request->validate([
             'descripcion' => 'required|unique:'
         ]);
@@ -51,6 +51,7 @@ class InventarioController extends Controller
     public function show(Inventario $inventario)
     {
         //
+        return view('inventario-show');
     }
 
     /**
