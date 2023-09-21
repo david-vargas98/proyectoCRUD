@@ -12,8 +12,8 @@
     <form action="/inventario" method="POST">
         @csrf
         <div>
-            <label for="descripcion-Inventario">Descripción del inventario:</label>
-            <input type="text" name="descripcion-Inventario" placeholder="Descripción"  required>
+            <label for="descripcioninv">Descripción del inventario:</label>
+            <input type="text" name="descripcioninv" placeholder="Descripción"  required>
             <button type="submit">Agregar nuevo inventario</button>
         </div>
     </form>

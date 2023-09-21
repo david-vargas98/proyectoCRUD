@@ -37,7 +37,7 @@ class InventarioController extends Controller
 
         //Almacenamiento del registro
         $inventario = new Inventario(); //Instancia del modelo Inventario
-        $inventario->descripcion = $request->descripcion;
+        $inventario->descripcion = $request->descripcioninv;
         $inventario->save();
         //Se redirige a la url última petición
         return redirect()->back();
