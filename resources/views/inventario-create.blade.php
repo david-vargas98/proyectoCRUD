@@ -10,7 +10,7 @@
     <h1>Crear inventario</h1>
     <h2>Ingrese los datos para agregar un nuevo inventario:</h2>
     {{-- En vez de /inventario se puede usar: {{route(inventario.store)}} --}}
-    <form action="{{ route(inventario.store) }}" method="POST">
+    <form action="{{ route('inventario.store') }}" method="POST">
         @csrf
         <div>
             <label for="descripcioninv">Descripción del inventario:</label>
