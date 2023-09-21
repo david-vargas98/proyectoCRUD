@@ -30,7 +30,17 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validación
+        $request->validate([
+
+        ]);
+
+        //Almacenamiento del registro
+        $inventario = new Inventario(); //Instancia del modelo Inventario
+        $inventario->descripcion = $request->descripcion;
+        $inventario->save();
+        //Se redirige a la url última petición
+        return redirect()->back();
     }
 
     /**

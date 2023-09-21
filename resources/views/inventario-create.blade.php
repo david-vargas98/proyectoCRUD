@@ -9,12 +9,13 @@
 <body>
     <h1>Crear inventario</h1>
     <h2>Ingrese los datos para agregar un nuevo inventario:</h2>
-    <form action="/inventario" method="POST"></form>
-    @csrf
-    <div>
-        <label for="descripcion-Inventario">Descripción del inventario:</label>
-        <input type="text" name="descripcion-Inventario" placeholder="Descripción" required>
-        <button type="submit">Agregar nuevo inventario</button>
-    </div>
+    <form action="/inventario" method="POST">
+        @csrf
+        <div>
+            <label for="descripcion-Inventario">Descripción del inventario:</label>
+            <input type="text" name="descripcion-Inventario" placeholder="Descripción"  required>
+            <button type="submit">Agregar nuevo inventario</button>
+        </div>
+    </form>
 </body>
 </html>
