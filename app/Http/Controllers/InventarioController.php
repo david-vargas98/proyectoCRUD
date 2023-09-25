@@ -34,7 +34,8 @@ class InventarioController extends Controller
     {
         //Validación para los valores de entrada (investigar)
         $request->validate([
-            'descripcion' => 'required|unique:'
+            //Esta validación asegura que no se repitan valores, que sea 255 caracteres max, y que sea string solamente
+            'descripcion' => 'required|unique:inventarios|max:255|string'
         ]);
 
         //Almacenamiento del registro
@@ -51,7 +52,7 @@ class InventarioController extends Controller
     public function show(Inventario $inventario)
     {
         //
-        return view('inventario-show');
+        return view('inventario-show'); //Para acceder a los inventarios se hace por ID, así: proyectocrud.test/inventario/1
     }
 
     /**
