@@ -61,7 +61,8 @@ class InventarioController extends Controller
      */
     public function edit(Inventario $inventario)
     {
-        //
+        //Se reusa el de agregar pero con los campos ya recuperando la info
+        return view('inventario-edit', compact('inventario'));
     }
 
     /**
@@ -69,7 +70,18 @@ class InventarioController extends Controller
      */
     public function update(Request $request, Inventario $inventario)
     {
-        //
+        //Validación para los valores a modificar:
+        $request->validate([
+            //Esta validación asegura que no se repitan valores, que sea 255 caracteres max, y que sea string solamente y ER
+            'descripcion' => ['required','unique:inventarios','min:3','max:255','string','regex:/^[A-Za-z0-9\s\-]+$/']
+        ]);
+        //Recepción de la modificación de edit para asignar el nuevo valor:
+        // Aquí solo se tiene en memoria temporal/ram
+        $inventario->descripcion = $request->descripcion;
+        //Aquí se perpetua con save() en la base de datos
+        $inventario->save();
+        //Se redirige a el index
+        return redirect()->route('inventario.index');
     }
 
     /**
@@ -77,6 +89,9 @@ class InventarioController extends Controller
      */
     public function destroy(Inventario $inventario)
     {
-        //
+        //Se usa el objeto con su método deleye
+        $inventario->delete();
+        //Se redirige al index
+        return redirect()->route('inventario.iondex');
     }
 }
