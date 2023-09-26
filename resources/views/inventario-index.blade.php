@@ -12,7 +12,25 @@
     <ul>
         <!-- Se retoma la variable que se usó en 'compact' -->
         @foreach ($inventarios as $inventario)
-            <li>{{$inventario->descripcion}}</li>
+            <li>
+                {{-- Se agrega un enlace para que en el index se pueda acceder a la vista de cada inventario --}}
+                <a href="{{route('inventario.show', $inventario)}}">
+                    {{$inventario->descripcion}}
+                </a>
+                |
+                <a href="{{route('inventario.edit', $inventario)}}">
+                    Editar
+                </a>
+                |
+                <form action="{{route('inventario.destroy', $inventario)}}" method="post">
+                    {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros --}}
+                    @csrf
+                    {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                    @method('DELETE')
+                    {{-- Botón para accionar la eliminación --}}
+                    <input type="submit" value="Borrar">
+                </form>
+            </li>
         @endforeach
     </ul>
 </body>
