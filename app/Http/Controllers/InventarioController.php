@@ -34,8 +34,8 @@ class InventarioController extends Controller
     {
         //Validación para los valores de entrada (investigar)
         $request->validate([
-            //Esta validación asegura que no se repitan valores, que sea 255 caracteres max, y que sea string solamente
-            'descripcion' => 'required|unique:inventarios|max:255|string'
+            //Esta validación asegura que no se repitan valores, que sea 255 caracteres max, y que sea string solamente y ER
+            'descripcion' => ['required','unique:inventarios','min:3','max:255','string','regex:/^[A-Za-z0-9\s\-]+$/']
         ]);
 
         //Almacenamiento del registro
