@@ -13,9 +13,9 @@ class InventarioController extends Controller
     public function index()
     {
         //Se regresa todo, se puede usar get() en su lugar, hace casi lo mismo
-        $inventarios = Inventario::all(); //Se obtiene los inventarios en la variable
+        $inventarios = Inventario::all(); //Esta línea la coleeción de los registros de la tabla en la variable
         //Retorna la vista a esa ruta en inventario-index.blade.php
-        return view('inventario-index', compact('inventarios')); //Se usa compact para usar la variable en el html xdd *investigar*
+        return view('inventario-index', compact('inventarios')); //Se usa compact para pasar la variable a esa vista: Esto significa que la vista tendrá acceso a la variable $inventarios y podrá mostrar la lista de inventarios.
     }
 
     /**
@@ -51,8 +51,9 @@ class InventarioController extends Controller
      */
     public function show(Inventario $inventario)
     {
-        //
-        return view('inventario-show'); //Para acceder a los inventarios se hace por ID, así: proyectocrud.test/inventario/1
+        //Para acceder a los inventarios se hace por ID, así: proyectocrud.test/inventario/1
+        //Se devuelve la vista inventario-show y se pasa la variable $inventario a esa vista utilizando la función compact. Esto significa que la vista tendrá acceso al objeto de inventario específico.
+        return view('inventario-show', compact('inventario')); 
     }
 
     /**
