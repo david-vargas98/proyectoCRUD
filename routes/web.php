@@ -20,3 +20,12 @@ Route::get('/', function () {
 
 //El "resorce" es un estándar que sirve para crear las rutas de nuestra tabla
 Route::resource('inventario', InventarioController::class); //php artisan route:list para verlas
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
