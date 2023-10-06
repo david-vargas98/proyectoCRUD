@@ -92,6 +92,6 @@ class InventarioController extends Controller
         //Se usa el objeto con su método deleye
         $inventario->delete();
         //Se redirige al index
-        return redirect()->route('inventario.iondex');
+        return redirect()->route('inventario.index');
     }
 }
