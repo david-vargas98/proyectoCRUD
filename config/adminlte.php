@@ -317,16 +317,6 @@ return [
             'url'  => 'inventario/create',
             'icon' => 'fas fa-plus',
         ],
-        [
-            'text' => 'Actualizar inventario',
-            'url'  => 'inventario/{inventario}/edit',
-            'icon' => 'fas fa-solid fa-pen-nib',
-        ],
-        [
-            'text' => 'Borra inventario',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-solid fa-trash',
-        ],
     ],
 
     /*
