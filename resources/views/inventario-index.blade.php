@@ -13,10 +13,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Índice de inventarios</title>
     </head>
     <body>
-        <h1>Índice de inventarios</h1>
+        <h1 class="text-center">Índice de inventarios</h1>
         <!-- Se realiza iteraciones en una lista no ordenada -->
         <ul>
             <!-- Se retoma la variable que se usó en 'compact' -->
@@ -26,11 +25,11 @@
                     <br>
                     {{-- Se agrega un enlace para que en el index se pueda acceder a la vista de cada inventario --}}
                     <a href="{{route('inventario.show', $inventario)}}">
-                        Detalles
+                        <div class="btn btn-default">Detalles</div>
                     </a>
                     |
                     <a href="{{route('inventario.edit', $inventario)}}">
-                        Editar
+                        <div class="btn btn-primary">Editar</div>
                     </a>
                     |
                     <form action="{{route('inventario.destroy', $inventario)}}" method="post" style="display: inline;">
@@ -39,7 +38,7 @@
                         {{-- También se debe cambiar como el patch para que se identifique en el route --}}
                         @method('DELETE')
                         {{-- Botón para accionar la eliminación --}}
-                        <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
+                        <a class="btn btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
                     </form>
                 </li>
             @endforeach
