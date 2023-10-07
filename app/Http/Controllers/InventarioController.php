@@ -43,7 +43,7 @@ class InventarioController extends Controller
         $inventario->descripcion = $request->descripcion;
         $inventario->save();
         //Se redirige a la url última petición
-        return redirect()->back();
+        return redirect()->route('inventario.index');
     }
 
     /**
