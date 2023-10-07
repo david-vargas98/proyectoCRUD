@@ -3,11 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1 class="text-center">Bienvenido al CRUD de inventarios</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>En el sidebar podrás encontrar las diferentes rutas a las operaciones básicas para los inventarios</p>
+    <img src="{{asset('vendor/adminlte/dist/img/chemsito.jpg')}}" alt="chemsito.jpg" style="display: block; margin-left: auto; margin-right: auto;">
 @stop
 
 @section('css')
