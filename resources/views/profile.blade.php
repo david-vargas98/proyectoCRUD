@@ -3,11 +3,10 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1 class="text-center">Bienvenido al CRUD de inventarios</h1>
+    <h1 class="text-center">Perfil</h1>
 @stop
 
 @section('content')
-<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -51,7 +50,6 @@
             @endif
         </div>
     </div>
-</x-app-layout>
 
 @stop
 
