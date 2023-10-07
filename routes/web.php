@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventarioController;
 
@@ -28,4 +29,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    //Se crea una nueva ruta para acceder a la vista creada
+    Route::get('/profile', [UsuarioController::class, 'profile']);
 });
