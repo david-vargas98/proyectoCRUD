@@ -306,6 +306,11 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'profile',
+            'url'  => 'profile',
+            'icon' => 'far fa-regular fa-user',
+        ],
         ['header' => 'OPERACIONES'],
         [
             'text' => 'Ver índice',
@@ -471,5 +476,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
