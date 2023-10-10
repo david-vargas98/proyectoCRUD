@@ -99,6 +99,10 @@ class InventarioController extends Controller
     {
         //Se usa el objeto con su método deleye
         $inventario->delete();
+
+        //Mensaje flash, la sesión se llama delete y se muestra el mensaje del segundo parámetro
+        session()->flash('delete', 'El registro se ha borrado con éxito UnU');
+
         //Se redirige al index
         return redirect()->route('inventario.index');
     }
