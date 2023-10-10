@@ -84,6 +84,10 @@ class InventarioController extends Controller
         $inventario->descripcion = $request->descripcion;
         //Aquí se perpetua con save() en la base de datos
         $inventario->save();
+
+        //Mensaje flash, la sesión se llama modified y se muestra el mensaje del segundo parámetro
+        session()->flash('update', 'El registro se ha modificado con éxito uwu');
+
         //Se redirige a el index
         return redirect()->route('inventario.index');
     }
