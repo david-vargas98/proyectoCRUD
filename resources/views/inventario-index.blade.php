@@ -16,6 +16,12 @@
     </head>
     <body>
         <h1 class="text-center">Índice de inventarios</h1>
+        {{-- Mensaje de éxito --}}
+        @if(session('success'))
+            <div class="alert alert-success" id="successMessage">
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- Se realiza iteraciones en una lista no ordenada -->
         <ul>
             <!-- Se retoma la variable que se usó en 'compact' -->
@@ -52,5 +58,13 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+<script>
+    // Función para ocultar el mensaje después de 5 segundos (5000 milisegundos)
+    //Esta función se usa para ejecutar una acción después de un cierto tiempo
+    setTimeout(function(){ //Función anónima, no tiene un nombre, se declara y se ejecuta al mismo tiempo.
+        //Esto selecciona un elemento HTML usando su id, le pasamos el del mensaje y se pone none (sin mostrar)
+        //Y se le dice que espero 5 seg antes de ejecutar lo anterior
+        document.getElementById('successMessage').style.display = 'none'; 
+    }, 5000);
+</script>
 @stop
