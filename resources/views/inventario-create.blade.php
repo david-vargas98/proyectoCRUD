@@ -30,6 +30,9 @@
                 @enderror
             </div>
         </form>
+        <div class="d-flex justify-content-center">
+            <img src="{{asset('img/gatito.png')}}" alt="gatito.png" style="max-width: 480px;">
+        </div>
     </body>
     </html>
 @stop

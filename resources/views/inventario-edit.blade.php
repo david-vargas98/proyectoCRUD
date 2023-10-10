@@ -32,6 +32,10 @@
                 @enderror
             </div>
         </form>
+        {{-- Se agrega imagen --}}
+        <div class="d-flex justify-content-start">
+            <img src="{{asset('img/gatito_2.png')}}" alt="gatito_2.png" style="max-width: 307px; margin-left: -15px;">
+        </div>
     </body>
     </html>
 @stop
