@@ -29,6 +29,14 @@
                 {{ session('update') }}
             </div>
         @endif
+
+        {{-- Mensaje de borrado --}}
+        @if(session('delete'))
+            <div class="alert alert-danger" id="deleteMessage">
+                {{ session('delete') }}
+            </div>
+        @endif
+
         <!-- Se realiza iteraciones en una lista no ordenada -->
         <ul>
             <!-- Se retoma la variable que se usó en 'compact' -->
@@ -77,6 +85,11 @@
     //El de modificación:
     setTimeout(function(){
         document.getElementById('updateMessage').style.display = 'none';
+    }, 5000);
+
+    //El de borrado:
+    setTimeout(function(){
+        document.getElementById('deleteMessage').style.display = 'none';
     }, 5000);
 </script>
 @stop
