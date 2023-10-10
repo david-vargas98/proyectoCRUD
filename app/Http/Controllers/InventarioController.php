@@ -42,6 +42,10 @@ class InventarioController extends Controller
         $inventario = new Inventario(); //Instancia del modelo Inventario
         $inventario->descripcion = $request->descripcion;
         $inventario->save();
+
+        //Mensaje flash, la sesión se llama success y se muestra el mensaje del segundo parámetro
+        session()->flash('success', 'El registro se ha creado con éxito :D');
+
         //Se redirige a la url última petición
         return redirect()->route('inventario.index');
     }
