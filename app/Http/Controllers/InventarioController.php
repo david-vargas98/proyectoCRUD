@@ -44,7 +44,7 @@ class InventarioController extends Controller
         $inventario->save();
 
         //Mensaje flash, la sesión se llama success y se muestra el mensaje del segundo parámetro
-        session()->flash('success', 'El registro se ha creado con éxito :D');
+        session()->flash('success', 'El registro se ha creado con éxito UwU');
 
         //Se redirige a la url última petición
         return redirect()->route('inventario.index');
@@ -85,8 +85,8 @@ class InventarioController extends Controller
         //Aquí se perpetua con save() en la base de datos
         $inventario->save();
 
-        //Mensaje flash, la sesión se llama modified y se muestra el mensaje del segundo parámetro
-        session()->flash('update', 'El registro se ha modificado con éxito uwu');
+        //Mensaje flash, la sesión se llama update y se muestra el mensaje del segundo parámetro
+        session()->flash('update', 'El registro se ha modificado con éxito UvU');
 
         //Se redirige a el index
         return redirect()->route('inventario.index');
