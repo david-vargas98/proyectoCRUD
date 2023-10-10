@@ -17,13 +17,18 @@
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
-
+                <div class="mt-4">
+                    <img src="{{ asset('img/nombre.png') }}" alt="Imagen de perfil" class="mx-auto" style="max-width: 150px; ">
+                </div>
                 <x-section-border />
             @endif
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')
+                </div>
+                <div class="mt-4">
+                    <img src="{{ asset('img/memes-07.png') }}" alt="contrasena.png" class="mx-auto" style="max-width: 150px; ">
                 </div>
 
                 <x-section-border />
@@ -46,6 +51,9 @@
 
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.delete-user-form')
+                </div>
+                <div class="mt-4">
+                    <img src="{{ asset('img/patrick.png') }}" alt="Imagen de perfil" class="mx-auto" style="max-width: 150px; ">
                 </div>
             @endif
         </div>
