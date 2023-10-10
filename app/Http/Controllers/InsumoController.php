@@ -21,6 +21,7 @@ class InsumoController extends Controller
     public function create()
     {
         //
+        return ('insumo.create');
     }
 
     /**
