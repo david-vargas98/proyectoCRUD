@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = '/dashboard'; //Aquí se puede modificar a donde se redirige cuando se inicia la sesión.
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
