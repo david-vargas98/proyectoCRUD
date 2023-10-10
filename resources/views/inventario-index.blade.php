@@ -22,6 +22,13 @@
                 {{ session('success') }}
             </div>
         @endif
+
+        {{-- Mensaje de modificación --}}
+        @if(session('update'))
+            <div class="alert alert-warning" id="updateMessage">
+                {{ session('update') }}
+            </div>
+        @endif
         <!-- Se realiza iteraciones en una lista no ordenada -->
         <ul>
             <!-- Se retoma la variable que se usó en 'compact' -->
@@ -64,7 +71,12 @@
     setTimeout(function(){ //Función anónima, no tiene un nombre, se declara y se ejecuta al mismo tiempo.
         //Esto selecciona un elemento HTML usando su id, le pasamos el del mensaje y se pone none (sin mostrar)
         //Y se le dice que espero 5 seg antes de ejecutar lo anterior
-        document.getElementById('successMessage').style.display = 'none'; 
+        document.getElementById('successMessage').style.display = 'none';
+    }, 5000);
+
+    //El de modificación:
+    setTimeout(function(){
+        document.getElementById('updateMessage').style.display = 'none';
     }, 5000);
 </script>
 @stop
