@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventarioController;
@@ -21,6 +22,10 @@ Route::get('/', function () {
 
 //El "resorce" es un estándar que sirve para crear las rutas de nuestra tabla
 Route::resource('inventario', InventarioController::class); //php artisan route:list para verlas
+
+//Se agrega la madre esta del controlador *INVESTIGAR*
+Route::resource('insumo', InsumoController::class);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
