@@ -26,7 +26,7 @@
                 <button type="submit" class="btn btn-dark">Agregar nuevo inventario</button>
                 {{-- Validación: permite acceder al mensaje de error específico asociado con el campo 'descripcion' si hay un error de  validación. --}}
                 @error('descripcion')
-                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    <div class="alert alert-danger mt-3" id="validacion">{{ $message }}</div>
                 @enderror
             </div>
         </form>
@@ -42,5 +42,10 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        //Ocultar el mensaje:
+        setTimeout(function(){
+        document.getElementById('validacion').style.display = 'none';
+    }, 5000);
+    </script>
 @stop
