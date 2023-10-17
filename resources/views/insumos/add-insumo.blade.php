@@ -16,7 +16,7 @@
         <label for="insumocantidad">Cantidad de insumo en piezas:</label>
         <input type="text" name="insumocantidad"><br>
 
-        <select name="inventario_id">
+        <select name="id_inventario">
             @foreach ($inventarios as $inventario)
                 <option value="{{ $inventario->id }}">
                     {{ $inventario->descripcion }}
