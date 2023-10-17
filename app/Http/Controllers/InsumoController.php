@@ -13,7 +13,9 @@ class InsumoController extends Controller
      */
     public function index()
     {
-        //
+        //Se implementa el index para los insumos
+        $insumos = Insumo::all(); //Se obtiene la colección de los insumos
+        return view('insumos.index-insumo', compact('insumos')); //Se retorna la vista y se pasa la variable con los insumos
     }
 
     /**
