@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('insumos', function (Blueprint $table) {
             $table->id();
+            $table->string('insumodescripcion');
+            $table->integer('insumocantidad');
+            //Campo que será la llave foránea
+            $table->unsignedBigInteger('id_inventario');
+            //Se agrega la llave foránea al campo
+            $table->foreign('id_inventario')->references('id')->on('inventarios');
+            //Otra manera de hacerlo: $table->foreignId('id_inventario')->constrained(); Hace lo mismo, pero es más concisa y moderna
             $table->timestamps();
         });
     }
