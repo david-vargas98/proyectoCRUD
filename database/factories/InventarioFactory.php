@@ -17,7 +17,8 @@ class InventarioFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            //Se define como se crearán los datos ficticios para el modelo Inventario
+            'descripcion' => $this->faker->word(), //Generate a string containing random single word.
         ];
     }
 }
