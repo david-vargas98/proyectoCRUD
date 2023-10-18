@@ -36,19 +36,19 @@ class InsumoController extends Controller
     {
         //Hay dos formas de guardar una relación:
         //La primera:
-        $insumo = new Insumo(); //Se crea instancia del modelo Insumo
-        $insumo->insumodescripcion = $request->insumodescripcion; //Se asignan los atributos
-        $insumo->insumocantidad = $request->insumocantidad;
-        $insumo->id_inventario = $request->id_inventario;
-        $insumo->save(); //Se guarda el registro en la base de datos
-
-        //La segunda:
         //$insumo = new Insumo(); //Se crea instancia del modelo Insumo
         //$insumo->insumodescripcion = $request->insumodescripcion; //Se asignan los atributos
         //$insumo->insumocantidad = $request->insumocantidad;
+        //$insumo->inventario_id = $request->id_inventario;
+        //$insumo->save(); //Se guarda el registro en la base de datos
+
+        //La segunda (La que debe seguir el estándar de "_id" para no especificar el nombre de la columna en el modelo):
+        $insumo = new Insumo(); //Se crea instancia del modelo Insumo
+        $insumo->insumodescripcion = $request->insumodescripcion; //Se asignan los atributos
+        $insumo->insumocantidad = $request->insumocantidad;
         //Aquí, se obtiene una instancia del modelo Inventario
-        //$inventario = Inventario::find($request->id_inventario);
-        //$inventario->insumos()->save($insumo); //Se usa la relación 1:m "insumos" para asociar el insumo y se guarda
+        $inventario = Inventario::find($request->id_inventario);
+        $inventario->insumos()->save($insumo); //Se usa la relación 1:m "insumos" para asociar el insumo y se guarda
 
         //Se redirige después de almacenar el insumo
         return redirect()->route('inventario.index');
