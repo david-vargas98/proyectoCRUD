@@ -14,7 +14,7 @@ class Inventario extends Model
     public function insumos() //En plural porque son muchos insumos
     {
         //Se crea la relación con hasMany y se especifica el nombre de la columna relacionada
-        return $this->hasMany(Insumo::class, 'id_inventario');
+        return $this->hasMany(Insumo::class);
         //También se puede usar: return $this->hasMany('App/Models/Insumo');
 
         //En este caso, se especificó explícitamente el nombre de la columna en la relación de Eloquent:
