@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('insumodescripcion');
             $table->integer('insumocantidad');
             //Campo que será la llave foránea
-            $table->unsignedBigInteger('id_inventario');
+            $table->unsignedBigInteger('inventario_id');
             //Se agrega la llave foránea al campo
-            $table->foreign('id_inventario')->references('id')->on('inventarios');
+            $table->foreign('inventario_id')->references('id')->on('inventarios');
             //Otra manera de hacerlo: $table->foreignId('id_inventario')->constrained(); Hace lo mismo, pero es más concisa y moderna
             $table->timestamps();
         });
