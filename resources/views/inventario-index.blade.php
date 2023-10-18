@@ -63,11 +63,10 @@
                     </form>
                 </li>
             @endforeach
-            <div class="d-flex justify-content-around">
-                <img src="{{asset('img/perrito.png')}}" alt="perrito.png" style="margin-top: -400px;">
-            </div>
         </ul>
-        
+        <div class="d-flex justify-content-around">
+            <img src="{{asset('img/perrito.png')}}" alt="perrito.png">
+        </div>
     </body>
     </html>
 @stop
