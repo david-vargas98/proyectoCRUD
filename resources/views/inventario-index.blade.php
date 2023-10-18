@@ -16,27 +16,6 @@
     </head>
     <body>
         <h1 class="text-center">Índice de inventarios</h1>
-        {{-- Mensaje de éxito --}}
-        @if(session('success'))
-            <div class="alert alert-success" id="successMessage">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        {{-- Mensaje de modificación --}}
-        @if(session('update'))
-            <div class="alert alert-warning" id="updateMessage">
-                {{ session('update') }}
-            </div>
-        @endif
-
-        {{-- Mensaje de borrado --}}
-        @if(session('delete'))
-            <div class="alert alert-danger" id="deleteMessage">
-                {{ session('delete') }}
-            </div>
-        @endif
-
         <!-- Se realiza iteraciones en una lista no ordenada -->
         <ul>
             <!-- Se retoma la variable que se usó en 'compact' -->
@@ -67,6 +46,30 @@
         <div class="d-flex justify-content-around">
             <img src="{{asset('img/perrito.png')}}" alt="perrito.png">
         </div>
+        @if ($inventarios->isEmpty())
+            <h3 class="text-center" style="margin-top: 40px">Nada por aquí...</h3>
+        @endif
+
+                {{-- Mensaje de éxito --}}
+                @if(session('success'))
+                <div class="alert alert-success" id="successMessage">
+                    {{ session('success') }}
+                </div>
+            @endif
+    
+            {{-- Mensaje de modificación --}}
+            @if(session('update'))
+                <div class="alert alert-warning" id="updateMessage">
+                    {{ session('update') }}
+                </div>
+            @endif
+    
+            {{-- Mensaje de borrado --}}
+            @if(session('delete'))
+                <div class="alert alert-danger" id="deleteMessage">
+                    {{ session('delete') }}
+                </div>
+            @endif
     </body>
     </html>
 @stop
