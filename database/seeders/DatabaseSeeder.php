@@ -18,5 +18,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        //Después de crear el seeder, se necesita registrar en el archivo DatabaseSeeder.php. Esto se hace para que cuando se ejecute el comando php artisan db:seed, Laravel sepa qué seeders deben ejecutarse.
+        $this->call([
+            //Se agrega NormaSeeder::class al arreglo de seeders que se ejecutarán cuando se ejecute php artisan db:seed.
+            InventarioSeeder::class,
+        ]);
     }
 }
