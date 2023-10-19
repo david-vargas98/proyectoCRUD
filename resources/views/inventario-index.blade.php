@@ -17,34 +17,36 @@
     <body>
         <h1 class="text-center">Índice de inventarios</h1>
         <!-- Se realiza iteraciones en una lista no ordenada -->
-        <ul>
-            <!-- Se retoma la variable que se usó en 'compact' -->
-            @foreach ($inventarios as $inventario)
-                <li>
-                    {{$inventario->descripcion}} 
-                    <br>
-                    {{-- Se agrega un enlace para que en el index se pueda acceder a la vista de cada inventario --}}
-                    <a href="{{route('inventario.show', $inventario)}}">
-                        <div class="btn btn-default">Detalles</div>
-                    </a>
-                    |
-                    <a href="{{route('inventario.edit', $inventario)}}">
-                        <div class="btn btn-primary">Editar</div>
-                    </a>
-                    |
-                    <form action="{{route('inventario.destroy', $inventario)}}" method="post" style="display: inline;">
-                        {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
-                        @csrf
-                        {{-- También se debe cambiar como el patch para que se identifique en el route --}}
-                        @method('DELETE')
-                        {{-- Botón para accionar la eliminación --}}
-                        <a class="btn btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
-                    </form>
-                </li>
-            @endforeach
-        </ul>
-        <div class="d-flex justify-content-around">
-            <img src="{{asset('img/perrito.png')}}" alt="perrito.png">
+        <div class="d-flex">
+            <ul>
+                <!-- Se retoma la variable que se usó en 'compact' -->
+                @foreach ($inventarios as $inventario)
+                    <li>
+                        {{$inventario->descripcion}} 
+                        <br>
+                        {{-- Se agrega un enlace para que en el index se pueda acceder a la vista de cada inventario --}}
+                        <a href="{{route('inventario.show', $inventario)}}">
+                            <div class="btn btn-default">Detalles</div>
+                        </a>
+                        |
+                        <a href="{{route('inventario.edit', $inventario)}}">
+                            <div class="btn btn-primary">Editar</div>
+                        </a>
+                        |
+                        <form action="{{route('inventario.destroy', $inventario)}}" method="post" style="display: inline;">
+                            {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
+                            @csrf
+                            {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                            @method('DELETE')
+                            {{-- Botón para accionar la eliminación --}}
+                            <a class="btn btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
+                        </form>
+                    </li>
+                @endforeach
+            </ul>
+            <div style="flex: 1; margin-top: 80px; margin-left: 40px">
+                <img src="{{asset('img/perrito.png')}}" alt="perrito.png">
+            </div>
         </div>
         @if ($inventarios->isEmpty())
             <h3 class="text-center" style="margin-top: 40px">Nada por aquí...</h3>
