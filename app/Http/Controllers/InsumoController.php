@@ -11,6 +11,14 @@ class InsumoController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     //3er método: declarando un constructor dentro del controlador
+     //Esta opción aplica el middleware de autenticación a todos los métodos del controlador, excepto los métodos index y show:
+     //public function __construct()
+     //{
+     //   $this->middleware("auth")->except('index', 'show');
+     //}
+     //Esto significa que para acceder a cualquier acción excepto index y show, el usuario debe estar autenticado. Si un usuario no autenticado intenta acceder, será redirigido al inicio de sesión.
     public function index()
     {
         //Se implementa el index para los insumos
