@@ -10,7 +10,7 @@ class Inventario extends Model
 {
     use HasFactory;
     //Atributos Rellenables (Fillable Attributes): En un modelo de Laravel, los atributos que se pueden asignar de forma masiva deben estar especificados en una propiedad llamada $fillable. Este es un array que contiene los nombres de los atributos que puedes asignar masivamente:
-    protected $fillable = ['descripcion'];
+    protected $fillable = ['descripcion', 'user_id']; //Se debe agregar la columna de user_id, sino, no lo agrega y truena la consulta
 
     //Relación 1:m; Un (1) inventario puede tener muchos (m) insumos
     public function insumos() //En plural porque son muchos insumos
