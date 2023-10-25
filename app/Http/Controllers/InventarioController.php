@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; //Se agrega el Auth de "Facades"
 
 class InventarioController extends Controller
 {
@@ -42,6 +43,10 @@ class InventarioController extends Controller
         //$inventario = new Inventario(); //Instancia del modelo Inventario
         //$inventario->descripcion = $request->descripcion;
         //$inventario->save();
+
+        //Antes de agregar el registro, se debe agregar o sobrescribir el valor en la solicitud ($request) antes de que esta sea procesada:
+        //Este método permite fusionar un conjunto de datos con la solicitud actual. En este caso, se está fusionando un array asociativo con la solicitud:-->Está asignando el valor del ID del usuario autenticado (Auth::id()) a la clave user_id.
+        $request->merge(['user_id'=> Auth::id()]); //Aquí se obtiene quién estpa haciendo qué.
 
         //Simplificación del almacenamiento del registro:
         //Se usa el Mass Assignment, o "Asignación Masiva", es una técnica en Laravel que permite asignar múltiples valores a un modelo al mismo tiempo, generalmente provenientes de un formulario HTTP o de cualquier array asociativo. Esto es especialmente útil al crear o actualizar varios registros a la vez.
