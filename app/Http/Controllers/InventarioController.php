@@ -38,11 +38,16 @@ class InventarioController extends Controller
             'descripcion' => ['required','unique:inventarios','min:3','max:255','string','regex:/^[A-Za-z0-9\s\-]+$/']
         ]);
 
-        //Almacenamiento del registro
-        $inventario = new Inventario(); //Instancia del modelo Inventario
-        $inventario->descripcion = $request->descripcion;
-        $inventario->save();
+        //Almacenamiento del registro (Tradicional)
+        //$inventario = new Inventario(); //Instancia del modelo Inventario
+        //$inventario->descripcion = $request->descripcion;
+        //$inventario->save();
 
+        //Simplificación del almacenamiento del registro:
+        //Se usa el Mass Assignment, o "Asignación Masiva", es una técnica en Laravel que permite asignar múltiples valores a un modelo al mismo tiempo, generalmente provenientes de un formulario HTTP o de cualquier array asociativo. Esto es especialmente útil al crear o actualizar varios registros a la vez.
+        //Nota: Esto supone que los campos en $request->all() deben coincidir con los nombres de las columnas en la tabla de la base de datos.
+        Inventario::create($request->all()); //Después se debe agregar el fillable en el modelo.
+        
         //Mensaje flash, la sesión se llama success y se muestra el mensaje del segundo parámetro
         session()->flash('success', 'El registro se ha creado con éxito UwU');
 
@@ -81,9 +86,13 @@ class InventarioController extends Controller
         ]);
         //Recepción de la modificación de edit para asignar el nuevo valor:
         // Aquí solo se tiene en memoria temporal/ram
-        $inventario->descripcion = $request->descripcion;
+        //$inventario->descripcion = $request->descripcion;
         //Aquí se perpetua con save() en la base de datos
-        $inventario->save();
+        //$inventario->save();
+
+        //Método simplificado para sginar el nuevo valor:
+        //Se busca por id el registro en la tabla 'inventarios' y se actualiza todo excepto los valores indicados:
+        Inventario::where('id', $inventario->id)->update($request->except('_token', '_method')); //Se debe agregar el fillable en el modelo.
 
         //Mensaje flash, la sesión se llama update y se muestra el mensaje del segundo parámetro
         session()->flash('update', 'El registro se ha modificado con éxito UvU');
