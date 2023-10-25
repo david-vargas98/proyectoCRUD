@@ -26,4 +26,10 @@ class Inventario extends Model
 
                 //ESTO SOLO APLICA con RELACIONES ELOQUENT, el segundo método de guardado de relaciones, el primero no lo necesita.
     }
+
+    //Se agrega establece las relaciones entre el modelo de Inventario y User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
