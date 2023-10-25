@@ -19,6 +19,8 @@
         <p>ID: {{ $inventario->id }}</p>
         {{-- Se muestra la propiedad descripción, accediendo a esta mediante "->" del objeto $inventario --}}
         <p>Descripción: {{ $inventario->descripcion }}</p>
+        {{-- Se muestra el usuario que creó el inventario --}}
+        <p>Creado por: {{$inventario->user->name}}</p>
         {{-- Se agrega imagen --}}
         <div class="d-flex justify-content-around">
             <img src="{{asset('img/chems.png')}}" alt="chems.png" class="float-right" style="margin-top: -200px; margin-left: 200px;">
