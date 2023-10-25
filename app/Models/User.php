@@ -58,4 +58,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //Se establece las relaciones entre el modelo de User e Inventario
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
+    }
 }
