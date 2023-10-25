@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('inventarios', function (Blueprint $table) {
-            //
+            //Se debe agregar la lógica para agregar la columna user_id a la tabla inventarios
+            $table->foreignId('user_id')->after('id');
         });
     }
 
@@ -22,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('inventarios', function (Blueprint $table) {
-            //
+            //Y aquí se indica como revertir la migración
+            $table->dropColumn('user_id');
         });
     }
 };
