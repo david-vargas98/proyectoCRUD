@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Cliente; //Se agrega el modelo de cleinte
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -63,5 +64,11 @@ class User extends Authenticatable
     public function inventarios()
     {
         return $this->hasMany(Inventario::class);
+    }
+
+    //Se establece la relación 1:1 con cliente, ya que 1 usuario puede ser solo 1 cliente
+    public function cliente()
+    {
+        return $this->hasOne(Cliente::class);
     }
 }
