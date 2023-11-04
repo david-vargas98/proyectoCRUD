@@ -17,9 +17,6 @@
     <body>
         <div class="text-center">
             <h1>Índice de inventarios</h1>
-            <a href="{{route('inventario.create')}}">
-                <div class="btn btn-success">Crear nuevo inventario</div>
-            </a>
         </div>
         
             {{-- Mensaje de éxito --}}
@@ -72,11 +69,16 @@
                         {{$inventarios->links()}}
                     </div>
             </ul>
+        </div>
+        <div class="text-center">
+            <a href="{{route('inventario.create')}}">
+                <div class="btn btn-success">Crear nuevo inventario</div>
+            </a>
+        </div>
+        @if ($inventarios->isEmpty())
             <div style="flex: 1; margin-top: 80px; margin-left: 40px">
                 <img src="{{asset('img/perrito.png')}}" alt="perrito.png">
             </div>
-        </div>
-        @if ($inventarios->isEmpty())
             <h3 class="text-center" style="margin-top: 40px">Nada por aquí...</h3>
         @endif
 

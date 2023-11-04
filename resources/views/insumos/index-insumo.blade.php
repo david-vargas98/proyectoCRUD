@@ -10,9 +10,6 @@
 <body>
     <div class="text-center">
         <h1>Índice de insumos</h1>
-        <a href="{{route('insumo.create')}}">
-            <div class="btn btn-success">Agregar nuevo insumo</div>
-        </a>
     </div>
     {{-- Mensaje de éxito --}}
     @if(session('success'))
@@ -32,9 +29,9 @@
             <strong>{{Session::get('deleted')}}</strong><br>
         </div>
     @endif
-    <table border="1" class="text-center">
+    <table border="1" class="text-center table table-bordered table-striped table-hover">
         <thead>
-            <tr>
+            <tr class="text-sm">
                 <th>Inventario</th>
                 <th>Descripcion</th>
                 <th>Cantidad</th>
@@ -44,16 +41,16 @@
         <tbody>
             @foreach ($insumos as $insumo)
                 <tr>
-                    <td>{{$insumo->inventario->descripcion}}</td>
-                    <td>{{$insumo->insumodescripcion}}</td>
-                    <td>{{$insumo->insumocantidad}}</td>
+                    <td class="text-sm">{{$insumo->inventario->descripcion}}</td>
+                    <td class="text-sm">{{$insumo->insumodescripcion}}</td>
+                    <td class="text-sm">{{$insumo->insumocantidad}}</td>
                     <td>
                         <div class="btn-group" role="group">
                             <a href="{{route('insumo.show', $insumo)}}">
-                                <div class="btn btn-default">Detalles</div>
+                                <div class="btn btn-sm btn-default">Detalles</div>
                             </a>
                             <a href="{{route('insumo.edit', $insumo)}}">
-                                <div class="btn btn-primary">Editar</div>
+                                <div class="btn btn-sm btn-primary">Editar</div>
                             </a>
                             <form action="{{route('insumo.destroy', $insumo)}}" method="post" style="display: inline;">
                                 {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros --}}
@@ -61,17 +58,24 @@
                                 {{-- También se debe cambiar como el patch para que se identifique en el route --}}
                                 @method('DELETE')
                                 {{-- Botón para accionar la eliminación --}}
-                                <a class="btn btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
+                                <a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
                             </form>
                         </div>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    <div class="d-flex justify-content-around">
-        <img src="{{asset('img/perrito.png')}}" alt="perrito.png">
+    {{$insumos->links()}}
+    <div class="text-center">
+        <a href="{{route('insumo.create')}}">
+            <div class="btn btn-success">Agregar nuevo insumo</div>
+        </a>
     </div>
+
     @if ($insumos->isEmpty())
+        <div class="img-fluid d-flex justify-content-end">
+            <img src="{{asset('img/perrito.png')}}" alt="perrito.png" style="margin-top: 100px;">
+        </div>
         <h3 class="text-center" style="margin-top: 40px">Nada por aquí...</h3>
     @endif
 </body>
