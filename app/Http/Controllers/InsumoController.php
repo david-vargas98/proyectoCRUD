@@ -67,7 +67,7 @@ class InsumoController extends Controller
      */
     public function show(Insumo $insumo)
     {
-        //
+        return view('insumos.show', compact('insumo'));
     }
 
     /**
