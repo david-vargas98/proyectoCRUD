@@ -7,26 +7,21 @@
 @stop
 
 @section('content')
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    </head>
-    <body>
-        {{-- Se muestra la propiedad ID del inventario, accediendo a esta mediante "->" del objeto $inventario  --}}
-        <p>ID: {{ $inventario->id }}</p>
-        {{-- Se muestra la propiedad descripción, accediendo a esta mediante "->" del objeto $inventario --}}
-        <p>Descripción: {{ $inventario->descripcion }}</p>
-        {{-- Se muestra el usuario que creó el inventario --}}
-        <p>Creado por: {{$inventario->user->name}}</p>
-        {{-- Se agrega imagen --}}
-        <div class="d-flex justify-content-around">
-            <img src="{{asset('img/chems.png')}}" alt="chems.png" class="float-right" style="margin-top: -200px; margin-left: 200px;">
-        </div>
-    </body>
-    </html>
+    {{-- Se muestra la propiedad ID del inventario, accediendo a esta mediante "->" del objeto$inventario  --}}
+    <p>ID: {{ $inventario->id }}</p>
+    {{-- Se muestra la propiedad descripción, accediendo a esta mediante "->" del objeto$inventario --}}
+    <p>Descripción: {{ $inventario->descripcion }}</p>
+    {{-- Se muestra el usuario que creó el inventario --}}
+    <p>Creado por: {{$inventario->user->name}}</p>
+    <a href="{{route('inventario.index')}}">
+        <button class="btn btn-sm btn-primary mt-2 mr-2">
+            <i class="fas fa-backward"></i> Regresar al índice
+        </button>
+    </a>
+    {{-- Se agrega imagen --}}
+    <div class="d-flex justify-content-around">
+        <img src="{{asset('img/chems.png')}}" alt="chems.png" class="float-right"style="margin-top: -200px; margin-left: 200px;">
+    </div>
 @stop
 
 @section('css')
