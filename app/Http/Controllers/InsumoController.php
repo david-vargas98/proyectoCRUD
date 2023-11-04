@@ -49,7 +49,13 @@ class InsumoController extends Controller
         //$insumo->insumocantidad = $request->insumocantidad;
         //$insumo->inventario_id = $request->id_inventario;
         //$insumo->save(); //Se guarda el registro en la base de datos
-
+        
+        //Validaciones
+        $request->validate([
+            'insumodescripcion' => ['required', 'unique:insumos', 'min:3', 'max:50', 'string', 'regex:/^[A-Za-z0-9\s\-]+$/'],
+            'insumocantidad' => ['required', 'numeric'],
+        ]);
+        
         //La segunda (La que debe seguir el estándar de "_id" para no especificar el nombre de la columna en el modelo):
         $insumo = new Insumo(); //Se crea instancia del modelo Insumo
         $insumo->insumodescripcion = $request->insumodescripcion; //Se asignan los atributos
@@ -84,6 +90,11 @@ class InsumoController extends Controller
      */
     public function update(Request $request, Insumo $insumo)
     {
+        //Validaciones
+        $request->validate([
+            'insumodescripcion' => ['required', 'min:3', 'max:50', 'string', 'regex:/^[A-Za-z0-9\s\-]+$/'],
+            'insumocantidad' => ['required', 'numeric'],
+        ]);
         $insumo->update($request->all());
         return redirect()->route("insumo.index")->with('updated', 'Insumo actualizado con éxito');
     }
