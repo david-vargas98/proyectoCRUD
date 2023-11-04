@@ -25,7 +25,7 @@
     @endif
     {{-- Se agrega mensaje para la eliminación --}}
     @if (Session::get('deleted'))
-        <div class="alert alert-danger mt-2">
+        <div class="alert alert-danger mt-2" id="deleteMessage">
             <strong>{{Session::get('deleted')}}</strong><br>
         </div>
     @endif
