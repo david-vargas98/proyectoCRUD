@@ -318,9 +318,9 @@ return [
             'icon' => 'far fa-regular fa-address-book',
         ],
         [
-            'text' => 'Crear inventario',
-            'url'  => 'inventario/create',
-            'icon' => 'fas fa-plus',
+            'text' => 'Insumos',
+            'url'  => 'insumo/',
+            'icon' => 'fas fa-birthday-cake',
         ],
     ],
 
