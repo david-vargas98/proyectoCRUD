@@ -313,7 +313,7 @@ return [
         ],
         ['header' => 'OPERACIONES'],
         [
-            'text' => 'Ver índice',
+            'text' => 'Inventarios',
             'url'  => 'inventario/',
             'icon' => 'far fa-regular fa-address-book',
         ],
