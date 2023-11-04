@@ -32,12 +32,13 @@
             <strong>{{Session::get('deleted')}}</strong><br>
         </div>
     @endif
-    <table border="1">
+    <table border="1" class="text-center">
         <thead>
             <tr>
                 <th>Inventario</th>
                 <th>Descripcion</th>
                 <th>Cantidad</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -46,20 +47,23 @@
                     <td>{{$insumo->inventario->descripcion}}</td>
                     <td>{{$insumo->insumodescripcion}}</td>
                     <td>{{$insumo->insumocantidad}}</td>
-                    <td><a href="{{route('insumo.edit', $insumo)}}">
-                        <div class="btn btn-primary">Editar</div>
-                    </a>
-                    </td>
                     <td>
-                        <form action="{{route('insumo.destroy', $insumo)}}" method="post" style="display: inline;">
-                            {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros --}}
-                            @csrf
-                            {{-- También se debe cambiar como el patch para que se identifique en el route --}}
-                            @method('DELETE')
-                            {{-- Botón para accionar la eliminación --}}
-                            <a class="btn btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
-                        </form>
-                    </td>
+                        <div class="btn-group" role="group">
+                            <a href="{{route('insumo.show', $insumo)}}">
+                                <div class="btn btn-default">Detalles</div>
+                            </a>
+                            <a href="{{route('insumo.edit', $insumo)}}">
+                                <div class="btn btn-primary">Editar</div>
+                            </a>
+                            <form action="{{route('insumo.destroy', $insumo)}}" method="post" style="display: inline;">
+                                {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros --}}
+                                @csrf
+                                {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                                @method('DELETE')
+                                {{-- Botón para accionar la eliminación --}}
+                                <a class="btn btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
+                            </form>
+                        </div>
                 </tr>
             @endforeach
         </tbody>
