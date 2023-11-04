@@ -74,7 +74,9 @@
     {{$insumos->links()}}
     <div class="text-center">
         <a href="{{route('insumo.create')}}">
-            <div class="btn btn-success">Agregar nuevo insumo</div>
+            <button class="btn btn-sm btn-success mt-2 mr-2">
+                <i class="fas fa-plus-square"></i> Agregar nuevo insumo
+            </button>
         </a>
     </div>
 
