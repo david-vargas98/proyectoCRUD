@@ -37,39 +37,48 @@
                 {{ session('delete') }}
             </div>
             @endif
-
-        <!-- Se realiza iteraciones en una lista no ordenada -->
-        <div class="d-flex">
-            <ul>
-                <!-- Se retoma la variable que se usó en 'compact' -->
-                @foreach ($inventarios as $inventario)
-                    <li>
-                        {{$inventario->descripcion}} 
-                        <br>
-                        {{-- Se agrega un enlace para que en el index se pueda acceder a la vista de cada inventario --}}
-                        <a href="{{route('inventario.show', $inventario)}}">
-                            <div class="btn btn-default">Detalles</div>
-                        </a>
-                        |
-                        <a href="{{route('inventario.edit', $inventario)}}">
-                            <div class="btn btn-primary">Editar</div>
-                        </a>
-                        |
-                        <form action="{{route('inventario.destroy', $inventario)}}" method="post" style="display: inline;">
-                            {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
-                            @csrf
-                            {{-- También se debe cambiar como el patch para que se identifique en el route --}}
-                            @method('DELETE')
-                            {{-- Botón para accionar la eliminación --}}
-                            <a class="btn btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
-                        </form>
-                    </li>
-                @endforeach
-                    <div class="mt-2">
-                        {{$inventarios->links()}}
-                    </div>
-            </ul>
-        </div>
+            <table border="1" class="text-center table table-bordered table-striped table-hover">
+                <thead>
+                    <tr class="text-sm">
+                        <th>Descripcion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($inventarios as $inventario)
+                        <tr>
+                            <td class="text-sm">{{$inventario->descripcion}}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{route('inventario.show', $inventario)}}">
+                                        <button class="btn btn-secondary">
+                                            <i class="far fa-eye"></i>Detalles
+                                        </button>
+                                    </a>
+                                    <a href="{{route('inventario.edit', $inventario)}}">
+                                        <button class="btn btn-primary">
+                                            <i class="fas fa-edit"></i>Editar
+                                        </button>
+                                    </a>
+                                    <form action="{{route('inventario.destroy', $inventario)}}" method="post" style="display: inline;">
+                                        {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
+                                        @csrf
+                                        {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                                        @method('DELETE')
+                                        {{-- Botón para accionar la eliminación --}}
+                                        <button type="submit" class="btn btn-danger" onclick="event.preventDefault(); this.closest('form').submit();">
+                                            <i class="fa fa-trash"></i> Borrar
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="mt-2">
+                {{$inventarios->links()}}
+            </div>
         <div class="text-center">
             <a href="{{route('inventario.create')}}">
                 <div class="btn btn-success">Crear nuevo inventario</div>

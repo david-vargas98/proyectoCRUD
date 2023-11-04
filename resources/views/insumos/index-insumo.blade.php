@@ -47,10 +47,14 @@
                     <td>
                         <div class="btn-group" role="group">
                             <a href="{{route('insumo.show', $insumo)}}">
-                                <div class="btn btn-sm btn-default">Detalles</div>
+                                <button class="btn btn-sm btn-secondary mt-2 mr-2">
+                                    <i class="far fa-eye"></i> Detalles
+                                </button>
                             </a>
                             <a href="{{route('insumo.edit', $insumo)}}">
-                                <div class="btn btn-sm btn-primary">Editar</div>
+                                <button class="btn btn-sm btn-primary mt-2 mr-2">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
                             </a>
                             <form action="{{route('insumo.destroy', $insumo)}}" method="post" style="display: inline;">
                                 {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros --}}
@@ -58,7 +62,9 @@
                                 {{-- También se debe cambiar como el patch para que se identifique en el route --}}
                                 @method('DELETE')
                                 {{-- Botón para accionar la eliminación --}}
-                                <a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Borrar</a>
+                                <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <i class="fa fa-trash"></i> Borrar
+                                </button>
                             </form>
                         </div>
                 </tr>
