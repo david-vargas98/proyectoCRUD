@@ -68,6 +68,9 @@
                         </form>
                     </li>
                 @endforeach
+                    <div class="mt-2">
+                        {{$inventarios->links()}}
+                    </div>
             </ul>
             <div style="flex: 1; margin-top: 80px; margin-left: 40px">
                 <img src="{{asset('img/perrito.png')}}" alt="perrito.png">
