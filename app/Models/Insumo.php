@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Insumo extends Model
 {
     use HasFactory;
+    protected $fillable = ['insumodescripcion', 'insumocantidad', 'inventario_id'];
 
         //Relación 1:m; Un (1) inventario puede tener muchos (m) insumos pero INVERSA
         public function inventario() //En singular porque es un inventario
