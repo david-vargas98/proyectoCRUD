@@ -11,6 +11,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use Spatie\Permission\Traits\HasRoles; //Se agrega para usar spatie
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -18,6 +20,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles; //Se le dice que se quiere usar dentro de esta clase
 
     /**
      * The attributes that are mass assignable.
