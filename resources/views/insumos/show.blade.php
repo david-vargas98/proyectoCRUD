@@ -18,9 +18,9 @@
         {{-- Se muestra la propiedad ID del inventario, accediendo a esta mediante "->" del objeto $inventario  --}}
         <p>ID: {{ $insumo->id }}</p>
         {{-- Se muestra la propiedad descripción, accediendo a esta mediante "->" del objeto $inventario --}}
-        <p>Descripción: {{ $insumo->inusmodescripcion }}</p>
-        <p>Cantidad: {{ $insumo->inusmocantidad }}</p>
-        {{-- Se muestra el usuario que creó el inventario --}}
+        <p>Descripción: {{ $insumo->insumodescripcion }}</p>
+        <p>Cantidad: {{ $insumo->insumocantidad }}</p>
+        {{-- Se muestra a que inventario pertenece --}}
         <p>Perteneciente al inventario: {{$insumo->inventario->descripcion}}</p>
         {{-- Se agrega imagen --}}
         <div class="d-flex justify-content-around">
