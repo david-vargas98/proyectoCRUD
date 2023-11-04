@@ -14,7 +14,7 @@ class InventarioController extends Controller
     public function index()
     {
         //Se regresa todo, se puede usar get() en su lugar, hace casi lo mismo
-        $inventarios = Inventario::all(); //Esta línea la coleeción de los registros de la tabla en la variable
+        $inventarios = Inventario::first()->paginate(4); //Esta línea la coleeción de los registros de la tabla en la variable
         //Retorna la vista a esa ruta en inventario-index.blade.php
         return view('inventario-index', compact('inventarios')); //Se usa compact para pasar la variable a esa vista: Esto significa que la vista tendrá acceso a la variable $inventarios y podrá mostrar la lista de inventarios.
     }
