@@ -15,7 +15,32 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     </head>
     <body>
-        <h1 class="text-center">Índice de inventarios</h1>
+        <div class="text-center">
+            <h1>Índice de inventarios</h1>
+            <a href="{{route('inventario.create')}}">
+                <div class="btn btn-success">Crear nuevo inventario</div>
+            </a>
+        </div>
+        
+            {{-- Mensaje de éxito --}}
+            @if(session('success'))
+            <div class="alert alert-success" id="successMessage">
+                {{ session('success') }}
+            </div>
+            @endif
+            {{-- Mensaje de modificación --}}
+            @if(session('update'))
+            <div class="alert alert-warning" id="updateMessage">
+                {{ session('update') }}
+            </div>
+            @endif
+            {{-- Mensaje de borrado --}}
+            @if(session('delete'))
+            <div class="alert alert-danger" id="deleteMessage">
+                {{ session('delete') }}
+            </div>
+            @endif
+
         <!-- Se realiza iteraciones en una lista no ordenada -->
         <div class="d-flex">
             <ul>
@@ -52,26 +77,6 @@
             <h3 class="text-center" style="margin-top: 40px">Nada por aquí...</h3>
         @endif
 
-                {{-- Mensaje de éxito --}}
-                @if(session('success'))
-                <div class="alert alert-success" id="successMessage">
-                    {{ session('success') }}
-                </div>
-            @endif
-    
-            {{-- Mensaje de modificación --}}
-            @if(session('update'))
-                <div class="alert alert-warning" id="updateMessage">
-                    {{ session('update') }}
-                </div>
-            @endif
-    
-            {{-- Mensaje de borrado --}}
-            @if(session('delete'))
-                <div class="alert alert-danger" id="deleteMessage">
-                    {{ session('delete') }}
-                </div>
-            @endif
     </body>
     </html>
 @stop
