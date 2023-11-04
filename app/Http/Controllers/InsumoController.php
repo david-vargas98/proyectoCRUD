@@ -59,7 +59,7 @@ class InsumoController extends Controller
         $inventario->insumos()->save($insumo); //Se usa la relación 1:m "insumos" para asociar el insumo y se guarda
 
         //Se redirige después de almacenar el insumo
-        return redirect()->route('inventario.index');
+        return redirect()->route("insumo.index")->with('success', 'Insumo agregado con éxito');
     }
 
     /**
@@ -75,7 +75,8 @@ class InsumoController extends Controller
      */
     public function edit(Insumo $insumo)
     {
-        //
+        $inventarios = Inventario::all();
+        return view('insumos.edit', compact('inventarios','insumo'));
     }
 
     /**
@@ -83,7 +84,8 @@ class InsumoController extends Controller
      */
     public function update(Request $request, Insumo $insumo)
     {
-        //
+        $insumo->update($request->all());
+        return redirect()->route("insumo.index")->with('updated', 'Insumo actualizado con éxito');
     }
 
     /**
@@ -91,6 +93,7 @@ class InsumoController extends Controller
      */
     public function destroy(Insumo $insumo)
     {
-        //
+        $insumo->delete();
+        return redirect()->route("insumo.index")->with('deleted', 'Insumo eliminado con éxito');
     }
 }
