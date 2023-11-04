@@ -51,12 +51,12 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <a href="{{route('inventario.show', $inventario)}}">
-                                        <button class="btn btn-secondary">
+                                        <button class="btn btn-sm btn-secondary mt-2 mr-2">
                                             <i class="far fa-eye"></i>Detalles
                                         </button>
                                     </a>
                                     <a href="{{route('inventario.edit', $inventario)}}">
-                                        <button class="btn btn-primary">
+                                        <button class="btn btn-sm btn-primary mt-2 mr-2">
                                             <i class="fas fa-edit"></i>Editar
                                         </button>
                                     </a>
@@ -66,7 +66,7 @@
                                         {{-- También se debe cambiar como el patch para que se identifique en el route --}}
                                         @method('DELETE')
                                         {{-- Botón para accionar la eliminación --}}
-                                        <button type="submit" class="btn btn-danger" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2" onclick="event.preventDefault(); this.closest('form').submit();">
                                             <i class="fa fa-trash"></i> Borrar
                                         </button>
                                     </form>
@@ -81,7 +81,9 @@
             </div>
         <div class="text-center">
             <a href="{{route('inventario.create')}}">
-                <div class="btn btn-success">Crear nuevo inventario</div>
+                <button class="btn btn-sm btn-success mt-2 mr-2">
+                    <i class="fas fa-plus-square"></i> Crear nuevo inventario
+                </button>
             </a>
         </div>
         @if ($inventarios->isEmpty())
