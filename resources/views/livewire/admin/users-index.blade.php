@@ -2,7 +2,7 @@
     <div class="card">
 
         <div class="card-header">
-            <input type="text" class="form-control" placeholder="Ingrese el nombre o correo del usuario">
+            <input wire:model="search" type="text" class="form-control" placeholder="Ingrese el nombre o correo del usuario">
         </div>
 
         <div class="card-body">
