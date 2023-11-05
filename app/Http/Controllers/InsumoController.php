@@ -22,8 +22,14 @@ class InsumoController extends Controller
     public function index()
     {
         //Se implementa el index para los insumos
-        $insumos = Insumo::first()->paginate(4); //Se obtiene la colección de los insumos
-        return view('insumos.index-insumo', compact('insumos')); //Se retorna la vista y se pasa la variable con los insumos
+        $insumos = Insumo::first();
+
+        if($insumos){
+            $insumos = Insumo::paginate(4); //Se obtiene la colección de los insumos
+            return view('insumos.index-insumo', compact('insumos')); //Retorna la vista y se pasa la variable con los insumos
+        }else{
+            return view('insumos.index-insumo', compact('insumos'))->with('message', 'No hay insumos disponibles.'); // Manejar el caso donde no hay insumos
+        }
     }
 
     /**
