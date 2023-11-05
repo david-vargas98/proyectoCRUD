@@ -1,5 +1,10 @@
 <div>
     <div class="card">
+
+        <div class="card-header">
+            <input type="text" class="form-control" placeholder="Ingrese el nombre o correo del usuario">
+        </div>
+
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
