@@ -29,49 +29,52 @@
             <strong>{{Session::get('deleted')}}</strong><br>
         </div>
     @endif
-    <table border="1" class="text-center table table-bordered table-striped table-hover">
-        <thead>
-            <tr class="text-sm">
-                <th>Inventario</th>
-                <th>Descripcion</th>
-                <th>Cantidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($insumos as $insumo)
-                <tr>
-                    <td class="text-sm">{{$insumo->inventario->descripcion}}</td>
-                    <td class="text-sm">{{$insumo->insumodescripcion}}</td>
-                    <td class="text-sm">{{$insumo->insumocantidad}}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <a href="{{route('insumo.show', $insumo)}}">
-                                <button class="btn btn-sm btn-secondary mt-2 mr-2">
-                                    <i class="far fa-eye"></i> Detalles
-                                </button>
-                            </a>
-                            <a href="{{route('insumo.edit', $insumo)}}">
-                                <button class="btn btn-sm btn-primary mt-2 mr-2">
-                                    <i class="fas fa-edit"></i> Editar
-                                </button>
-                            </a>
-                            <form action="{{route('insumo.destroy', $insumo)}}" method="post" style="display: inline;">
-                                {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros --}}
-                                @csrf
-                                {{-- También se debe cambiar como el patch para que se identifique en el route --}}
-                                @method('DELETE')
-                                {{-- Botón para accionar la eliminación --}}
-                                <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2" onclick="event.preventDefault(); this.closest('form').submit();">
-                                    <i class="fa fa-trash"></i> Borrar
-                                </button>
-                            </form>
-                        </div>
+    @if ($insumos)
+        <table border="1" class="text-center table table-bordered table-striped table-hover">
+            <thead>
+                <tr class="text-sm">
+                    <th>Inventario</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>Acciones</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-    {{$insumos->links()}}
+            </thead>
+            <tbody>
+                @foreach ($insumos as $insumo)
+                    <tr>
+                        <td class="text-sm">{{$insumo->inventario->descripcion}}</td>
+                        <td class="text-sm">{{$insumo->insumodescripcion}}</td>
+                        <td class="text-sm">{{$insumo->insumocantidad}}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{{route('insumo.show', $insumo)}}">
+                                    <button class="btn btn-sm btn-secondary mt-2 mr-2">
+                                        <i class="far fa-eye"></i> Detalles
+                                    </button>
+                                </a>
+                                <a href="{{route('insumo.edit', $insumo)}}">
+                                    <button class="btn btn-sm btn-primary mt-2 mr-2">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                </a>
+                                <form action="{{route('insumo.destroy', $insumo)}}" method="post" style="display: inline;">
+                                    {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para  confirmar que somos nosotros --}}
+                                    @csrf
+                                    {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                                    @method('DELETE')
+                                    {{-- Botón para accionar la eliminación --}}
+                                    <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2" onclick="event.preventDefault (); this.closest('form').submit();">
+                                        <i class="fa fa-trash"></i> Borrar
+                                    </button>
+                                </form>
+                            </div>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{$insumos->links()}}
+    @endif
+    
     <div class="text-center">
         <a href="{{route('insumo.create')}}">
             <button class="btn btn-sm btn-success mt-2 mr-2">
@@ -80,7 +83,7 @@
         </a>
     </div>
 
-    @if ($insumos->isEmpty())
+    @if (isset($insumos) && $insumos->isEmpty())
         <div class="img-fluid d-flex justify-content-end">
             <img src="{{asset('img/perrito.png')}}" alt="perrito.png" style="margin-top: 100px;">
         </div>
