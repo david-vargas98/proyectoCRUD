@@ -307,11 +307,21 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text' => 'Dashboard',
+            'url'  => 'dashboard',
+            'icon' => 'fas fa-universal-access',
+        ],
+        [
             'text' => 'profile',
             'url'  => 'profile',
             'icon' => 'far fa-regular fa-user',
         ],
-        ['header' => 'OPERACIONES'],
+        [
+            'text' => 'Usuarios',
+            'route'  => 'admin.users.index',
+            'icon' => 'fas fa-users',
+        ],
+        ['header' => 'Administrador'],
         [
             'text' => 'Inventarios',
             'url'  => 'inventario/',
