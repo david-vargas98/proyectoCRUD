@@ -28,7 +28,7 @@ class InsumoController extends Controller
             $insumos = Insumo::paginate(4); //Se obtiene la colección de los insumos
             return view('insumos.index-insumo', compact('insumos')); //Retorna la vista y se pasa la variable con los insumos
         }else{
-            return view('insumos.index-insumo', compact('insumos'))->with('message', 'No hay insumos disponibles.'); // Manejar el caso donde no hay insumos
+            return view('insumos.index-insumo', compact('insumos')); // Manejar el caso donde no hay insumos
         }
     }
 
