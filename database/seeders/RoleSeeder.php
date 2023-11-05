@@ -16,21 +16,21 @@ class RoleSeeder extends Seeder
     {
         //Se crea un nuevo registro de roles
         $roleOne = Role::create(['name' =>'admin']);
-        $roleDos = Role::create(['name' =>'cliente']);
+        $roleTwo = Role::create(['name' =>'cliente']);
 
         //Permiso para la ruta dashboard
-        Permission::create(['name' => 'dashboard']);
+        Permission::create(['name' => 'dashboard'])->syncRoles([$roleOne, $roleTwo]); //Se asignan permisos
 
         //Permisos para las rutas de inventarios
-        Permission::create(['name' => 'inventario.index']);
-        Permission::create(['name' => 'inventario.create']);
-        Permission::create(['name' => 'inventario.edit']);
-        Permission::create(['name' => 'inventario.destroy']);
+        Permission::create(['name' => 'inventario.index'])->assignRole($roleOne);
+        Permission::create(['name' => 'inventario.create'])->assignRole($roleOne);
+        Permission::create(['name' => 'inventario.edit'])->assignRole($roleOne);
+        Permission::create(['name' => 'inventario.destroy'])->assignRole($roleOne);
 
         //Permisos para las rutas de insumos
-        Permission::create(['name' => 'insumo.index']);
-        Permission::create(['name' => 'insumo.create']);
-        Permission::create(['name' => 'insumo.edit']);
-        Permission::create(['name' => 'insumo.destroy']);
+        Permission::create(['name' => 'insumo.index'])->assignRole($roleOne);
+        Permission::create(['name' => 'insumo.create'])->assignRole($roleOne);
+        Permission::create(['name' => 'insumo.edit'])->assignRole($roleOne);
+        Permission::create(['name' => 'insumo.destroy'])->assignRole($roleOne);
     }
 }
