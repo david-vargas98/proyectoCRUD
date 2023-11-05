@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             'password' => '12345678',
         ]);
 
+        //Se llama al seeder de Roles
+        $this->call(RoleSeeder::class);
+
         //Después de crear el seeder, se necesita registrar en el archivo DatabaseSeeder.php. Esto se hace para que cuando se ejecute el comando php artisan db:seed, Laravel sepa qué seeders deben ejecutarse.
         //$this->call([
         //    //Se agrega NormaSeeder::class al arreglo de seeders que se ejecutarán cuando se ejecute php artisan db:seed.
