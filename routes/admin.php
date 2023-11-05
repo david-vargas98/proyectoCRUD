@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-route::get("admin", function () {
+route::get('', function () {
     return "hola admin";
-});
+})->middleware('auth');
