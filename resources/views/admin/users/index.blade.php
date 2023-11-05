@@ -7,7 +7,8 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    {{-- Se pide que se renderice el componente dentro de la carpeta admin, llamado: users-index --}}
+    @livewire('admin.users-index')
 @stop
 
 @section('css')
