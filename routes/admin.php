@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\HomeController;  //Se incluye el controlador que se creó para admin
 
-route::get('', function () {
-    return "hola admin";
-})->middleware('auth');
+//Se asigna el control de la ruta al controlador
+route::get('', [HomeController::class,'index'])->name('admin.home');
