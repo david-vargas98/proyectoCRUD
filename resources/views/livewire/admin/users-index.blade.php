@@ -29,5 +29,9 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="car-footer">
+            {{$users->links()}}
+        </div>
     </div>
 </div>
