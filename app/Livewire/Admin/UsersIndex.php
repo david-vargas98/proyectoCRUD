@@ -29,4 +29,10 @@ class UsersIndex extends Component
     {
         $this->search = '';
     }
+
+    //Método que se usa para resetear la información de la página y poder realizar correctamente las búsquedas
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 }
