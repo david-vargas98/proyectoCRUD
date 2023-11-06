@@ -7,6 +7,12 @@
 @stop
 
 @section('content')
+    {{-- Mensaje de confirmación --}}
+    @if (session('success'))
+        <div class="alert alert-success">
+            <strong>{{session('success')}}</strong>
+        </div>
+    @endif
     <div class="card">
         <div class="card-body">
             <p class="h5">Nombre</p>
@@ -31,8 +37,6 @@
                 <!-- Botón de enviar el formulario -->
                 <button type="submit" class="btn btn-primary mt-2">Asignar rol</button>
             </form>
-            {{-- Cierre del formulario --}}
-            {!! Form::close() !!}
         </div>
     </div>
 @stop
