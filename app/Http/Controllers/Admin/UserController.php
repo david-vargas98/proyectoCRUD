@@ -19,30 +19,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(User $user)
@@ -61,13 +37,5 @@ class UserController extends Controller
         $user->roles()->sync($request->roles);
         //Se retorna a la página anterior con un mensaje de sesión
         return redirect()->route('admin.users.edit', $user)->with('success','Se asignó los roles correctamente');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
