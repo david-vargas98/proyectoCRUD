@@ -19,7 +19,8 @@ class UsersIndex extends Component
     public function render()
     {
         //Se recupera el listado de los usuarios pero paginados y filtrado
-        $users = User::where('name', 'LIKE', '%'. $this->search . '%')->paginate(5);
+        $users = User::where('name', 'LIKE', '%'. $this->search . '%')
+                    ->orWhere('email', 'LIKE', '%'. $this->search . '%')->paginate(5);
 
         return view('livewire.admin.users-index', compact('users')); //Se le pasa la variable
     }
