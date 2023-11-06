@@ -8,4 +8,4 @@ use App\Http\Controllers\Admin\UserController;  //Se incluye el controlador de u
 route::get('', [HomeController::class,'index'])->name('admin.home');
 
 //Grupo de rutas para usuarios y se les da nombre
-route::resource('users', UserController::class)->names('admin.users');
+route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('admin.users');
