@@ -2,7 +2,13 @@
     <div class="card">
 
         <div class="card-header">
-            <input wire:model="search" type="text" class="form-control" placeholder="Ingrese el nombre o correo del usuario">
+            <div class="input-group">
+                <input wire:model="search" class="form-control" placeholder="Ingrese el nombre o correo del usuario">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
+                    <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
+                </div>
+            </div>
         </div>
 
         <div class="card-body">
@@ -35,7 +41,7 @@
             </table>
         </div>
 
-        <div class="car-footer">
+        <div class="card-footer">
             {{$users->links()}}
         </div>
     </div>
