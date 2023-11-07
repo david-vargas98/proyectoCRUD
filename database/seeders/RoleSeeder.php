@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
         $roleTwo = Role::create(['name' =>'cliente']);
 
         //Permiso para la ruta dashboard
-        Permission::create(['name' => 'dashboard'])->syncRoles([$roleOne, $roleTwo]); //Se asignan permisos
+        Permission::create(['name' => 'dashboard'])->syncRoles([$roleOne]); //Se asignan permisos
 
         //Permisos para las rutas de inventarios
         Permission::create(['name' => 'inventario.index'])->assignRole($roleOne);
