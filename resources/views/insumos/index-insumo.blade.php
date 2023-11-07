@@ -52,12 +52,15 @@
                                         <i class="far fa-eye"></i> Detalles
                                     </button>
                                 </a>
-                                <a href="{{route('insumo.edit', $insumo)}}">
+                                @can('insumo.edit')
+                                    <a href="{{route('insumo.edit', $insumo)}}">
                                     <button class="btn btn-sm btn-primary mt-2 mr-2">
                                         <i class="fas fa-edit"></i> Editar
                                     </button>
-                                </a>
-                                <form action="{{route('insumo.destroy', $insumo)}}" method="post" style="display: inline;">
+                                    </a>
+                                @endcan
+                                @can('insumo.destroy')
+                                    <form action="{{route('insumo.destroy', $insumo)}}" method="post" style="display: inline;">
                                     {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para  confirmar que somos nosotros --}}
                                     @csrf
                                     {{-- También se debe cambiar como el patch para que se identifique en el route --}}
@@ -66,7 +69,8 @@
                                     <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2" onclick="event.preventDefault (); this.closest('form').submit();">
                                         <i class="fa fa-trash"></i> Borrar
                                     </button>
-                                </form>
+                                    </form>
+                                @endcan
                             </div>
                     </tr>
                 @endforeach
@@ -75,13 +79,15 @@
         {{$insumos->links()}}
     @endif
     
-    <div class="text-center">
-        <a href="{{route('insumo.create')}}">
-            <button class="btn btn-sm btn-success mt-2 mr-2">
-                <i class="fas fa-plus-square"></i> Agregar nuevo insumo
-            </button>
-        </a>
-    </div>
+    @can('insumo.create')
+        <div class="text-center">
+            <a href="{{route('insumo.create')}}">
+                <button class="btn btn-sm btn-success mt-2 mr-2">
+                    <i class="fas fa-plus-square"></i> Agregar nuevo insumo
+                </button>
+            </a>
+        </div>
+    @endcan
 
     @if (isset($insumos) && $insumos->isEmpty())
         <div class="img-fluid d-flex justify-content-end">
