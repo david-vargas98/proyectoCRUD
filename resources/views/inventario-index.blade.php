@@ -55,12 +55,15 @@
                                             <i class="far fa-eye"></i>Detalles
                                         </button>
                                     </a>
-                                    <a href="{{route('inventario.edit', $inventario)}}">
+                                    @can('inventario.edit')
+                                        <a href="{{route('inventario.edit', $inventario)}}">
                                         <button class="btn btn-sm btn-primary mt-2 mr-2">
                                             <i class="fas fa-edit"></i>Editar
                                         </button>
-                                    </a>
-                                    <form action="{{route('inventario.destroy', $inventario)}}" method="post" style="display: inline;">
+                                        </a>
+                                    @endcan
+                                    @can('inventario.destroy')
+                                        <form action="{{route('inventario.destroy', $inventario)}}" method="post" style="display: inline;">
                                         {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
                                         @csrf
                                         {{-- También se debe cambiar como el patch para que se identifique en el route --}}
@@ -69,7 +72,8 @@
                                         <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2" onclick="event.preventDefault(); this.closest('form').submit();">
                                             <i class="fa fa-trash"></i> Borrar
                                         </button>
-                                    </form>
+                                        </form>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
@@ -79,13 +83,15 @@
             <div class="mt-2">
                 {{$inventarios->links()}}
             </div>
-        <div class="text-center">
+        @can('inventario.create')
+            <div class="text-center">
             <a href="{{route('inventario.create')}}">
                 <button class="btn btn-sm btn-success mt-2 mr-2">
                     <i class="fas fa-plus-square"></i> Crear nuevo inventario
                 </button>
             </a>
-        </div>
+            </div>
+        @endcan
         @if ($inventarios->isEmpty())
             <div style="flex: 1; margin-top: 80px; margin-left: 40px">
                 <img src="{{asset('img/perrito.png')}}" alt="perrito.png">
