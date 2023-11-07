@@ -16,10 +16,11 @@ class RoleSeeder extends Seeder
     {
         //Se crea un nuevo registro de roles
         $roleOne = Role::create(['name' =>'admin']);
-        $roleTwo = Role::create(['name' =>'cliente']);
+        $roleTwo = Role::create(['name' =>'empleado']);
+        $roleThree = Role::create(['name' =>'cliente']);
 
         //Permiso para la ruta dashboard
-        Permission::create(['name' => 'dashboard'])->syncRoles([$roleOne]); //Se asignan permisos
+        Permission::create(['name' => 'dashboard'])->syncRoles([$roleOne, $roleTwo]); //Se asignan permisos
 
         //Permisos para las rutas de inventarios
         Permission::create(['name' => 'inventario.index'])->assignRole($roleOne);
