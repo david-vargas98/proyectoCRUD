@@ -310,6 +310,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'dashboard',
             'icon' => 'fas fa-universal-access',
+            'can' => 'dashboard',
         ],
         [
             'text' => 'profile',
@@ -320,17 +321,19 @@ return [
             'text' => 'Usuarios',
             'route'  => 'admin.users.index',
             'icon' => 'fas fa-users',
+            'can' => 'admin.users.index',
         ],
-        ['header' => 'Administrador'],
         [
             'text' => 'Inventarios',
             'url'  => 'inventario/',
             'icon' => 'far fa-regular fa-address-book',
+            'can' => 'inventario.index',
         ],
         [
             'text' => 'Insumos',
             'url'  => 'insumo/',
             'icon' => 'fas fa-birthday-cake',
+            'can' => 'insumo.index',
         ],
     ],
 
