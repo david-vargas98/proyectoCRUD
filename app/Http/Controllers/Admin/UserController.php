@@ -10,6 +10,16 @@ use Spatie\Permission\Models\Role;  //Se hace la inclusión del modelo para los 
 
 class UserController extends Controller
 {
+    //Método constructor para el manejo de las rutas protegidas
+    public function __construct()
+    {
+        //De esta manera se restringe el acceso a todas las rutas
+        $this->middleware('can:admin.users.index');
+        //De este otro modo se puede especificar uno por uno
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.edit')->only('edit', 'update');
+    }
+
     /**
      * Display a listing of the resource.
      */
