@@ -21,6 +21,7 @@ class RoleSeeder extends Seeder
 
         //Permiso para la ruta de los usuarios
         Permission::create(['name' => 'admin.users.index'])->assignRole($roleOne);
+        Permission::create(['name' => 'admin.users.edit'])->assignRole($roleOne);
         //Permiso para la ruta dashboard
         Permission::create(['name' => 'dashboard'])->syncRoles([$roleOne, $roleTwo]); //Se asignan permisos
 
