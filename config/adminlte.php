@@ -324,6 +324,12 @@ return [
             'can' => 'admin.users.index',
         ],
         [
+            'text' => 'Lista de roles',
+            'route'  => 'admin.roles.index',
+            'icon' => 'fas fa-users-cog',
+            'can' => 'admin.users.index',
+        ],
+        [
             'text' => 'Inventarios',
             'url'  => 'admin/inventario/',
             'icon' => 'far fa-regular fa-address-book',
