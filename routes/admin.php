@@ -20,4 +20,4 @@ Route::resource('inventario', InventarioController::class)->middleware('auth');
 Route::resource('insumo', InsumoController::class);
 
 //Se agrega el controlador para el crud de permisos, la url inicia en 'roles', administrado por RoleController
-Route::resource('roles', RoleController::class);
+Route::resource('roles', RoleController::class)->names('admin.roles'); //se le da nombre de rutas
