@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class InsumoController extends Controller
 {
+    //Método constructor para el manejo de las rutas protegidas
+    public function __construct()
+    {
+        //Se especifica el permiso y que ruta proteje
+        $this->middleware('can:insumo.index')->only('index');
+        $this->middleware('can:insumo.create')->only('create', 'store');
+        $this->middleware('can:insumo.edit')->only('edit', 'update');
+        $this->middleware('can:insumo.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */
