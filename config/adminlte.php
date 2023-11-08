@@ -325,13 +325,13 @@ return [
         ],
         [
             'text' => 'Inventarios',
-            'url'  => 'inventario/',
+            'url'  => 'admin/inventario/',
             'icon' => 'far fa-regular fa-address-book',
             'can' => 'inventario.index',
         ],
         [
             'text' => 'Insumos',
-            'url'  => 'insumo/',
+            'url'  => 'admin/insumo/',
             'icon' => 'fas fa-birthday-cake',
             'can' => 'insumo.index',
         ],
