@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Auth; //Se agrega el Auth de "Facades"
 
 class InventarioController extends Controller
 {
+    //Método constructor para el manejo de las rutas protegidas
+    public function __construct()
+    {
+        //Se especifica el permiso y que ruta proteje
+        $this->middleware('can:inventario.index')->only('index');
+        $this->middleware('can:inventario.create')->only('create', 'store');
+        $this->middleware('can:inventario.edit')->only('edit', 'update');
+        $this->middleware('can:inventario.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */
