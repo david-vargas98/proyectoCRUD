@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\InventarioController;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,6 @@ Route::resource('inventario', InventarioController::class)->middleware('auth');
 
 //Se agrega la madre esta del controlador *INVESTIGAR*
 Route::resource('insumo', InsumoController::class);
+
+//Se agrega el controlador para el crud de permisos, la url inicia en 'roles', administrado por RoleController
+Route::resource('roles', RoleController::class);
