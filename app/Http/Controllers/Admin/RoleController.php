@@ -13,7 +13,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view("admin.roles.index");
+        //Se recupera el listado de roles para mostrarlos
+        $roles = Role::all();
+        return view("admin.roles.index", compact("roles"));
     }
 
     /**
