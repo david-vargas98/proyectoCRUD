@@ -19,7 +19,7 @@
                     <div>
                         <label>
                             <input type="checkbox" name="permissions[]" value="{{$permiso->id}}" class="mr-1">
-                            {{$permiso->name}}
+                            {{$permiso->description}}
                         </label>
                     </div>
                 @endforeach
