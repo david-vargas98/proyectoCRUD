@@ -59,7 +59,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view("admin.roles.edit", compact('role'));
+        //Se recupera el listado de los permisos
+        $permisos = Permission::all();
+        return view("admin.roles.edit", compact('role', 'permisos'));
     }
 
     /**
