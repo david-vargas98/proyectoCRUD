@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role; //Importación del modelo de roles
+use Spatie\Permission\Models\Permission; //Se importa el modelo de los permisos
 
 class RoleController extends Controller
 {
@@ -23,7 +24,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view("admin.roles.create");
+        //Se recupera el listado de los permisos
+        $permisos = Permission::all();
+        return view("admin.roles.create", compact('permisos'));
     }
 
     /**
