@@ -20,21 +20,21 @@ class RoleSeeder extends Seeder
         $roleThree = Role::create(['name' =>'cliente']);
 
         //Permiso para la ruta de los usuarios
-        Permission::create(['name' => 'admin.users.index'])->assignRole($roleOne);
-        Permission::create(['name' => 'admin.users.edit'])->assignRole($roleOne);
+        Permission::create(['name' => 'admin.users.index', 'description' => 'Ver el índice de usuarios'])->assignRole($roleOne);
+        Permission::create(['name' => 'admin.users.edit', 'description' => 'Editar los permisos de los usuarios'])->assignRole($roleOne);
         //Permiso para la ruta dashboard
-        Permission::create(['name' => 'dashboard'])->syncRoles([$roleOne, $roleTwo]); //Se asignan permisos
+        Permission::create(['name' => 'dashboard', 'description' => 'Ver el dashboard'])->syncRoles([$roleOne, $roleTwo]); //Se asignan permisos
 
         //Permisos para las rutas de inventarios
-        Permission::create(['name' => 'inventario.index'])->syncRoles([$roleOne, $roleTwo]);
-        Permission::create(['name' => 'inventario.create'])->assignRole($roleOne);
-        Permission::create(['name' => 'inventario.edit'])->assignRole($roleOne);
-        Permission::create(['name' => 'inventario.destroy'])->assignRole($roleOne);
+        Permission::create(['name' => 'inventario.index', 'description' => 'Ver el índice de los inventarios'])->syncRoles([$roleOne, $roleTwo]);
+        Permission::create(['name' => 'inventario.create', 'description' => 'Agregar nuevos inventarios'])->assignRole($roleOne);
+        Permission::create(['name' => 'inventario.edit', 'description' => 'Editar inventarios existente'])->assignRole($roleOne);
+        Permission::create(['name' => 'inventario.destroy', 'description' => 'Eliminar inventarios'])->assignRole($roleOne);
 
         //Permisos para las rutas de insumos
-        Permission::create(['name' => 'insumo.index'])->syncRoles([$roleOne, $roleTwo]);
-        Permission::create(['name' => 'insumo.create'])->assignRole($roleOne);
-        Permission::create(['name' => 'insumo.edit'])->assignRole($roleOne);
-        Permission::create(['name' => 'insumo.destroy'])->assignRole($roleOne);
+        Permission::create(['name' => 'insumo.index', 'description' => 'Ver el índice de los insumos'])->syncRoles([$roleOne, $roleTwo]);
+        Permission::create(['name' => 'insumo.create', 'description' => 'Agregar nuevos insumos'])->assignRole($roleOne);
+        Permission::create(['name' => 'insumo.edit', 'description' => 'Editar insumos existente'])->assignRole($roleOne);
+        Permission::create(['name' => 'insumo.destroy', 'description' => 'Eliminar inventarios'])->assignRole($roleOne);
     }
 }
