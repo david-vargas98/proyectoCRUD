@@ -15,7 +15,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <form action="{{route('admin.roles.edit', $role)}}" method="POST">
+            <form action="{{route('admin.roles.update', $role)}}" method="POST">
                 @method('PUT')
                 @include('admin.roles.partials.form')
                 <button class="btn btn-primary">Editar rol</button>
