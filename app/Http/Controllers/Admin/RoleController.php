@@ -34,7 +34,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //Validaciones
+        $request->validate([
+            'name' =>'required',
+        ]);
+        //Si pasa la validación, se le pasa al método create lo que se manda desde el formulario:
+        $role = Role::create($request->all());
+        //Sincronización con los permisos seleccionados, para eso se accede a la relación permissions:
+        $role->permissions()->sync($request->permissions); //Esta línea asigna los permisos
+        //Redirección
+        return redirect()->route('admin.roles.edit', $role)->with('success','El rol se creó con éxito');
     }
 
     /**
