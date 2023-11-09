@@ -7,6 +7,12 @@
 @stop
 
 @section('content')
+    {{-- Mensaje de confirmación --}}
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+    @endif
     <div class="card">
         <div class="card-body">
             <table class="table table-striped">
