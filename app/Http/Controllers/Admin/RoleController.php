@@ -69,7 +69,16 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        //Validaciones
+        $request->validate([
+            'name' =>'required',
+        ]);
+        //Si pasa, se actualiza
+        $role->update($request->all());
+        //Se sincroniza el rol con los permisos
+        $role->permissions()->sync($request->permissions); //Esta línea asigna los permisos
+        //Redirección
+        return redirect()->route('admin.roles.edit', $role)->with('success','El rol se actualizó con éxito');
     }
 
     /**
