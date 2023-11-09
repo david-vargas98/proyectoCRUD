@@ -24,7 +24,7 @@
             <div style="display: flex; align-items: center;justify-content: center; flex-direction: column;"> 
                 <label for="descripcion" style="margin-right: 10px; font-size:28px">Descripción del inventario:</label>
                 {{-- Campo de entrada --}} {{-- Se agrega el value para mostrar el valor del inventario --}}
-                <input type="text" name="descripcion" placeholder="Descripción" value="{{$inventario->descripcion}}" required class="input-group-text" style="margin-bottom: 20px">
+                <input type="text" name="descripcion" placeholder="Descripción" value="{{$inventario->descripcion}}" class="input-group-text" style="margin-bottom: 20px" pattern="[A-Za-z\s]+" minlength="6" maxlength="20" required>
                 <button type="submit" class="btn btn-warning">Editar descripción</button>
                 {{-- Validación: permite acceder al mensaje de error específico asociado con el campo 'descripcion' si hay un error de  validación. --}}
                 @error('descripcion')
