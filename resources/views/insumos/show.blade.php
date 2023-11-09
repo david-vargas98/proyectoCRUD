@@ -7,23 +7,30 @@
 @stop
 
 @section('content')
-    {{-- Se muestra la propiedad ID del inventario, accediendo a esta mediante "->" del objeto $inventario  --}}
-    <p>ID: {{ $insumo->id }}</p>
-    {{-- Se muestra la propiedad descripción, accediendo a esta mediante "->" del objeto $inventario --}}
-    <p>Descripción: {{ $insumo->insumodescripcion }}</p>
-    <p>Cantidad: {{ $insumo->insumocantidad }}</p>
-    {{-- Se muestra a que inventario pertenece --}}
-    <p>Perteneciente al inventario: {{$insumo->inventario->descripcion}}</p>
-    <div>
+    <table border="1" class="text-center table table-bordered table-striped table-hover">
+        <thead>
+            <tr class="text-sm">
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Inventario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-sm">{{$insumo->id}}</td>
+                <td class="text-sm">{{$insumo->insumodescripcion}}</td>
+                <td class="text-sm">{{$insumo->insumocantidad}}</td>
+                <td class="text-sm">{{$insumo->inventario->descripcion}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
         <a href="{{route('insumo.index')}}">
             <button class="btn btn-sm btn-primary mt-2 mr-2">
                 <i class="fas fa-backward"></i> Regresar al índice
             </button>
         </a>
-    </div>
-    {{-- Se agrega imagen --}}
-    <div class="d-flex justify-content-around">
-        <img src="{{asset('img/chems.png')}}" alt="chems.png" class="float-right" style="margin-top: -200px; margin-left: 200px;">
     </div>
 @stop
 
