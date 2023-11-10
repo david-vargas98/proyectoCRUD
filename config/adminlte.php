@@ -337,7 +337,7 @@ return [
         ],
         [
             'text' => 'Proyectos',
-            'route'  => 'empleado.clientes.index',
+            'route'  => 'empleado.proyectos.index',
             'icon' => 'fas fa-project-diagram',
             'can' => '',
         ],
