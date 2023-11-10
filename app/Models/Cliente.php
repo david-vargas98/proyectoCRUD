@@ -10,9 +10,9 @@ class Cliente extends Model
 {
     use HasFactory;
 
-    //Se implementa la relación del Cleinte con User, ya que un cliente solo puede ser un usuario
-    public function user()
+    //Se implementa la relación m:m del Cliente con User, usando tabla pivote
+    public function cliente_user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsToMany(Cliente::class, 'cliente_user', 'cliente_id', 'user_id');
     }
 }
