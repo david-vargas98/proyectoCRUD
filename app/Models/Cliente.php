@@ -13,8 +13,8 @@ class Cliente extends Model
     protected $fillable = ['nombrecliente', 'apellidopat', 'apellidomat', 'fechanacimiento', 'correo', 'telefono', 'direccion', 'ciudad', 'estado', 'pais'];
 
     //Se implementa la relación m:m del Cliente con User, usando tabla pivote
-    public function cliente_user()
+    public function users()
     {
-        return $this->belongsToMany(Cliente::class, 'cliente_user', 'cliente_id', 'user_id');
+        return $this->belongsToMany(User::class)->withPivot('proyecto', 'presupuesto', 'estado');
     }
 }
