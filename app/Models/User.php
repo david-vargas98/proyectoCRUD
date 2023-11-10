@@ -70,8 +70,8 @@ class User extends Authenticatable
     }
 
     //Se establece la relación m:m con cliente, usando tabla pivote
-    public function cliente_user()
+    public function clientes()
     {
-        return $this->belongsToMany(Cliente::class, 'cliente_user','user_id','cliente_id');
+        return $this->belongsToMany(Cliente::class)->withPivot('proyecto', 'presupuesto', 'estado');
     }
 }
