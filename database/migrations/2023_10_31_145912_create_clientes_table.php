@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->string('nombrecliente');
             $table->string('apellidopat');
             $table->string('apellidomat');
+            $table->date('fechanacimiento');
+            $table->string('correo');
+            $table->string('telefono');
+            $table->string('direccion');
+            $table->string('ciudad');
+            $table->string('estado');
+            $table->string('pais');
             $table->timestamps();
         });
     }
