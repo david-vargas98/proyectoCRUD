@@ -330,6 +330,18 @@ return [
             'can' => 'admin.users.index',
         ],
         [
+            'text' => 'Clientes',
+            'route'  => 'empleado.clientes.index',
+            'icon' => 'fas fa-comments-dollar',
+            'can' => '',
+        ],
+        [
+            'text' => 'Proyectos',
+            'route'  => 'empleado.clientes.index',
+            'icon' => 'fas fa-project-diagram',
+            'can' => '',
+        ],
+        [
             'text' => 'Inventarios',
             'url'  => 'admin/inventario/',
             'icon' => 'far fa-regular fa-address-book',
