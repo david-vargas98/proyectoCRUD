@@ -29,14 +29,14 @@
             </tbody>
         </table>
         <div class="text-center">
-            <a href="{{ route('inventario.index') }}">
+            <a href="{{ route('empleado.clientes.index') }}">
                 <button class="btn btn-sm btn-primary mt-2 mr-2">
                     <i class="fas fa-backward"></i> Regresar al índice
                 </button>
             </a>
         </div>
     @else
-        <p>No hay empleados trabajando a este cliente</p>
+        <p class="alert alert-info">No hay empleados trabajando con este cliente</p>
     @endif
 @stop
 
