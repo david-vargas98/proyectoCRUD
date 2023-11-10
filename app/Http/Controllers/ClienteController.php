@@ -12,7 +12,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return view('empleado.clientes.index');
+        $clientes = Cliente::all();
+        return view('empleado.clientes.index', compact('clientes'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view("empleado.clientes.create");
     }
 
     /**
@@ -28,7 +29,23 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validaciones
+        $request->validate([
+            'nombrecliente' =>'required|string|max:50',
+            'apellidopat'=> 'required|string',
+            'apellidomat'=> 'required|string',
+            'fechanacimiento'=> 'required|date',
+            'correo'=> 'required|email|max:30',
+            'telefono'=> 'required|numeric',
+            'direccion'=> 'required|string|max:40',
+            'ciudad'=> 'required|string|max:30',
+            'estado'=> 'required|string|max:30',
+            'pais'=> 'required|string|max:30',
+        ]);
+        //Si pasa la validación, se le pasa al método create lo que se manda desde el formulario:
+        $cliente = Cliente::create($request->all());
+        //Redirección
+        return redirect()->route('empleado.clientes.index')->with('success','El cliente se agregó con éxito');
     }
 
     /**
@@ -36,7 +53,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        return view('empleado.clientes.show', compact('cliente'));
     }
 
     /**
@@ -44,7 +61,8 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+
+        return view('empleado.clientes.edit', compact('cliente'));
     }
 
     /**
@@ -52,7 +70,23 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        //Validaciones
+        $request->validate([
+            'nombrecliente' =>'required|string|max:50',
+            'apellidopat'=> 'required|string',
+            'apellidomat'=> 'required|string',
+            'fechanacimiento'=> 'required|date',
+            'correo'=> 'required|email|max:30',
+            'telefono'=> 'required|numeric',
+            'direccion'=> 'required|string|max:40',
+            'ciudad'=> 'required|string|max:30',
+            'estado'=> 'required|string|max:30',
+            'pais'=> 'required|string|max:30',
+        ]);
+        //Si pasa la validación, se le pasa al método create lo que se manda desde el formulario:
+        $cliente->update($request->all());
+        //Redirección
+        return redirect()->route('empleado.clientes.index')->with('success','Se actulizó la información del cliente con éxito');
     }
 
     /**
@@ -60,6 +94,7 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+        return redirect()->route('empleado.clientes.index')->with('success','El cliente se eliminó con exito');
     }
 }
