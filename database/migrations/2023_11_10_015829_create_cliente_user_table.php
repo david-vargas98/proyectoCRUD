@@ -24,6 +24,7 @@ return new class extends Migration
             //Otros atributos
             $table->string('proyecto');
             $table->float('presupuesto');
+            $table->string('estado');
             $table->timestamps();
         });
     }
