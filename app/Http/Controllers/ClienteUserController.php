@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteUserController extends Controller
@@ -11,7 +13,8 @@ class ClienteUserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view("empleado.asociaciones.index", compact('users'));
     }
 
     /**
