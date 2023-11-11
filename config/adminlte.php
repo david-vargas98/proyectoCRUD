@@ -336,8 +336,8 @@ return [
             'can' => '',
         ],
         [
-            'text' => 'Proyectos',
-            'route'  => 'empleado.proyectos.index',
+            'text' => 'Asociación con clientes',
+            'route'  => 'empleado.asociaciones.index',
             'icon' => 'fas fa-project-diagram',
             'can' => '',
         ],
