@@ -31,12 +31,24 @@
         <div class="text-center">
             <a href="{{ route('empleado.clientes.index') }}">
                 <button class="btn btn-sm btn-primary mt-2 mr-2">
-                    <i class="fas fa-backward"></i> Regresar al índice
+                    <i class="fas fa-backward"></i> Regresar al índice de clientes
+                </button>
+            </a>
+            <a href="{{ route('empleado.asociaciones.index') }}">
+                <button class="btn btn-sm btn-info mt-2 mr-2">
+                    <i class="fas fa-backward"></i> Regresar al índice de asociaciones
                 </button>
             </a>
         </div>
     @else
         <p class="alert alert-info">No hay empleados trabajando con este cliente</p>
+        <div class="text-center">
+            <a href="{{ route('empleado.clientes.index') }}">
+                <button class="btn btn-sm btn-primary mt-2 mr-2">
+                    <i class="fas fa-backward"></i> Regresar al índice de clientes
+                </button>
+            </a>
+        </div>
     @endif
 @stop
 
