@@ -333,7 +333,7 @@ return [
             'text' => 'Clientes',
             'route'  => 'empleado.clientes.index',
             'icon' => 'fas fa-comments-dollar',
-            'can' => '',
+            'can' => 'empleado.clientes.index',
         ],
         [
             'text' => 'Asociación con clientes',
