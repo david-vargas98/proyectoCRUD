@@ -6,4 +6,4 @@ use Illuminate\Support\Facades\Route;
 //Rutas del controlador de clientes
 Route::resource('clientes', ClienteController::class)->names('empleado.clientes');
 //Rutas del controlador de proyectos
-Route::resource('asociaciones', ClienteUserController::class)->names('empleado.asociaciones')->parameters(['asociaciones' => 'asociacion']);
+Route::resource('asociaciones', ClienteUserController::class)->names('empleado.asociaciones')->parameters(['asociaciones' => 'asociacion'])->except('show');
