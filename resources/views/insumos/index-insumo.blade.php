@@ -79,6 +79,8 @@
             </tbody>
         </table>
         {{ $insumos->links() }}
+    @else
+        <div class="alert alert-info">No hay insumos registrados.</div>
     @endif
 
     @can('insumo.create')
@@ -90,13 +92,6 @@
             </a>
         </div>
     @endcan
-
-    @if (isset($insumos) && $insumos->isEmpty())
-        <div class="img-fluid d-flex justify-content-end">
-            <img src="{{ asset('img/perrito.png') }}" alt="perrito.png" style="margin-top: 100px;">
-        </div>
-        <h3 class="text-center" style="margin-top: 40px">Nada por aquí...</h3>
-    @endif
 @stop
 
 @section('css')
