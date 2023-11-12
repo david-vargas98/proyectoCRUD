@@ -39,5 +39,9 @@ class RoleSeeder extends Seeder
 
         //Permisos para la ruta de clientes
         Permission::create(['name' => 'empleado.clientes.index', 'description' => 'Ver el índice de los clientes'])->syncRoles([$roleOne, $roleTwo]);
+        
+        //Permisos para la ruta de asociaciones
+        Permission::create(['name' => 'empleado.asociaciones.index', 'description' => 'Ver el índice de las asociaciones'])->syncRoles([$roleOne, $roleTwo]);
+
     }
 }
