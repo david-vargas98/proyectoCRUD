@@ -339,7 +339,7 @@ return [
             'text' => 'Asociación con clientes',
             'route'  => 'empleado.asociaciones.index',
             'icon' => 'fas fa-project-diagram',
-            'can' => '',
+            'can' => 'empleado.asociaciones.index',
         ],
         [
             'text' => 'Inventarios',
