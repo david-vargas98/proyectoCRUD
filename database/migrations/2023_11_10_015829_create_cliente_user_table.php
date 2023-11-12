@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cliente_user', function (Blueprint $table) {
+            //Se agre un id para quitarnos de pedos al llamar método edit y destroy
+            $table->id();
             //Columna FK que hace referencia a clientes
             $table->unsignedBigInteger('cliente_id');
             //Asignación de FK
