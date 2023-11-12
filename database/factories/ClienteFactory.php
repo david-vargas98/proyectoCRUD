@@ -16,8 +16,18 @@ class ClienteFactory extends Factory
      */
     public function definition(): array
     {
+        //Se define los atributos predeterminados para la creación de instancias de Cliente
         return [
-            //
+            'nombrecliente' => $this->faker->name(),
+            'apellidopat' => $this->faker->lastName(),
+            'apellidomat' => $this->faker->lastName(),
+            'fechanacimiento' => $this->faker->date(),
+            'correo' => $this->faker->email(),
+            'telefono' => $this->faker->phoneNumber(),
+            'direccion' => $this->faker->address(),
+            'ciudad' => $this->faker->city(),
+            'estado' => $this->faker->state(),
+            'pais' => $this->faker->country(),
         ];
     }
 }
