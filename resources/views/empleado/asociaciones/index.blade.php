@@ -7,6 +7,12 @@
 @stop
 
 @section('content')
+    {{-- Mensaje de confirmación --}}
+    @if (session('success'))
+        <div class="alert alert-success" id="successMessage">
+            {{ session('success') }}
+        </div>
+    @endif
     {{-- Se verifica si el usuario de tipo empleado tiene clientes asociados --}}
     @if (!$asociaciones->isEmpty())
         <table border="1" class="text-center table table-bordered table-striped table-hover">
@@ -51,6 +57,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div>
+            {{ $asociaciones->links() }}
+        </div>
     @else
         <div class="alert alert-info">No hay asociaciones registradas.</div>
     @endif
@@ -59,4 +68,12 @@
             <i class="fa fa-plus"></i> Agregar nueva asociación
         </a>
     </div>
+@stop
+
+@section('js')
+    <script>
+        setTimeout(function() {
+            document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+    </script>
 @stop
