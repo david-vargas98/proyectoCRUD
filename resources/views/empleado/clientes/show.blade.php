@@ -31,12 +31,12 @@
         <div class="text-center">
             <a href="{{ route('empleado.clientes.index') }}">
                 <button class="btn btn-sm btn-primary mt-2 mr-2">
-                    <i class="fas fa-backward"></i> Regresar al índice de clientes
+                    <i class="fas fa-backward"></i> Ir al índice de clientes
                 </button>
             </a>
             <a href="{{ route('empleado.asociaciones.index') }}">
                 <button class="btn btn-sm btn-info mt-2 mr-2">
-                    <i class="fas fa-backward"></i> Regresar al índice de asociaciones
+                    <i class="fas fa-backward"></i> Ir al índice de asociaciones
                 </button>
             </a>
         </div>
@@ -45,7 +45,7 @@
         <div class="text-center">
             <a href="{{ route('empleado.clientes.index') }}">
                 <button class="btn btn-sm btn-primary mt-2 mr-2">
-                    <i class="fas fa-backward"></i> Regresar al índice de clientes
+                    <i class="fas fa-backward"></i> Ir al índice de clientes
                 </button>
             </a>
         </div>
