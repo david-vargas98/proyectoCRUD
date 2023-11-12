@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use App\Policies\ClientePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +15,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        //Se agrega la policy asociando al modelo User con la ClientePolicy
+        User::class => ClientePolicy::class,
     ];
 
     /**
@@ -21,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //Al llamarlo, Laravel automáticamente buscará las políticas definidas en la aplicación y las registrará para su uso
+        $this->registerPolicies();
     }
 }
