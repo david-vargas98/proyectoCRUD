@@ -72,6 +72,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div>
+            {{$clientes->links()}}
+        </div>
     @endif
     <div class="text-center">
         <a href="{{ route('empleado.clientes.create') }}" class="btn btn-sm btn-success">
