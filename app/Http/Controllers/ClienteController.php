@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -12,6 +14,11 @@ class ClienteController extends Controller
      */
     public function index()
     {
+        //Se crea una instancia del usuario autenticado
+        $user = Auth::user();
+        //Verifica la policy pasando por parámetro el método a llamar y se pasa el parámetro de tipo User que espera
+        $this->authorize('esEmpleado', $user);
+
         $clientes = Cliente::paginate(4);
         return view('empleado.clientes.index', compact('clientes'));
     }
@@ -61,7 +68,10 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-
+        //Se crea una instancia del usuario autenticado
+        $user = Auth::user();
+        //Verifica la policy pasando por parámetro el método a llamar y se pasa el parámetro de tipo User que espera
+        $this->authorize('esEmpleado', $user);
         return view('empleado.clientes.edit', compact('cliente'));
     }
 
@@ -94,6 +104,11 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
+        //Se crea una instancia del usuario autenticado
+        $user = Auth::user();
+        //Verifica la policy pasando por parámetro el método a llamar y se pasa el parámetro de tipo User que espera
+        $this->authorize('esEmpleado', $user);
+        //Se borra y retorna
         $cliente->delete();
         return redirect()->route('empleado.clientes.index')->with('success','El cliente se eliminó con exito');
     }
