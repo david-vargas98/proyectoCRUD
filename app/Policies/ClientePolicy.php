@@ -10,6 +10,6 @@ class ClientePolicy
     public function esEmpleado(User $user)  //Toma al usuario autenticado en automático
     {
         // Verificar información de los roles del usuario
-        return $user->hasAnyRole('admin', 'empleado');
+        return $user->hasAnyRole('empleado');
     }
 }
