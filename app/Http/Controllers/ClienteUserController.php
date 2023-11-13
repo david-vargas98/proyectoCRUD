@@ -14,7 +14,8 @@ class ClienteUserController extends Controller
      */
     public function index()
     {
-        $asociaciones = ClienteUSer::paginate(4);
+        //Se usa with() para el problema de las n+1 consultas
+        $asociaciones = ClienteUSer::with('cliente')->paginate(4);
         return view("empleado.asociaciones.index", compact('asociaciones'));
     }
 
