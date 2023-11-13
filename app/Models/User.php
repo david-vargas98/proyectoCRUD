@@ -7,6 +7,7 @@ use App\Models\Cliente; //Se agrega el modelo de cleinte
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str; //Para usar la función que pasa la cadena de nombre a minúsculas
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -73,5 +74,11 @@ class User extends Authenticatable
     public function clientes()
     {
         return $this->belongsToMany(Cliente::class)->withPivot('proyecto', 'presupuesto', 'estado');
+    }
+
+    //Se implementa un mutator para guardar el nombre de usuario siempre en minúsculas
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = Str::lower($value);
     }
 }
