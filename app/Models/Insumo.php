@@ -15,7 +15,7 @@ class Insumo extends Model
         public function inventario() //En singular porque es un inventario
         {
             //Se crea la relación con belongsTo y se especifica el nombre de la columna relacionada
-            return $this->belongsTo(Inventario::class);
+            return $this->belongsTo(Inventario::class)->withTrashed(); //WithTrashed() trae las instancias de inventarios borradas con soft delete
             //También se puede usar: return $this->hasMany('App/Models/Inventario');
 
             //En este caso, se especificó explícitamente el nombre de la columna en la relación de Eloquent:
