@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Models\Insumo; //Se agrega el encabezado del modelo o clase
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventario extends Model
 {
     use HasFactory;
+    use SoftDeletes; //Se usa para el borrado lógico
     //Atributos Rellenables (Fillable Attributes): En un modelo de Laravel, los atributos que se pueden asignar de forma masiva deben estar especificados en una propiedad llamada $fillable. Este es un array que contiene los nombres de los atributos que puedes asignar masivamente:
     protected $fillable = ['descripcion', 'user_id']; //Se debe agregar la columna de user_id, sino, no lo agrega y truena la consulta
 
