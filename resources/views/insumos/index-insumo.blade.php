@@ -28,7 +28,7 @@
             <strong>{{ Session::get('deleted') }}</strong><br>
         </div>
     @endif
-    @if ($insumos)
+    @if (!$insumos->isEmpty())
         <table border="1" class="text-center table table-bordered table-striped table-hover">
             <thead>
                 <tr class="text-sm">
