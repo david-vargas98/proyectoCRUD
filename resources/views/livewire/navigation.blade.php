@@ -14,11 +14,11 @@
 
                     Menu open: "hidden", Menu closed: "block"
                 -->
-                    <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    {{-- <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
+                    </svg> --}}
                     <!--
                     Icon when menu is open.
 
@@ -38,7 +38,7 @@
                         alt="Your Company">
                 </a>
                 {{-- Menú lg --}}
-                <div class="hidden sm:ml-6 sm:block">
+                {{-- <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -50,13 +50,13 @@
                         <a href="#"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
             {{-- Se muestra si el usuario está autentificado --}}
             @auth
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {{-- Botón notificación  --}}
-                <button type="button"
+                {{-- <button type="button"
                     class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span class="absolute -inset-1.5"></span>
                     <span class="sr-only">View notifications</span>
@@ -65,7 +65,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                     </svg>
-                </button>
+                </button> --}}
 
                 <!-- Profile dropdown -->
                 <div class="relative ml-3" x-data="{open:false}">
@@ -122,7 +122,7 @@
     </div>
 
     <!-- Menú móvil -->
-    <div class="sm:hidden" id="mobile-menu" x-show="open" x-on:click.away="open = false">
+    {{-- <div class="sm:hidden" id="mobile-menu" x-show="open" x-on:click.away="open = false">
         <div class="space-y-1 px-2 pb-3 pt-2">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
@@ -134,5 +134,5 @@
             <a href="#"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
         </div>
-    </div>
+    </div> --}}
 </nav>
