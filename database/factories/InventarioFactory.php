@@ -18,7 +18,7 @@ class InventarioFactory extends Factory
     {
         return [
             //Se define como se crearán los datos ficticios para el modelo Inventario
-            'descripcion' => $this->faker->randomElement(['Harina', 'Azúcar', 'Chocolate']), //Returns a random element from the given array.
+            'descripcion' => $this->faker->word, //Returns a random element from the given array.
         ];
     }
 }
