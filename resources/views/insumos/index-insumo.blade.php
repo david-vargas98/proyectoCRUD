@@ -41,7 +41,12 @@
             <tbody>
                 @foreach ($insumos as $insumo)
                     <tr>
-                        <td class="text-sm">{{ $insumo->inventario->descripcion }}</td>
+                        <td class="text-sm">
+                            {{ $insumo->inventario->descripcion }}
+                            @if ($insumo->inventario->trashed())
+                                <span class="text-danger"> (Borrado)</span>
+                            @endif
+                        </td>
                         <td class="text-sm">{{ $insumo->insumodescripcion }}</td>
                         <td class="text-sm">{{ $insumo->insumocantidad }}</td>
                         <td>

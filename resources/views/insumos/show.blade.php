@@ -18,15 +18,20 @@
         </thead>
         <tbody>
             <tr>
-                <td class="text-sm">{{$insumo->id}}</td>
-                <td class="text-sm">{{$insumo->insumodescripcion}}</td>
-                <td class="text-sm">{{$insumo->insumocantidad}}</td>
-                <td class="text-sm">{{$insumo->inventario->descripcion}}</td>
+                <td class="text-sm">{{ $insumo->id }}</td>
+                <td class="text-sm">{{ $insumo->insumodescripcion }}</td>
+                <td class="text-sm">{{ $insumo->insumocantidad }}</td>
+                <td class="text-sm">
+                    {{ $insumo->inventario->descripcion }}
+                    @if ($insumo->inventario->trashed())
+                        <span class="text-danger"> (Borrado)</span>
+                    @endif
+                </td>
             </tr>
         </tbody>
     </table>
     <div class="text-center">
-        <a href="{{route('insumo.index')}}">
+        <a href="{{ route('insumo.index') }}">
             <button class="btn btn-sm btn-primary mt-2 mr-2">
                 <i class="fas fa-backward"></i> Regresar al índice
             </button>
