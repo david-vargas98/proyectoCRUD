@@ -34,12 +34,9 @@ class InsumoController extends Controller
         //Se implementa el index para los insumos
         $insumos = Insumo::first();
         //Para solucioner n+1 consultas, se usa la carga ansiosa con with() y se le pasa el nombre de la relación
-        if($insumos){
-            $insumos = Insumo::with('inventario')->paginate(4); //Se obtiene la colección de los insumos
-            return view('insumos.index-insumo', compact('insumos')); //Retorna la vista y se pasa la variable con los insumos
-        }else{
-            return view('insumos.index-insumo', compact('insumos')); // Manejar el caso donde no hay insumos
-        }
+
+        $insumos = Insumo::with('inventario')->paginate(4); //Se obtiene la colección de los insumos
+        return view('insumos.index-insumo', compact('insumos')); //Retorna la vista y se pasa la variable con los insumos
     }
 
     /**
