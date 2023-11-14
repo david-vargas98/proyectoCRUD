@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('proyecto');
             $table->float('presupuesto');
             $table->string('estado');
+            //Campo para el archivo
+            $table->string('contrato_ubicacion')->nullable();
+            $table->string('contrato_nombre')->nullable();
             $table->timestamps();
         });
     }
