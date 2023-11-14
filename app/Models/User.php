@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;  //Se usa para la verificación de correos
 use App\Models\Cliente; //Se agrega el modelo de cleinte
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 use Spatie\Permission\Traits\HasRoles; //Se agrega para usar spatie
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail //implements MustVerifyEmail hace referencia a la verificación de correo
 {
     use HasApiTokens;
     use HasFactory;
