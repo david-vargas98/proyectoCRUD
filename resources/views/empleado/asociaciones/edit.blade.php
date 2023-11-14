@@ -9,7 +9,8 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('empleado.asociaciones.update', $asociacion) }}" method="post">
+            <form action="{{ route('empleado.asociaciones.update', $asociacion) }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -56,13 +57,32 @@
                     <label for="estado">Estado</label>
                     <select name="estado" class="form-control" style="width: 250px;" required>
                         <option value="" disabled>Seleccione un estado</option>
-                        <option value="Iniciado" {{ $asociacion->estado == 'Iniciado' ? 'selected' : '' }}>Iniciado</option>
+                        <option value="Iniciado" {{ $asociacion->estado == 'Iniciado' ? 'selected' : '' }}>Iniciado
+                        </option>
                         <option value="Activo" {{ $asociacion->estado == 'Activo' ? 'selected' : '' }}>Activo</option>
-                        <option value="Suspendido" {{ $asociacion->estado == 'Suspendido' ? 'selected' : '' }}>Suspendido</option>
-                        <option value="Cancelado" {{ $asociacion->estado == 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
-                        <option value="Terminado" {{ $asociacion->estado == 'Terminado' ? 'selected' : '' }}>Terminado</option>
+                        <option value="Suspendido" {{ $asociacion->estado == 'Suspendido' ? 'selected' : '' }}>Suspendido
+                        </option>
+                        <option value="Cancelado" {{ $asociacion->estado == 'Cancelado' ? 'selected' : '' }}>Cancelado
+                        </option>
+                        <option value="Terminado" {{ $asociacion->estado == 'Terminado' ? 'selected' : '' }}>Terminado
+                        </option>
                     </select>
                     @error('estado')
+                        <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                    <label for="contrato">Contrato</label>
+                    @if ($asociacion->contrato_nombre)
+                        <p>Contrato actual: {{ $asociacion->contrato_nombre }}</p>
+                        <div class="custom-control custom-checkbox">
+                            <input type="hidden" name="quitar_contrato" value="0">
+                            <input type="checkbox" name="quitar_contrato">
+                            <label for="quitar_contrato"></label> Quitar contrato actual
+                        </div>
+                    @endif
+                    <br>
+                    <p>Quitar y reemplazar por otro:</p>
+                    <input type="file" name="contrato">
+                    @error('contrato')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
