@@ -92,7 +92,7 @@
                         </div>
                         <p>Quitar y reemplazar por otro:</p>
                     @endif
-                    <input type="file" name="contrato"  class="form-control-file mt-2">
+                    <input type="file" name="contrato" class="form-control-file mt-2">
                     @error('contrato')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
@@ -101,6 +101,9 @@
                     <button class="btn btn-sm btn-primary">
                         <i class="fas fa-edit"></i> Editar asociación
                     </button>
+                    <a href="{{ route('empleado.asociaciones.index') }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-angle-double-left"></i> Regresar al índice
+                    </a>
                 </div>
             </form>
         </div>
