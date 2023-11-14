@@ -12,4 +12,4 @@ Route::get('asociaciones/archivos/{asociacion}', [ClienteUserController::class, 
 //Se crea otra ruta para poder acceder al contrato, o bien, solo verlo
 Route::get('asociaciones/verArchivos/{asociacion}', [ClienteUserController::class, 'ver'])->name('empleado.asociaciones.ver');
 //Rutas del controlador de asociaciones
-Route::resource('asociaciones', ClienteUserController::class)->names('empleado.asociaciones')->parameters(['asociaciones' => 'asociacion'])->except('show')->middleware(Authenticate::class);
+Route::resource('asociaciones', ClienteUserController::class)->names('empleado.asociaciones')->parameters(['asociaciones' => 'asociacion'])->middleware(Authenticate::class);
