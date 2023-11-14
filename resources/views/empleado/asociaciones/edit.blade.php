@@ -72,16 +72,27 @@
                     @enderror
                     <label for="contrato">Contrato</label>
                     @if ($asociacion->contrato_nombre)
-                        <p>Contrato actual: {{ $asociacion->contrato_nombre }}</p>
-                        <div class="custom-control custom-checkbox">
-                            <input type="hidden" name="quitar_contrato" value="0">
-                            <input type="checkbox" name="quitar_contrato">
-                            <label for="quitar_contrato"></label> Quitar contrato actual
+                        <div class="mb-2">
+                            <p>Contrato actual: {{ $asociacion->contrato_nombre }}</p>
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-info mt-2 mr-2"
+                                    href="{{ route('empleado.asociaciones.ver', $asociacion) }}">
+                                    <i class="far fa-eye"></i> Vizualizar archivo
+                                </a>
+                                <a class="btn btn-sm btn-success mt-2 mr-2"
+                                    href="{{ route('empleado.asociaciones.descarga', $asociacion) }}">
+                                    <i class="fas fa-file-download"></i> Descargar archivo
+                                </a>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input type="hidden" name="quitar_contrato" value="0">
+                                <input type="checkbox" name="quitar_contrato" class="form-check-input">
+                                <label for="quitar_contrato" class="form-check-label"></label> Quitar contrato actual
+                            </div>
                         </div>
+                        <p>Quitar y reemplazar por otro:</p>
                     @endif
-                    <br>
-                    <p>Quitar y reemplazar por otro:</p>
-                    <input type="file" name="contrato">
+                    <input type="file" name="contrato"  class="form-control-file mt-2">
                     @error('contrato')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
