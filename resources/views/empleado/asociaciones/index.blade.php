@@ -38,9 +38,9 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('empleado.clientes.show', $asociacion->cliente->id) }}">
+                                <a href="{{ route('empleado.asociaciones.show', $asociacion) }}">
                                     <button class="btn btn-sm btn-secondary mt-2 mr-2">
-                                        <i class="far fa-eye"></i> Detalles cliente
+                                        <i class="far fa-eye"></i> Detalles
                                     </button>
                                 </a>
                                 <a href="{{ route('empleado.asociaciones.edit', $asociacion) }}">
