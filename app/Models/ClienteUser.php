@@ -11,7 +11,7 @@ class ClienteUser extends Model
 
     protected $table = 'cliente_user';
 
-    protected $fillable = ['user_id','cliente_id','proyecto', 'presupuesto', 'estado'];
+    protected $fillable = ['user_id','cliente_id','proyecto', 'presupuesto', 'estado', 'contrato_ubicacion', 'contrato_nombre'];
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
