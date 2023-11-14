@@ -16,7 +16,7 @@ class Cliente extends Model
     //Se implementa la relación m:m del Cliente con User, usando tabla pivote
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('proyecto', 'presupuesto', 'estado');
+        return $this->belongsToMany(User::class)->withPivot('proyecto', 'presupuesto', 'estado', 'contrato_ubicacion', 'contrato_nombre');
     }
 
     //Se implementa un Accessor para mostrar la fecha en el formato d-m-a, ya que se guarda como a-m-d

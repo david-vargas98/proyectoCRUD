@@ -73,7 +73,7 @@ class User extends Authenticatable
     //Se establece la relación m:m con cliente, usando tabla pivote
     public function clientes()
     {
-        return $this->belongsToMany(Cliente::class)->withPivot('proyecto', 'presupuesto', 'estado');
+        return $this->belongsToMany(Cliente::class)->withPivot('proyecto', 'presupuesto', 'estado', 'contrato_ubicacion', 'contrato_nombre');
     }
 
     //Se implementa un mutator para guardar el nombre de usuario siempre en minúsculas
