@@ -9,7 +9,8 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('empleado.asociaciones.store') }}" method="post">
+            {{-- Se agrega enctype="multipart/form-data" para la carga de archivos. Esto es necesario porque el valor predeterminado de enctype es "application/x-www-form-urlencoded", que no admite la carga de archivos--}}
+            <form action="{{ route('empleado.asociaciones.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="user_id">Empleado</label>
@@ -58,6 +59,11 @@
                         <option value="Terminado">Terminado</option>
                     </select>
                     @error('estado')
+                        <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
+                    <label for="contrato">Contrato</label>
+                    <input type="file" name="contrato">
+                    @error('contrato')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
