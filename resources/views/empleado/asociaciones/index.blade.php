@@ -3,7 +3,12 @@
 @section('title', 'Asociaciones')
 
 @section('content_header')
-    <h1>Listado de empleados y clientes asociados</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Listado de empleados y clientes asociados</h1>
+        <a href="{{ url('api/asociaciones') }}" class="btn btn-sm btn-dark">
+            <i class="fas fa-code"></i> Ver JSON
+        </a>
+    </div>
 @stop
 
 @section('content')
