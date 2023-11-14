@@ -15,7 +15,7 @@
                     <th>Empleado</th>
                     <th>Proyecto</th>
                     <th>Presupuesto</th>
-                    <th>estado</th>
+                    <th>Estado</th>
                     <th>Inicio</th>
                     <th>Visualizar contrato</th>
                     <th>Descargar contrato</th>
