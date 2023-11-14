@@ -84,6 +84,12 @@ class ClienteUserController extends Controller
         return redirect()->route('empleado.asociaciones.index')->with('Suceess', 'La asociación fue creada con éxito');
     }
 
+    //Siempre si se implementa show
+    public function show(ClienteUser $asociacion)
+    {
+        return view('empleado.asociaciones.show', compact('asociacion'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
