@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Cliente;
 use App\Models\ClienteUser; //Modelo de la relación en caso de no usar attach
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage; //Se utiliza para el manejo de los archivos
 
 class ClienteUserController extends Controller
 {
@@ -72,7 +72,7 @@ class ClienteUserController extends Controller
             $archivoContrato = $request->file('contrato');
 
             //Se almacena el archivo en la carpeta "contratos" dentro de la carpeta "storage/app", si la carpeta no existe, la crea
-            $rutaContrato = $archivoContrato->store('contratos', 'public');
+            $rutaContrato = $archivoContrato->store('contratos', 'local');
 
             //Se guarda la ubicación y el nombre original del contrato en la base de datos
             $asociacion->contrato_ubicacion = $rutaContrato;
@@ -121,10 +121,10 @@ class ClienteUserController extends Controller
         //Se verififca si tiene el checkbox y está seleccionado (por el hidden). O, si el checkbox se seleccionó para quitar el contrato actual. O, si está seleccionado el checkbox y hay un nuevo archivo
         if (($request->has('quitar_contrato') && $request->input('quitar_contrato') == 'on') || $request->input('quitar_contrato') == 'on' || ($request->has('quitar_contrato') && $request->hasFile('contrato'))) {
             //Se elimina el contrato actual
-            if($asociacion->contrato_ubicacion != null && Storage::disk('public')->exists($asociacion->contrato_ubicacion))
+            if($asociacion->contrato_ubicacion != null && Storage::disk('local')->exists($asociacion->contrato_ubicacion))
             {
                 //Se elimina del sistema de archivos
-                Storage::disk('public')->delete($asociacion->contrato_ubicacion);
+                Storage::disk('local')->delete($asociacion->contrato_ubicacion);
             }
 
             //Se actualiza la base de datos a null para 'reiniciar' los valores a null por si las moscas
@@ -139,8 +139,8 @@ class ClienteUserController extends Controller
                 //Se obtiene el archivo de la solicitud
                 $archivoContrato = $request->file('contrato');
 
-                //Se almacena el archivo en la carpeta 'contratos' dentro de 'public'
-                $rutaContrato = $archivoContrato->store('contratos', 'public');
+                //Se almacena el archivo en la carpeta 'contratos' dentro de 'local'
+                $rutaContrato = $archivoContrato->store('contratos', 'local');
 
                 //Se actualiza la ubicación y el nombre original del contrato en la base de datos
                 $asociacion->update([
@@ -157,8 +157,8 @@ class ClienteUserController extends Controller
                 //Se obtiene el archivo de la solicitud
                 $archivoContrato = $request->file('contrato');
 
-                //Se almacena el archivo en la carpeta 'contratos' dentro de 'public'
-                $rutaContrato = $archivoContrato->store('contratos', 'public');
+                //Se almacena el archivo en la carpeta 'contratos' dentro de 'local'
+                $rutaContrato = $archivoContrato->store('contratos', 'local');
 
                 //Se actualiza la ubicación y el nombre original del contrato en la base de datos
                 $asociacion->update([
@@ -180,5 +180,40 @@ class ClienteUserController extends Controller
         $asociacion->delete();
         //Se redirige, al fin terminé!!
         return redirect()->route('empleado.asociaciones.index')->with('success', 'La asociación se borró con éxito');
+    }
+
+    //Método para descargar el archivo
+    public function descargar(ClienteUSer $asociacion)
+    {
+        //Se verifica que el archivo exista en la presunta ubicación, tan tan taaannn
+        if (Storage::exists($asociacion->contrato_ubicacion)) 
+        {
+            //Si es así, se descarga, wuuu :'D El segundo parámetro es el nombre con el que queremos que se descargue
+            return Storage::download($asociacion->contrato_ubicacion, $asociacion->contrato_nombre);
+        } 
+        else
+        {
+            //Sino existe, da respuesta HTTP 404 indicando que el archivo no se puede encontrar
+            return abort(404, 'Archivo no encontrado');
+        }
+    }
+
+    //Método para visualizar los archivos
+    public function ver(ClienteUSer $asociacion)
+    {
+        //Se comprueba de que exista una ubicación de contrato antes de intentar acceder al archivo
+        if ($asociacion->contrato_ubicacion) 
+        {
+            //Se obtiene la ruta completa del archivo en el disco local, la función devuelve la ruta al directorio de almacenamiento local y luego se concatena con la ubicación del contrato obtenida del modelo
+            $rutaArchivo = storage_path('app/' . $asociacion->contrato_ubicacion);
+
+            //Antes de enviar el archivo, se verifica si realmente existe en la ruta obtenida (podría no estar)
+            if (file_exists($rutaArchivo)) {
+                //Si el archivo existe, response() crea una respuesta y el navegador mostrará el archivo en esa ruta
+                return response()->file($rutaArchivo);
+            }
+        }
+        //Si no se encuentra, da respuesta HTTP 404 indicando que el archivo no se puede encontrar
+        abort(404, 'Archivo no encontrado');
     }
 }
