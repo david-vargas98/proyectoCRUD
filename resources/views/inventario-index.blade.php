@@ -87,7 +87,7 @@
             <div class="text-center">
             <a href="{{route('inventario.create')}}">
                 <button class="btn btn-sm btn-success mt-2 mr-2">
-                    <i class="fas fa-plus-square"></i> Crear nuevo inventario
+                    <i class="fa fa-plus"></i> Crear nuevo inventario
                 </button>
             </a>
             </div>

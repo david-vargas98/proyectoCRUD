@@ -92,7 +92,7 @@
         <div class="text-center">
             <a href="{{ route('insumo.create') }}">
                 <button class="btn btn-sm btn-success mt-2 mr-2">
-                    <i class="fas fa-plus-square"></i> Agregar nuevo insumo
+                    <i class="fa fa-plus"></i> Agregar nuevo insumo
                 </button>
             </a>
         </div>
