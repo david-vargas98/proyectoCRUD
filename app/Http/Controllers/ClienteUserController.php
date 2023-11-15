@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotificaClienteUser;
 use App\Models\User;
 use App\Models\Cliente;
 use App\Models\ClienteUser; //Modelo de la relación en caso de no usar attach
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail; //Modelo para hacer uso del envío de correos
 use Illuminate\Support\Facades\Storage; //Se utiliza para el manejo de los archivos
 
 class ClienteUserController extends Controller
@@ -80,8 +82,11 @@ class ClienteUserController extends Controller
             $asociacion->save();
         }
 
+        //Envío de correo electrónico al usuario sujeto a la asociación:
+        Mail::to($asociacion->user->email)->send(new NotificaClienteUser($asociacion));
+
         //Redirección al index
-        return redirect()->route('empleado.asociaciones.index')->with('Suceess', 'La asociación fue creada con éxito');
+        return redirect()->route('empleado.asociaciones.index')->with('success', 'La asociación fue creada con éxito');
     }
 
     //Siempre si se implementa show
