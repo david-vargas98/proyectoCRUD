@@ -1,7 +1,9 @@
 <x-mail::message>
 # Nueva asociación
 
+<x-mail::panel>
 La asociación entre el/la cliente/a {{$nombreCliente}} y el/la empleado/a {{$nombreUser}} ha sido creada!
+</x-mail::panel>
 
 <x-mail::button :url="$verContratoUrl" color="primary">
 Ver contrato de la asociación
