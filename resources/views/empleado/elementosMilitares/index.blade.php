@@ -7,12 +7,6 @@
 @stop
 
 @section('content')
-    {{-- Mensaje --}}
-    @if (session('success'))
-        <div class="alert alert-success" id="successMessage">
-            {{ session('success') }}
-        </div>
-    @endif
     <table border="1" class="text-center table table-bordered table-striped table-hover">
         <thead>
             <tr class="text-sm">
@@ -37,14 +31,13 @@
                                 </button>
                             </a>
                             <form action="{{ route('elementosMilitares.destroy', $elemento) }}" method="post"
-                                style="display: inline;">
+                                style="display: inline;" class="formulario-eliminar">
                                 {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
                                 @csrf
                                 {{-- También se debe cambiar como el patch para que se identifique en el route --}}
                                 @method('DELETE')
                                 {{-- Botón para accionar la eliminación --}}
-                                <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2"
-                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
                                     <i class="fa fa-trash"></i> Borrar
                                 </button>
                             </form>
@@ -67,9 +60,36 @@
 @stop
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> {{-- Inclusión de scrip para los botones de confirmación --}}
+    {{-- Mensaje de session en caso de confirmarse la eliminación --}}
+    @if (session('success') == 'El elemento fue borrado con éxito')
+        <script>
+            Swal.fire({
+                title: "!Es un hecho!",
+                text: "El elemento fue borrado con éxito.",
+                icon: "success"
+            });
+        </script>
+    @endif
+    {{-- Script que lleva acabo la pregunta de confirmación --}}
     <script>
-        setTimeout(function() {
-            document.getElementById('successMessage').style.display = 'none';
-        }, 5000);
+        $('.formulario-eliminar').submit(function(e) {
+            e.preventDefault(); //Se detiene el envío del formulario
+            //En su lugar, saldrá la alerta
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "Esta es una acción definitiva D:",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, borrar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //Se envía el formulario si es true, y se envía con submit para borrar el registro
+                    this.submit();
+                }
+            });
+        });
     </script>
 @stop
