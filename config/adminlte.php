@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Inventarios',
+    'title' => 'S.A.C.I.',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>Inventarios',
-    'logo_img' => 'vendor/adminlte/dist/img/pngwing.com.png',
+    'logo' => '<b>S.A.C.I.',
+    'logo_img' => 'vendor/adminlte/dist/img/admin.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/pngwing.com.png',
+            'path' => 'vendor/adminlte/dist/img/admin.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/pngwing.com.png',
+            'path' => 'vendor/adminlte/dist/img/admin.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
