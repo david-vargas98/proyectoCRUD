@@ -355,6 +355,12 @@ return [
             'icon' => 'fas fa-shield-alt',
             'can' => '',
         ],
+        [
+            'text' => 'Pacientes',
+            'url'  => 'empleado/administrativo/pacientes',
+            'icon' => 'fas fa-user-injured',
+            'can' => '',
+        ],
     ],
 
     /*
