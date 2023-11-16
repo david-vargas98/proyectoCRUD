@@ -3,7 +3,8 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1 class="text-center">Bienvenido al Proyecto Final de Laravel</h1>
+    <h1 class="text-center">Proyecto Final de Laravel</h1>
+    <h3 class="text-center">Bienvenido al Sistema de Administración de Clientes e Inventarios</h3>
 @stop
 
 @section('content')
