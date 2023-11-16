@@ -52,15 +52,15 @@ class MilitaryElementsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(MilitaryElements $militaryElements)
+    public function show(MilitaryElements $elemento)
     {
-        //
+        return view('empleado.elementosMilitares.show', compact('elemento'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MilitaryElements $militaryElements)
+    public function edit(MilitaryElements $elemento)
     {
         //
     }
@@ -68,7 +68,7 @@ class MilitaryElementsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MilitaryElements $militaryElements)
+    public function update(Request $request, MilitaryElements $elemento)
     {
         //
     }
