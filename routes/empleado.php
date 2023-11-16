@@ -3,8 +3,10 @@
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClienteUserController;
 use App\Http\Controllers\MilitaryElementsController;
+use App\Http\Controllers\PatientController;
 use App\Http\Middleware\Authenticate;
 use App\Models\MilitaryElements;
+use App\Models\Patient;
 use Illuminate\Support\Facades\Route;
 //Rutas del controlador de clientes
 Route::resource('clientes', ClienteController::class)->names('empleado.clientes')->middleware(Authenticate::class);
@@ -19,3 +21,5 @@ Route::resource('asociaciones', ClienteUserController::class)->names('empleado.a
 //Pegasus
 //Rutas para las funcionalidades del personal administrativo
 Route::resource('administrativo/elementosMilitares', MilitaryElementsController::class)->parameters(['elementosMilitares' => 'elemento']); //Se modifica el parameters para modificar el nombre de la variable que espera
+//Para desginar elementos a pacientes
+Route::resource('administrativo/pacientes', PatientController::class);
