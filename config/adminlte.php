@@ -349,6 +349,12 @@ return [
             'icon' => 'fas fa-birthday-cake',
             'can' => 'insumo.index',
         ],
+        [
+            'text' => 'Elementos militares',
+            'url'  => 'empleado/administrativo/elementosMilitares',
+            'icon' => 'fas fa-shield-alt',
+            'can' => '',
+        ],
     ],
 
     /*
