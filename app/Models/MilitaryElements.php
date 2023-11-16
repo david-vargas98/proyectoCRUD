@@ -10,4 +10,6 @@ class MilitaryElements extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = ['name', 'birthdate', 'cellphone', 'address', 'admission', 'militarygrade', 'location', 'unit', 'servicestate'];
 }
