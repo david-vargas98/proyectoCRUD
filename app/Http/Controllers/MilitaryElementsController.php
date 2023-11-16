@@ -62,7 +62,7 @@ class MilitaryElementsController extends Controller
      */
     public function edit(MilitaryElements $elemento)
     {
-        //
+        return view('empleado.elementosMilitares.edit', compact('elemento'));
     }
 
     /**
@@ -70,14 +70,34 @@ class MilitaryElementsController extends Controller
      */
     public function update(Request $request, MilitaryElements $elemento)
     {
-        //
+        //Validaciones again
+        $request->validate([
+            'name' => 'required|string|max:60',
+            'birthdate' => 'required|date',
+            'cellphone' => 'required|string|regex:/\d{10}/',
+            'address' => 'required|string|max:70',
+            'admission' => 'required|date',
+            'militarygrade' => 'required|string|max:20',
+            'location' => 'required|string|max:20',
+            'unit' => 'required|string|max:20',
+            'servicestate' => 'required|in:Activo,Suspendido,Evaluación,Terminado',
+        ]);
+
+        //Se hace la asignación masiva
+        $elemento->update($request->all());
+
+        //Redirección
+        return redirect()->route('elementosMilitares.index')->with('success', 'El elemento fue actualizado con éxito');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MilitaryElements $militaryElements)
+    public function destroy(MilitaryElements $elemento)
     {
-        //
+        //Borrado
+        $elemento->delete();
+        //Redirección
+        return redirect()->route('elementosMilitares.index')->with('success', 'El elemento fue borrado con éxito');
     }
 }
