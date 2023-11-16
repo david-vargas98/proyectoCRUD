@@ -12,7 +12,8 @@ class MilitaryElementsController extends Controller
      */
     public function index()
     {
-        //
+        $elementos = MilitaryElements::paginate(4);
+        return view('empleado.elementosMilitares.index', compact('elementos'));
     }
 
     /**
@@ -20,7 +21,7 @@ class MilitaryElementsController extends Controller
      */
     public function create()
     {
-        //
+        return view('empleado.elementosMilitares.create');
     }
 
     /**
@@ -28,7 +29,24 @@ class MilitaryElementsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validaciones
+        $request->validate([
+            'name' => 'required|string|max:60',
+            'birthdate' => 'required|date',
+            'cellphone' => 'required|string|regex:/\d{10}/',
+            'address' => 'required|string|max:70',
+            'admission' => 'required|date',
+            'militarygrade' => 'required|string|max:20',
+            'location' => 'required|string|max:20',
+            'unit' => 'required|string|max:20',
+            'servicestate' => 'required|in:Activo,Suspendido,Evaluación,Terminado',
+        ]);
+
+        //Se hace la asignación masiva
+        $elemento = MilitaryElements::create($request->all());
+
+        //Redirección
+        return redirect()->route('elementosMilitares.index')->with('success', 'El elemento fue agregado con éxito');
     }
 
     /**
