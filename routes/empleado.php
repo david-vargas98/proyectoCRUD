@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClienteUserController;
+use App\Http\Controllers\MilitaryElementsController;
 use App\Http\Middleware\Authenticate;
+use App\Models\MilitaryElements;
 use Illuminate\Support\Facades\Route;
 //Rutas del controlador de clientes
 Route::resource('clientes', ClienteController::class)->names('empleado.clientes')->middleware(Authenticate::class);
@@ -13,3 +15,7 @@ Route::get('asociaciones/archivos/{asociacion}', [ClienteUserController::class, 
 Route::get('asociaciones/verArchivos/{asociacion}', [ClienteUserController::class, 'ver'])->name('empleado.asociaciones.ver');
 //Rutas del controlador de asociaciones
 Route::resource('asociaciones', ClienteUserController::class)->names('empleado.asociaciones')->parameters(['asociaciones' => 'asociacion'])->middleware(Authenticate::class);
+
+//Pegasus
+//Rutas para las funcionalidades del personal administrativo
+Route::resource('administrativo/elementosMilitares', MilitaryElementsController::class);
