@@ -18,4 +18,4 @@ Route::resource('asociaciones', ClienteUserController::class)->names('empleado.a
 
 //Pegasus
 //Rutas para las funcionalidades del personal administrativo
-Route::resource('administrativo/elementosMilitares', MilitaryElementsController::class);
+Route::resource('administrativo/elementosMilitares', MilitaryElementsController::class)->parameters(['elementosMilitares' => 'elemento']); //Se modifica el parameters para modificar el nombre de la variable que espera
