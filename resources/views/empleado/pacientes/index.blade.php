@@ -86,7 +86,7 @@
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Si, borrar"
+                confirmButtonText: "Borrar"
             }).then((result) => {
                 if (result.isConfirmed) {
                     //Se envía el formulario si es true, y se envía con submit para borrar el registro
