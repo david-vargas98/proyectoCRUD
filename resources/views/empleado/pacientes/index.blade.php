@@ -13,7 +13,6 @@
                 <th>Paciente</th>
                 <th>Trastorno</th>
                 <th>Severidad</th>
-                <th>Reporte de observaciones</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -23,7 +22,6 @@
                     <td class="text-sm">{{ $paciente->militaryElement->name }}</td>
                     <td class="text-sm">{{ $paciente->disorder }}</td>
                     <td class="text-sm">{{ $paciente->severity }}</td>
-                    <td class="text-sm">{{ $paciente->reports }}</td>
                     <td>
                         <div class="btn-group" role="group">
                             <a href="{{ route('pacientes.show', $paciente) }}">
@@ -57,9 +55,9 @@
         {{ $paciente->links() }}
     </div> --}}
     <div class="text-center">
-        <a href="{{ route('elementosMilitares.create') }}">
+        <a href="{{ route('pacientes.create') }}">
             <button class="btn btn-sm btn-success mt-2 mr-2">
-                <i class="fa fa-plus"></i> Agregar elemento nuevo
+                <i class="fa fa-plus"></i> Agregar paciente
             </button>
         </a>
     </div>
