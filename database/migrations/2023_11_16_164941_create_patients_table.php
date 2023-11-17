@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreign('military_element_id')->references('id')->on('military_elements');
             $table->string('disorder');
             $table->string('severity');
-            $table->string('reports');
             $table->softDeletes();
             $table->timestamps();
         });
