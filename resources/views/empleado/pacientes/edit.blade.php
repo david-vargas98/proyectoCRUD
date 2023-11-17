@@ -9,14 +9,15 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('pacientes.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('pacientes.update', $paciente) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="military_element_id">Elemento militar</label>
                     <select name="military_element_id" class="form-control" style="width: 250px;" required>
                         <option value="" disabled selected>Selecciona un elemento</option>
                         @foreach ($elementos as $elemento)
-                            <option value="{{ $paciente->id }}" {{ $elemento->id == $paciente->military_element_id ? 'selected' : '' }}>
+                            <option value="{{ $elemento->id }}" {{ $elemento->id == $paciente->military_element_id ? 'selected' : '' }}>
                                 {{ $elemento->name }}
                             </option>
                         @endforeach
