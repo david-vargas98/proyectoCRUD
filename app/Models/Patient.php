@@ -12,7 +12,7 @@ class Patient extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['military_element_id', 'disorder', 'severity', 'reports'];
+    protected $fillable = ['military_element_id', 'disorder', 'severity'];
 
     public function militaryElement()
     {
