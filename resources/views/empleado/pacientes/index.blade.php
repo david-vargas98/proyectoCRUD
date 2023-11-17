@@ -7,6 +7,12 @@
 @stop
 
 @section('content')
+    {{-- Mensaje de confirmación --}}
+    @if (session('success'))
+        <div class="alert alert-success" id="successMessage">
+            {{ session('success') }}
+        </div>
+    @endif
     <table border="1" class="text-center table table-bordered table-striped table-hover">
         <thead>
             <tr class="text-sm">
@@ -65,7 +71,7 @@
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (session('success') == 'El paciente fue borrado con éxito')
+    @if (session('deleted') == 'El paciente fue borrado con éxito')
         <script>
             Swal.fire({
                 title: "!Es un hecho!",
@@ -94,5 +100,10 @@
                 }
             });
         });
+    </script>
+    <script>
+        setTimeout(function() {
+            document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
     </script>
 @stop
