@@ -98,6 +98,6 @@ class MilitaryElementsController extends Controller
         //Borrado
         $elemento->delete();
         //Redirección
-        return redirect()->route('elementosMilitares.index')->with('success', 'El elemento fue borrado con éxito');
+        return redirect()->route('elementosMilitares.index')->with('deleted', 'El elemento fue borrado con éxito');
     }
 }
