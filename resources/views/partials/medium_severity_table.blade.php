@@ -30,3 +30,10 @@
         @endforeach
     </tbody>
 </table>
+<div class="text-center">
+    <a href="{{ route('pacientes.index') }}">
+        <button class="btn btn-sm btn-primary mt-2 mr-2">
+            <i class="fas fa-angle-double-left"></i> Regresar al índice
+        </button>
+    </a>
+</div>
