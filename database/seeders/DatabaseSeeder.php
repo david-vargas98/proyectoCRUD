@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Inventario;
+use App\Models\MilitaryElements;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -47,6 +48,12 @@ class DatabaseSeeder extends Seeder
         $this->call(MediumSeveritySeeder::class);
 
         //Se llamm al seeder de la tabla HighSeverity
-        $this->call(MediumSeveritySeeder::class);
+        $this->call(HighSeveritySeeder::class);
+
+        //Se llamm al seeder de la tabla MilitaryElements
+        $this->call(MilitaryElementsSeeder::class);
+
+        //Se llamm al seeder de la tabla Patient
+        $this->call(PatientSeeder::class);
     }
 }
