@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalles')
+@section('title', 'Actividades')
 
 @section('content_header')
     <h1>Sugerencias de actividades para <span class="text-primary">{{$paciente->militaryElement->name}}</span></h1>
