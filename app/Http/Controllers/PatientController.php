@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HighSeverity;
+use App\Models\LowSeverity;
+use App\Models\MediumSeverity;
 use App\Models\MilitaryElements;
 use App\Models\Patient;
 use Illuminate\Http\Request;
@@ -13,7 +16,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $pacientes = Patient::all();
+        $pacientes = Patient::paginate(4);
         return view('empleado.pacientes.index', compact('pacientes'));
     }
 
@@ -46,9 +49,13 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Patient $patient)
+    public function show(Patient $paciente)
     {
-        //
+        //Instancias de las tablas
+        $lowSeverityRecords = LowSeverity::all();
+        $mediumSeverityRecords = MediumSeverity::all();
+        $highSeverityRecords = HighSeverity::all();
+        return view('empleado.pacientes.show', compact('paciente', 'lowSeverityRecords', 'mediumSeverityRecords', 'highSeverityRecords'));
     }
 
     /**
