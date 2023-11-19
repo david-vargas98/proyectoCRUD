@@ -32,12 +32,12 @@
                         <div class="btn-group" role="group">
                             <a href="{{ route('pacientes.show', $paciente) }}">
                                 <button class="btn btn-sm btn-secondary mt-2 mr-2">
-                                    <i class="far fa-eye"></i>Detalles
+                                    <i class="fas fa-walking"></i> Actividades
                                 </button>
                             </a>
                             <a href="{{ route('pacientes.edit', $paciente) }}">
                                 <button class="btn btn-sm btn-primary mt-2 mr-2">
-                                    <i class="fas fa-edit"></i>Editar
+                                    <i class="fas fa-edit"></i> Editar
                                 </button>
                             </a>
                             <form action="{{ route('pacientes.destroy', $paciente) }}" method="post"
