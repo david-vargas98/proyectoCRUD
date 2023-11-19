@@ -57,9 +57,9 @@
             @endforeach
         </tbody>
     </table>
-    {{-- <div class="mt-2">
-        {{ $paciente->links() }}
-    </div> --}}
+    <div class="mt-2">
+        {{ $pacientes->links() }}
+    </div>
     <div class="text-center">
         <a href="{{ route('pacientes.create') }}">
             <button class="btn btn-sm btn-success mt-2 mr-2">
