@@ -26,7 +26,7 @@ class MilitaryElementsFactory extends Factory
             'militarygrade' => $this->faker->word,
             'location' => $this->faker->word,
             'unit' => $this->faker->word,
-            'servicestate' => $this->faker->word,
+            'servicestate' => $this->faker->randomElement(['Activo', 'Suspendido', 'Evaluación', 'Terminado']),
         ];
     }
 }
