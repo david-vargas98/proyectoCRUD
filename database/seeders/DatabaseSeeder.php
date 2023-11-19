@@ -39,5 +39,8 @@ class DatabaseSeeder extends Seeder
 
         //Se llama al seeder de asociaciones
         $this->call(ClienteUserSeeder::class);
+
+        //Se llamm al seeder de la tabla lowSeverity
+        $this->call(LowSeveritySeeder::class);
     }
 }
