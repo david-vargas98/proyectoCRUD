@@ -42,5 +42,11 @@ class DatabaseSeeder extends Seeder
 
         //Se llamm al seeder de la tabla lowSeverity
         $this->call(LowSeveritySeeder::class);
+
+        //Se llamm al seeder de la tabla MediumSeverity
+        $this->call(MediumSeveritySeeder::class);
+
+        //Se llamm al seeder de la tabla HighSeverity
+        $this->call(MediumSeveritySeeder::class);
     }
 }
