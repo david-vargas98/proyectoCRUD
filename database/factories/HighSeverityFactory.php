@@ -17,7 +17,15 @@ class HighSeverityFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            //Se define los datos a crear:
+            'engineer_services' => $this->faker->word,
+            'management_services' => $this->faker->word,
+            'health_services' => $this->faker->word,
+            'war_material_services' => $this->faker->word,
+            'transmission_services' => $this->faker->word,
+            'transport_services' => $this->faker->word,
+            'quartermasters_corp' => $this->faker->word,
+            'justice_services' => $this->faker->word,
         ];
     }
 }
