@@ -7,6 +7,7 @@ use App\Models\LowSeverity;
 use App\Models\MediumSeverity;
 use App\Models\MilitaryElements;
 use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -26,7 +27,8 @@ class PatientController extends Controller
     public function create()
     {
         $elementos = MilitaryElements::all();
-        return view('empleado.pacientes.create', compact('elementos'));
+        $psicologos = User::role('psicólogo')->get();
+        return view('empleado.pacientes.create', compact('elementos', 'psicologos'));
     }
 
     /**
@@ -39,6 +41,7 @@ class PatientController extends Controller
             'military_element_id'=> 'required|exists:military_elements,id|unique:patients,military_element_id',
             'disorder'=> 'required|in:TEPT',
             'severity'=> 'required|in:Bajo,Medio,Alto',
+            'user_id' => 'exists:users,id',
         ]);
         //Creación masiva
         $patient = Patient::create($request->all());
@@ -64,7 +67,8 @@ class PatientController extends Controller
     public function edit(Patient $paciente)
     {
         $elementos = MilitaryElements::all();
-        return view('empleado.pacientes.edit', compact('paciente', 'elementos'));
+        $psicologos = User::role('psicólogo')->get();
+        return view('empleado.pacientes.edit', compact('paciente', 'elementos', 'psicologos'));
     }
 
     /**
@@ -77,6 +81,7 @@ class PatientController extends Controller
             'military_element_id'=> 'required|unique:patients,military_element_id,'.$paciente->id,
             'disorder'=> 'required|in:TEPT',
             'severity'=> 'required|in:Bajo,Medio,Alto',
+            'user_id' => 'exists:users,id',
         ]);
         //Actualización masiva
         $paciente->update($request->all());
