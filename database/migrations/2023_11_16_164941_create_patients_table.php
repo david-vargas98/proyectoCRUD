@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('military_element_id');
             $table->foreign('military_element_id')->references('id')->on('military_elements');
+            $table->unsignedBigInteger('user_id')->nullable(); //Se agrega la nueva columna user_id
+            $table->foreign('user_id')->references('id')->on('users'); //Se establece la clave foránea
             $table->string('disorder');
             $table->string('severity');
             $table->softDeletes();
