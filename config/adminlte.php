@@ -361,6 +361,12 @@ return [
             'icon' => 'fas fa-user-injured',
             'can' => '',
         ],
+        [
+            'text' => 'Citas',
+            'url'  => 'empleado/psicologo/citas',
+            'icon' => 'far fa-calendar-check',
+            'can' => '',
+        ],
     ],
 
     /*
