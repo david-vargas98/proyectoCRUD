@@ -19,6 +19,7 @@
                 <th>Paciente</th>
                 <th>Trastorno</th>
                 <th>Severidad</th>
+                <th>Psicólogo asignado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -28,6 +29,11 @@
                     <td class="text-sm">{{ $paciente->militaryElement->name }}</td>
                     <td class="text-sm">{{ $paciente->disorder }}</td>
                     <td class="text-sm">{{ $paciente->severity }}</td>
+                    @if ($paciente->user_id == null)
+                        <td class="text-sm"><span class="text-info">No asignado</span></td>
+                    @else
+                        <td class="text-sm">{{ $paciente->userPsicologo->name }}</td>
+                    @endif
                     <td>
                         <div class="btn-group" role="group">
                             <a href="{{ route('pacientes.show', $paciente) }}">

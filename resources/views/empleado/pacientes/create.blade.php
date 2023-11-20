@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{route('pacientes.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('pacientes.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="military_element_id">Elemento militar</label>
@@ -44,8 +44,21 @@
                     @error('severity')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
+
+                    <label for="user_id">Asignar psicólogo <span class="text-primary">(Opcional)</span></label>
+                    <select name="user_id" class="form-control" style="width: 250px;">
+                        <option value="" disabled selected>Seleccione un psicólogo</option>
+                        @foreach ($psicologos as $psicologo)
+                            <option value="{{ $psicologo->id }}">
+                                {{ $psicologo->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('user_id')
+                        <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
                 </div>
-                <button class="btn btn-primary">Agregar elemento</button>
+                <button class="btn btn-primary">Agregar paciente</button>
             </form>
         </div>
     </div>

@@ -45,6 +45,19 @@
                     @error('severity')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
+
+                    <label for="user_id">Asignar psicólogo <span class="text-primary">(Opcional)</span></label>
+                    <select name="user_id" class="form-control" style="width: 250px;">
+                        <option value="" disabled selected>Seleccione un psicólogo</option>
+                        @foreach ($psicologos as $psicologo)
+                            <option value="{{ $psicologo->id }}" {{ $psicologo->id == $paciente->user_id ? 'selected' : '' }}>
+                                {{ $psicologo->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('user_id')
+                        <div class="alert alert-danger mt-3">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button class="btn btn-primary">Actualizar paciente</button>
             </form>
