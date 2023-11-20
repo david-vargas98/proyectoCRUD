@@ -25,4 +25,11 @@ class Patient extends Model
     {
         return $this->belongsTo(User::class, 'user_id'); //Se le dice explícitamente que columna buscar
     }
+
+    //Relación 1:m con Appointment
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
 }
