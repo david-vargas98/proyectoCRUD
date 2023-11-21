@@ -14,7 +14,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $citas = Appointment::all();
+        $citas = Appointment::paginate(4);
         return view('empleado.citas.index', compact('citas'));
     }
 
