@@ -16,8 +16,8 @@ class RoleSeeder extends Seeder
     {
         //Se crea un nuevo registro de roles
         $roleOne = Role::create(['name' =>'admin']);
-        $roleTwo = Role::create(['name' =>'empleado']);
-        $roleThree = Role::create(['name' =>'cliente']);
+        $roleTwo = Role::create(['name' =>'administrativo']);
+        $roleThree = Role::create(['name' =>'psicologo']);
 
         //Permiso para la ruta de los usuarios
         Permission::create(['name' => 'admin.users.index', 'description' => 'Ver el índice de usuarios'])->assignRole($roleOne);
