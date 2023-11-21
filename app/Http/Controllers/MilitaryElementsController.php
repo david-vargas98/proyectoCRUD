@@ -12,8 +12,7 @@ class MilitaryElementsController extends Controller
      */
     public function index()
     {
-        $elementos = MilitaryElements::paginate(4);
-        return view('empleado.elementosMilitares.index', compact('elementos'));
+        return view('empleado.elementosMilitares.index');
     }
 
     /**
