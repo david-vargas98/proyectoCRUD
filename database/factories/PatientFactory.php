@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\MilitaryElements;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,9 @@ class PatientFactory extends Factory
             //Se establecen los valores para los datos
             'military_element_id' => function () {
                 return MilitaryElements::inRandomOrder()->firstOrCreate()->id; //Esto busca el id de un elemento, sino existe, lo crea
+            },
+            'user_id' => function () {
+                return User::inRandomOrder()->firstOrCreate()->id; //Esto busca el id de un elemento, sino existe, lo crea
             },
             'disorder' => 'TEPT',
             'severity' => $this->faker->randomElement(['Bajo', 'Medio', 'Alto']),
