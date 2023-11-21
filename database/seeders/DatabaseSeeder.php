@@ -55,5 +55,8 @@ class DatabaseSeeder extends Seeder
 
         //Se llamm al seeder de la tabla Patient
         $this->call(PatientSeeder::class);
+
+        //Se llamm al seeder de la tabla Patient
+        $this->call(AppointmentSeeder::class);
     }
 }
