@@ -23,5 +23,9 @@ Route::resource('administrativo/elementosMilitares', MilitaryElementsController:
 //Para desginar elementos a pacientes
 Route::resource('administrativo/pacientes', PatientController::class);
 
+//Ruta para la descarga del archivo de citas
+route::get('psicologo/citas/descargaArchivos/{cita}', [AppointmentController::class, 'descargar'])->name('citas.descargar');
+//Ruta para la visualización del archivo de citas
+route::get('psicologo/citas/verArchivos/{cita}', [AppointmentController::class, 'ver'])->name('citas.ver');
 //Rutas para las citas
 Route::resource('psicologo/citas', AppointmentController::class);
