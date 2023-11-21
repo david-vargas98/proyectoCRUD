@@ -67,14 +67,14 @@
                     <label for="contrato">Archivo</label>
                     @if ($cita->observations_name)
                         <div class="mb-2">
-                            <p>Archivo actual: {{ $asociacion->observations_name }}</p>
+                            <p>Archivo actual: {{ $cita->observations_name }}</p>
                             <div class="btn-group">
                                 <a class="btn btn-sm btn-info mt-2 mr-2"
-                                    href="{{ route('empleado.asociaciones.ver', $asociacion) }}">
+                                    href="{{ route('citas.ver', $cita) }}">
                                     <i class="far fa-eye"></i> Vizualizar archivo
                                 </a>
                                 <a class="btn btn-sm btn-success mt-2 mr-2"
-                                    href="{{ route('empleado.asociaciones.descarga', $asociacion) }}">
+                                    href="{{ route('citas.descargar', $cita) }}">
                                     <i class="fas fa-file-download"></i> Descargar archivo
                                 </a>
                             </div>
