@@ -15,10 +15,20 @@ class UserSeeder extends Seeder
     {
         //Se crea un registro que siempre será admin
         User::create([
-            'name' => 'edgar',
-            'email'=> 'edgar@edgar.com',
-            'password'=> bcrypt('12345678'),
+            'name' => 'edgarAdmin',
+            'email'=> 'edgar@admin.com',
+            'password'=> bcrypt('1234'),
         ])->assignRole('admin'); //Se asigna el rol de admin
+        User::create([
+            'name' => 'edgarAministrativo',
+            'email'=> 'edgar@administrativo.com',
+            'password'=> bcrypt('1234'),
+        ])->assignRole('administrativo'); //Se asigna el rol de admin
+        User::create([
+            'name' => 'edgarPsicologo',
+            'email'=> 'edgar@psicologo.com',
+            'password'=> bcrypt('1234'),
+        ])->assignRole('psicologo'); //Se asigna el rol de admin
         //Se usa el modelo User para crear 10 registros fictios usando factories
         User::factory()->count(10)->create();
     }
