@@ -31,7 +31,7 @@
                 <td class="text-sm">{{ $cita->patient->userPsicologo->name }}</td>
                 <td class="text-sm">{{ $cita->appointment_date }}</td>
                 <td class="text-sm">{{ $cita->start_time }}</td>
-                @if ($cita->observations_location != null)
+                @if ($cita->end_time != null)
                     <td class="text-sm">{{ $cita->end_time }}</td>
                 @else
                     <td class="text-danger">No se estableció hora de fin</td>
