@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('appointment_date');
             //Columnas de inicio y fin de cita
             $table->time('start_time');
-            $table->time('end_time');
+            $table->time('end_time')->nullable();
             //El estado de la cita (programada, cancelada, completada)
             $table->string('appointment_status');
             //Columnas para el manejo de archivos:
