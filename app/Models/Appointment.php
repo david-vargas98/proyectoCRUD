@@ -17,6 +17,6 @@ class Appointment extends Model
     //Relación 1:m con Patient
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patient::class)->withTrashed(); //Para poder mostrar pacientes borrados
     }
 }
