@@ -33,6 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail //implements MustV
         'name',
         'email',
         'password',
+        'attempts',  //Se agrega la columna de los intentos de sesión
     ];
 
     /**
