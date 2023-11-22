@@ -17,7 +17,7 @@ class Patient extends Model
 
     public function militaryElement()
     {
-        return $this->belongsTo(MilitaryElements::class);
+        return $this->belongsTo(MilitaryElements::class)->withTrashed(); //Para poder ver los elementos eliminados
     }
 
     //Relación 1:m con User
