@@ -39,29 +39,33 @@
                             <td class="text-sm">{{ $paciente->userPsicologo->name }}</td>
                         @endif
                         <td>
-                            <div class="btn-group" role="group">
-                                <a href="{{ route('pacientes.show', $paciente) }}">
-                                    <button class="btn btn-sm btn-secondary mt-2 mr-2">
-                                        <i class="fas fa-walking"></i> Actividades
-                                    </button>
-                                </a>
-                                <a href="{{ route('pacientes.edit', $paciente) }}">
-                                    <button class="btn btn-sm btn-primary mt-2 mr-2">
-                                        <i class="fas fa-edit"></i> Editar
-                                    </button>
-                                </a>
-                                <form action="{{ route('pacientes.destroy', $paciente) }}" method="post"
-                                    style="display: inline;" class="formulario-eliminar">
-                                    {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
-                                    @csrf
-                                    {{-- También se debe cambiar como el patch para que se identifique en el route --}}
-                                    @method('DELETE')
-                                    {{-- Botón para accionar la eliminación --}}
-                                    <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
-                                        <i class="fa fa-trash"></i> Borrar
-                                    </button>
-                                </form>
-                            </div>
+                            @if ($paciente->militaryElement->trashed())
+                                <span class="text-danger"> (Elemento borrado)</span>
+                            @else
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('pacientes.show', $paciente) }}">
+                                        <button class="btn btn-sm btn-secondary mt-2 mr-2">
+                                            <i class="fas fa-walking"></i> Actividades
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('pacientes.edit', $paciente) }}">
+                                        <button class="btn btn-sm btn-primary mt-2 mr-2">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </button>
+                                    </a>
+                                    <form action="{{ route('pacientes.destroy', $paciente) }}" method="post"
+                                        style="display: inline;" class="formulario-eliminar">
+                                        {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
+                                        @csrf
+                                        {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                                        @method('DELETE')
+                                        {{-- Botón para accionar la eliminación --}}
+                                        <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
+                                            <i class="fa fa-trash"></i> Borrar
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
