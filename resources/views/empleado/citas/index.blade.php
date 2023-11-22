@@ -29,29 +29,33 @@
                     <td class="text-sm">{{ $cita->patient->userPsicologo->name }}</td>
                     <td class="text-sm">{{ $cita->appointment_date }}</td>
                     <td>
-                        <div class="btn-group" role="group">
-                            <a href="{{ route('citas.show', $cita) }}">
-                                <button class="btn btn-sm btn-secondary mt-2 mr-2">
-                                    <i class="far fa-eye"></i>Detalles
-                                </button>
-                            </a>
-                            <a href="{{ route('citas.edit', $cita) }}">
-                                <button class="btn btn-sm btn-primary mt-2 mr-2">
-                                    <i class="fas fa-edit"></i>Editar
-                                </button>
-                            </a>
-                            <form action="{{ route('citas.destroy', $cita) }}" method="post"
-                                style="display: inline;" class="formulario-eliminar">
-                                {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
-                                @csrf
-                                {{-- También se debe cambiar como el patch para que se identifique en el route --}}
-                                @method('DELETE')
-                                {{-- Botón para accionar la eliminación --}}
-                                <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
-                                    <i class="fa fa-trash"></i> Borrar
-                                </button>
-                            </form>
-                        </div>
+                        @if ($cita->patient->militaryElement->trashed())
+                            <span class="text-danger"> (Paciente borrado)</span>
+                        @else
+                            <div class="btn-group" role="group">
+                                <a href="{{ route('citas.show', $cita) }}">
+                                    <button class="btn btn-sm btn-secondary mt-2 mr-2">
+                                        <i class="far fa-eye"></i>Detalles
+                                    </button>
+                                </a>
+                                <a href="{{ route('citas.edit', $cita) }}">
+                                    <button class="btn btn-sm btn-primary mt-2 mr-2">
+                                        <i class="fas fa-edit"></i>Editar
+                                    </button>
+                                </a>
+                                <form action="{{ route('citas.destroy', $cita) }}" method="post" style="display: inline;"
+                                    class="formulario-eliminar">
+                                    {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
+                                    @csrf
+                                    {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                                    @method('DELETE')
+                                    {{-- Botón para accionar la eliminación --}}
+                                    <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
+                                        <i class="fa fa-trash"></i> Borrar
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
                     </td>
                 </tr>
             @endforeach
