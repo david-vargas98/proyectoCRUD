@@ -74,17 +74,16 @@
         <div class="mt-2">
             {{ $pacientes->links() }}
         </div>
-        <div class="text-center">
-            <a href="{{ route('pacientes.create') }}">
-                <button class="btn btn-sm btn-success mt-2 mr-2">
-                    <i class="fa fa-plus"></i> Agregar paciente
-                </button>
-            </a>
-        </div>
     @else
         <div class="card-body">
             <strong>No hay registros</strong>
         </div>
     @endif
-
+    <div class="text-center">
+        <a href="{{ route('pacientes.create') }}">
+            <button class="btn btn-sm btn-success mt-2 mr-2">
+                <i class="fa fa-plus"></i> Agregar paciente
+            </button>
+        </a>
+    </div>
 </div>
