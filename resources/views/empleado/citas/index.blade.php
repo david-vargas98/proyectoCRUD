@@ -29,7 +29,7 @@
                     <td class="text-sm">{{ $cita->patient->userPsicologo->name }}</td>
                     <td class="text-sm">{{ $cita->appointment_date }}</td>
                     <td>
-                        @if ($cita->patient->militaryElement->trashed())
+                        @if ($cita->patient->militaryElement->trashed() || $cita->patient->trashed())
                             <span class="text-danger"> (Paciente borrado)</span>
                         @else
                             <div class="btn-group" role="group">
