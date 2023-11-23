@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Patient;
+use App\Models\UserAction;
 use Illuminate\Contracts\Auth\MustVerifyEmail;  //Se usa para la verificación de correos
 use App\Models\Cliente; //Se agrega el modelo de cleinte
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -88,5 +89,11 @@ class User extends Authenticatable implements MustVerifyEmail //implements MustV
     public function patients()
     {
         return $this->hasMany(Patient::class);
+    }
+
+    //Relación con user para poder recuperar el nombre de los usuarios
+    public function actions()
+    {
+        return $this->hasMany(UserAction::class);
     }
 }
