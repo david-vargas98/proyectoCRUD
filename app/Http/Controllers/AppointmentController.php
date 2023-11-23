@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Patient;
+use App\Models\UserAction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AppointmentController extends Controller
@@ -41,6 +43,8 @@ class AppointmentController extends Controller
         ]);
         //Se crea el registro de la cita
         $cita = Appointment::create($request->all());
+        //Registro de la acción del usuario
+        $this->logUserAction('Crear', 'Citas', $cita->id);
         //Se redirige
         return redirect()->route('citas.index')->with('success','La cita ha sido creada con éxito');
     }
@@ -128,6 +132,10 @@ class AppointmentController extends Controller
                 ]);
             }
         }
+
+        //Registro de la acción del usuario
+        $this->logUserAction('Editar', 'Citas', $cita->id);
+
         //Se redirige
         return redirect()->route('citas.index')->with('success','La cita ha sido actualizada con éxito');
     }
@@ -137,6 +145,8 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $cita)
     {
+        //Registro de la acción del usuario
+        $this->logUserAction('Borrar', 'Citas', $cita->id);
         //Se borra la instancia
         $cita->delete();
         //Se redirige
@@ -176,5 +186,17 @@ class AppointmentController extends Controller
         }
         //Si no se encuentra, da respuesta HTTP 404 indicando que el archivo no se puede encontrar
         abort(404, 'Archivo no encontrado');
+    }
+
+    // Función para registrar la acción del usuario
+    private function logUserAction($action, $tableName, $idPaciente)
+    {
+        //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
+        UserAction::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'table_name' => $tableName,
+            'record_id' => $idPaciente,
+        ]);
     }
 }

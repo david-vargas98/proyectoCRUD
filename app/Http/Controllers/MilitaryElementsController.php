@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\MilitaryElements;
+use App\Models\UserAction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MilitaryElementsController extends Controller
 {
@@ -43,6 +45,9 @@ class MilitaryElementsController extends Controller
 
         //Se hace la asignación masiva
         $elemento = MilitaryElements::create($request->all());
+
+        //Registro de la acción del usuario
+        $this->logUserAction('Crear', 'Elementos militares', $elemento->id);
 
         //Redirección
         return redirect()->route('elementosMilitares.index')->with('success', 'El elemento fue agregado con éxito');
@@ -85,6 +90,9 @@ class MilitaryElementsController extends Controller
         //Se hace la asignación masiva
         $elemento->update($request->all());
 
+        //Registro de la acción del usuario
+        $this->logUserAction('Editar', 'Elementos militares', $elemento->id);
+
         //Redirección
         return redirect()->route('elementosMilitares.index')->with('success', 'El elemento fue actualizado con éxito');
     }
@@ -94,9 +102,23 @@ class MilitaryElementsController extends Controller
      */
     public function destroy(MilitaryElements $elemento)
     {
+        //Registro de la acción del usuario
+        $this->logUserAction('Borrar', 'Elementos militares', $elemento->id);
         //Borrado
         $elemento->delete();
         //Redirección
         return redirect()->route('elementosMilitares.index')->with('deleted', 'El elemento fue borrado con éxito');
+    }
+
+    // Función para registrar la acción del usuario
+    private function logUserAction($action, $tableName, $idPaciente)
+    {
+        //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
+        UserAction::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'table_name' => $tableName,
+            'record_id' => $idPaciente,
+        ]);
     }
 }
