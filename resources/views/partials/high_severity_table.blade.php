@@ -10,11 +10,9 @@
             <th>Servicio de transporte</th>
             <th>Servicio de intendencia</th>
             <th>Servicio de justicia</th>
-            <!-- Agrega más columnas según sea necesario -->
         </tr>
     </thead>
     <tbody>
-        <!-- Recuperar registros para baja severidad -->
         @foreach ($highSeverityRecords as $record)
             <tr>
                 <td>{{ $record->engineer_services }}</td>
@@ -25,7 +23,6 @@
                 <td>{{ $record->transport_services }}</td>
                 <td>{{ $record->quartermasters_corp }}</td>
                 <td>{{ $record->justice_services }}</td>
-                <!-- Agrega más celdas según sea necesario -->
             </tr>
         @endforeach
     </tbody>
