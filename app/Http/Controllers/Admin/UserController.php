@@ -48,4 +48,15 @@ class UserController extends Controller
         //Se retorna a la página anterior con un mensaje de sesión
         return redirect()->route('admin.users.edit', $user)->with('success','Se asignó los roles correctamente');
     }
+
+    //Función para el desbloqueo
+    public function desbloqueo(User $user)
+    {
+        //Se modifica en memoria temporal
+        $user->attempts = 0;
+        //Se perpetua en la base de datos
+        $user->save();
+        //Se redirige
+        return redirect()->route('admin.users.edit', $user)->with('success','El usuario fue desbloqueado correctamente');
+    }
 }
