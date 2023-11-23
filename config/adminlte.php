@@ -350,6 +350,12 @@ return [
             'can' => 'insumo.index',
         ],
         [
+            'text' => 'Acciones de usuarios',
+            'url'  => 'admin/userActions',
+            'icon' => 'far fa-eye',
+            'can' => '',
+        ],
+        [
             'text' => 'Elementos militares',
             'url'  => 'empleado/administrativo/elementosMilitares',
             'icon' => 'fas fa-shield-alt',
