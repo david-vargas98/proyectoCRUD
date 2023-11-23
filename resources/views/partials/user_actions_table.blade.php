@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Actividades')
+@section('title', 'Acciones')
 
 @section('content_header')
     <h1>Acciones realizadas por usuarios</h1>
@@ -21,7 +21,13 @@
                 @foreach ($userActions as $action)
                     <tr>
                         <td>{{ $action->user->name }}</td>
-                        <td>{{ $action->action }}</td>
+                        @if ($action->action == 'Crear')
+                            <td class="text-success">{{ $action->action }}</td>
+                        @elseif($action->action == 'Editar')
+                            <td class="text-primary">{{ $action->action }}</td>
+                        @elseif($action->action == 'Borrar')
+                            <td class="text-danger">{{ $action->action }}</td>
+                        @endif
                         <td>{{ $action->table_name }}</td>
                         <td>{{ $action->record_id }}</td>
                     </tr>
