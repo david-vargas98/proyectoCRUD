@@ -3,20 +3,20 @@
 @section('title', 'Roles')
 
 @section('content_header')
-    <h1>Asignar un rol</h1>
+    <h1>Asignación de roles y bloqueos</h1>
 @stop
 
 @section('content')
     {{-- Mensaje de confirmación --}}
     @if (session('success'))
         <div class="alert alert-success" id="successMessage">
-            <strong>{{session('success')}}</strong>
+            <strong>{{ session('success') }}</strong>
         </div>
     @endif
     <div class="card">
         <div class="card-body">
             <p class="h5">Nombre</p>
-            <p class="form-control">{{$user->name}}</p>
+            <p class="form-control">{{ $user->name }}</p>
 
             <h2 class="h5">Listado de roles</h2>
             {{-- Se usa laravel collective --}}
@@ -24,7 +24,7 @@
             <form action="{{ route('admin.users.update', $user) }}" method="POST">
                 @method('PUT')
                 @csrf
-            
+
                 @foreach ($roles as $role)
                     <div>
                         <label>
@@ -37,6 +37,22 @@
                 <!-- Botón de enviar el formulario -->
                 <button type="submit" class="btn btn-primary mt-2">Asignar rol</button>
             </form>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <p class="h5">Bloqueo</p>
+            @if ($user->attempts >= 3)
+                <label class="h6 text-danger">El usuario se encuentra bloquado</label>
+                <form action="{{ route('admin.users.desbloqueo', $user) }}" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <!-- Botón de enviar el formulario -->
+                    <button type="submit" class="btn btn-primary mt-2">Desbloquear</button>
+                </form>
+            @else
+                <label class="h6">El usuario no se encuentra bloqueado</label>
+            @endif
         </div>
     </div>
 @stop
