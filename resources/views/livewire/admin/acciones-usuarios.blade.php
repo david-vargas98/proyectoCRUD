@@ -29,6 +29,8 @@
                             <td class="text-primary">{{ $action->action }}</td>
                         @elseif($action->action == 'Borrar')
                             <td class="text-danger">{{ $action->action }}</td>
+                        @elseif($action->action == 'Desbloqueo')
+                            <td class="text-warning">{{ $action->action }}</td>
                         @endif
                         <td>{{ $action->table_name }}</td>
                         <td>{{ $action->record_id }}</td>
@@ -40,6 +42,6 @@
             {{ $userActions->links() }}
         </div>
     @else
-        <p class="alert alert-info">No hay actividades realizadas or usuarios</p>
+        <p class="alert alert-info">No existen registros relacionados con su búsqueda.</p>
     @endif
 </div>
