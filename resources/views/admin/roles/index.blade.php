@@ -52,7 +52,7 @@
         </div>
     @else
         <div class="card-body">
-            <p class="alert alert-info">No hay roles</p>
+            <p class="alert alert-info">No hay registros</p>
         </div>
     @endif
     <div class="text-center">

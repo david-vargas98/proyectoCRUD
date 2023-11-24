@@ -1,15 +1,16 @@
 <div>
-    <div class="card-header">
-        <div class="input-group">
-            <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
-                placeholder="Ingrese el usuario, acción, tabla o ID afectado">
-            <div class="input-group-append">
-                <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
-                <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
+    @if ($userActions->count())
+        <div class="card-header">
+            <div class="input-group">
+                <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
+                    placeholder="Ingrese el usuario, acción, tabla o ID afectado">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
+                    <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
+                </div>
             </div>
         </div>
-    </div>
-    @if ($userActions->count())
+
         <table border="1" class="text-center table table-bordered table-striped table-hover">
             <thead>
                 <tr class="text-sm">

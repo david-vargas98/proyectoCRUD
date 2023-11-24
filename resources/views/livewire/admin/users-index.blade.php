@@ -1,17 +1,19 @@
 <div>
-    <div class="card">
+    @if ($users->count())
+        <div class="card">
 
-        <div class="card-header">
-            <div class="input-group">
-                <input wire:model="search" wire:keydown.enter="$refresh" class="form-control" placeholder="Ingrese el nombre o correo del usuario">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
-                    <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
+            <div class="card-header">
+                <div class="input-group">
+                    <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
+                        placeholder="Ingrese el nombre o correo del usuario">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
+                        <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        @if ($users->count())
+
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
@@ -26,11 +28,11 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td>{{$user->id}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
                                 <td class="text-right">
-                                    <a href="{{route('admin.users.edit', $user)}}">
+                                    <a href="{{ route('admin.users.edit', $user) }}">
                                         <button class="btn btn-sm btn-primary mt-2 mr-2">
                                             <i class="fas fa-edit"></i> Editar
                                         </button>
@@ -43,12 +45,12 @@
             </div>
 
             <div class="card-footer">
-                {{$users->links()}}
+                {{ $users->links() }}
             </div>
         @else
             <div class="card-body">
                 <p class="alert alert-info">No hay registros</p>
             </div>
-        @endif
-    </div>
+    @endif
+</div>
 </div>

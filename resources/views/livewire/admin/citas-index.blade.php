@@ -6,18 +6,19 @@
         </div>
     @endif
 
-    <div class="card-header">
-        <div class="input-group">
-            <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
-                placeholder="Ingrese el nombre del paciente o psicólogo">
-            <div class="input-group-append">
-                <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
-                <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
+    @if ($citas->count())
+        <div class="card-header">
+            <div class="input-group">
+                <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
+                    placeholder="Ingrese el nombre del paciente o psicólogo">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
+                    <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    @if ($citas->count())
+
         <table border="1" class="text-center table table-bordered table-striped table-hover">
             <thead>
                 <tr class="text-sm">
