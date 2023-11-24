@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User; //Se agrega la inclusión del modelo
+use App\Models\UserAction;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;  //Se hace la inclusión del modelo para los roles
 
 class UserController extends Controller
@@ -45,6 +47,8 @@ class UserController extends Controller
     {
         //Se relaciona un usuario con un rol, el método sync se encarga de colocar nuevos registros en la tabla pivote
         $user->roles()->sync($request->roles);
+        //Registro de la acción del usuario
+        $this->logUserAction('Editar', 'Usuarios', $user->id);
         //Se retorna a la página anterior con un mensaje de sesión
         return redirect()->route('admin.users.edit', $user)->with('success','Se asignó los roles correctamente');
     }
@@ -56,7 +60,21 @@ class UserController extends Controller
         $user->attempts = 0;
         //Se perpetua en la base de datos
         $user->save();
+        //Registro de la acción del usuario
+        $this->logUserAction('Desbloqueo', 'Usuarios', $user->id);
         //Se redirige
         return redirect()->route('admin.users.edit', $user)->with('success','El usuario fue desbloqueado correctamente');
+    }
+
+    // Función para registrar la acción del usuario
+    private function logUserAction($action, $tableName, $idUser)
+    {
+        //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
+        UserAction::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'table_name' => $tableName,
+            'record_id' => $idUser,
+        ]);
     }
 }
