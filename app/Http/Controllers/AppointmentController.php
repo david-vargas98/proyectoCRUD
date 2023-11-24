@@ -25,7 +25,9 @@ class AppointmentController extends Controller
     public function create()
     {
         //Se recupera el listado de pacientes que tienen asignado un psicólogo
-        $pacientes = Patient::WhereNotNull('user_id')->get();
+        $pacientes = Patient::whereHas('militaryElement', function ($query) { //Se busca en la relación con militaryElements
+            $query->whereNull('deleted_at'); //Excluye pacientes que sean elementos militares eliminados
+        })->WhereNotNull('user_id')->get();  //Excluye pacientes que no tienen psicólogo asignado
         return view('empleado.citas.create', compact('pacientes'));
     }
 
