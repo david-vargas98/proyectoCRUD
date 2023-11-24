@@ -47,7 +47,7 @@
             </div>
         @else
             <div class="card-body">
-                <strong>No hay registros</strong>
+                <p class="alert alert-info">No hay registros</p>
             </div>
         @endif
     </div>
