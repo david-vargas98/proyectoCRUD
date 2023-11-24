@@ -42,6 +42,8 @@
             {{ $userActions->links() }}
         </div>
     @else
-        <p class="alert alert-info">No existen registros relacionados con su búsqueda.</p>
+        <div class="card-body">
+            <p class="alert alert-info">No hay registros</p>
+        </div>
     @endif
 </div>
