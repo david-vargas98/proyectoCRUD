@@ -111,14 +111,14 @@ class MilitaryElementsController extends Controller
     }
 
     // Función para registrar la acción del usuario
-    private function logUserAction($action, $tableName, $idPaciente)
+    private function logUserAction($action, $tableName, $idElement)
     {
         //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
         UserAction::create([
             'user_id' => Auth::id(),
             'action' => $action,
             'table_name' => $tableName,
-            'record_id' => $idPaciente,
+            'record_id' => $idElement,
         ]);
     }
 }
