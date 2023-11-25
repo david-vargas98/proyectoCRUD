@@ -26,9 +26,9 @@
                         <td>{{ $action->user->name }}</td>
                         @if ($action->action == 'Crear')
                             <td class="text-success">{{ $action->action }}</td>
-                        @elseif($action->action == 'Editar')
+                        @elseif($action->action == 'Editar' || $action->action == 'Editar roles')
                             <td class="text-primary">{{ $action->action }}</td>
-                        @elseif($action->action == 'Borrar')
+                        @elseif($action->action == 'Borrar' || $action->action == 'Quitar Todos los Roles')
                             <td class="text-danger">{{ $action->action }}</td>
                         @elseif($action->action == 'Desbloqueo')
                             <td class="text-warning">{{ $action->action }}</td>
