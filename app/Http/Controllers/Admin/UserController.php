@@ -8,6 +8,7 @@ use App\Models\UserAction;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;  //Se hace la inclusión del modelo para los roles
 
 class UserController extends Controller
@@ -45,10 +46,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        //Validaciones
+        $request->validate([
+            'roles' => [
+                'required',
+                'array',
+                'min:1', // al menos un elemento en el array
+                Rule::exists('roles', 'id'), // asegúrate de que todos los roles existan en la tabla roles
+            ],
+        ]);
         //Se relaciona un usuario con un rol, el método sync se encarga de colocar nuevos registros en la tabla pivote
         $user->roles()->sync($request->roles);
         //Registro de la acción del usuario
-        $this->logUserAction('Editar', 'Usuarios', $user->id);
+        $this->logUserAction('Editar roles', 'Usuarios', $user->id);
         //Se retorna a la página anterior con un mensaje de sesión
         return redirect()->route('admin.users.edit', $user)->with('success','Se asignó los roles correctamente');
     }
@@ -76,5 +86,14 @@ class UserController extends Controller
             'table_name' => $tableName,
             'record_id' => $idUser,
         ]);
+    }
+    public function removeAllRoles(User $user)
+    {
+        $user->roles()->detach(); // Elimina todos los roles del usuario
+
+        // Registro de la acción del usuario
+        $this->logUserAction('Quitar Todos los Roles', 'Usuarios', $user->id);
+
+        return redirect()->route('admin.users.edit', $user)->with('success', 'Se quitaron todos los roles correctamente');
     }
 }
