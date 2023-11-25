@@ -80,6 +80,24 @@
         }, 5000);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('roles') == 'Se quitaron todos los roles correctamente')
+        <script>
+            Swal.fire({
+                title: "!Es un hecho!",
+                text: "Se quitaron todos los roles con éxito.",
+                icon: "success"
+            });
+        </script>
+    @endif
+    @if (session('desbloqueo') == 'El usuario fue desbloqueado correctamente')
+        <script>
+            Swal.fire({
+                title: "!Es un hecho!",
+                text: "El usuario fue desbloqueado con éxito.",
+                icon: "success"
+            });
+        </script>
+    @endif
     {{-- Script que lleva acabo la pregunta de confirmación --}}
     <script>
         $('.formulario-eliminar').submit(function(e) {
