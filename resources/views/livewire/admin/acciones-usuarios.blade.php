@@ -18,6 +18,7 @@
                     <th>Acción realizada</th>
                     <th>Tabla</th>
                     <th>ID de registro afectado</th>
+                    <th>Fecha y hora</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@
                         @endif
                         <td>{{ $action->table_name }}</td>
                         <td>{{ $action->record_id }}</td>
+                        <td>{{ $action->created_at }}</td>
                     </tr>
                 @endforeach
             </tbody>
