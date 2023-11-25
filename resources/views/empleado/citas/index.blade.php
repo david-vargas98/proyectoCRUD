@@ -13,11 +13,11 @@
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> {{-- Inclusión de scrip para los botones de confirmación --}}
     {{-- Mensaje de session en caso de confirmarse la eliminación --}}
-    @if (session('deleted') == 'El elemento fue borrado con éxito')
+    @if (session('deleted') == 'El cita fue borrada con éxito')
         <script>
             Swal.fire({
                 title: "!Es un hecho!",
-                text: "El elemento fue borrado con éxito.",
+                text: "La cita fue borrada con éxito.",
                 icon: "success"
             });
         </script>
@@ -29,7 +29,7 @@
             //En su lugar, saldrá la alerta
             Swal.fire({
                 title: "¿Estás seguro?",
-                text: "Esta es una acción definitiva D:",
+                text: "La cita va a ser borrada",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
