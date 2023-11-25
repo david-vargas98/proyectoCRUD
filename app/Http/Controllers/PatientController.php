@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\UserAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class PatientController extends Controller
 {
@@ -27,8 +28,19 @@ class PatientController extends Controller
      */
     public function create()
     {
+        //Variable para verfificar el nombre del rol
+        $nombreRol = 'psicólogo';
+
+        //Se verifica si el rol existe
+        $rolExistente = Role::where('name', $nombreRol)->first();
+        //Sino existe
+        if (!$rolExistente) {
+            return redirect()->route('pacientes.index')->with('error', 'Parece que el rol psicólogo no existe o fue modificado, verifique con el administrador');
+        }
+        //Si el rol existe, continúa con las demás isntrucciones
+        $psicologos = User::role($nombreRol)->get();
         $elementos = MilitaryElements::all();
-        $psicologos = User::role('psicólogo')->get();
+
         return view('empleado.pacientes.create', compact('elementos', 'psicologos'));
     }
 
