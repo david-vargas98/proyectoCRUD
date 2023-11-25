@@ -1,19 +1,18 @@
 <div>
-    @if ($users->count())
-        <div class="card">
+    <div class="card">
 
-            <div class="card-header">
-                <div class="input-group">
-                    <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
-                        placeholder="Ingrese el nombre o correo del usuario">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
-                        <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
-                    </div>
+        <div class="card-header">
+            <div class="input-group">
+                <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
+                    placeholder="Ingrese el nombre o correo del usuario">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
+                    <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
                 </div>
             </div>
+        </div>
 
-
+        @if ($users->count())
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
@@ -51,6 +50,6 @@
             <div class="card-body">
                 <p class="alert alert-info">No hay registros</p>
             </div>
-    @endif
-</div>
+        @endif
+    </div>
 </div>
