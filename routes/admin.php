@@ -15,6 +15,8 @@ route::get('', [HomeController::class,'index'])->name('admin.home');
 //match se usa para definir una ruta que responde a varios métodos HTTP, then la url, el controlador, nombre del método y el nombre de la ruta
 route::match(['put', 'patch'],'users/{user}/desbloqueo', [UserController::class, 'desbloqueo'])->name('admin.users.desbloqueo');
 
+//Ruta para quitar todos los roles
+route::match(['put', 'patch'],'admin/users/{user}/removeAllRoles', [UserController::class, 'removeAllRoles'])->name('admin.users.removeAllRoles');
 //Grupo de rutas para usuarios y se les da nombre
 route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('admin.users');
 
