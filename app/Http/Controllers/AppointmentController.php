@@ -78,7 +78,7 @@ class AppointmentController extends Controller
             'appointment_date'=> 'required',
             'start_time'=> 'required',
             'appointment_status'=> 'required',
-            'contrato'=> 'file|max:20000',
+            'contrato'=> 'file|max:20000|mimes:jpeg,png,jpg,pdf',
         ]);
         //Actualización
         $cita->update($request->all());
@@ -152,7 +152,7 @@ class AppointmentController extends Controller
         //Se borra la instancia
         $cita->delete();
         //Se redirige
-        return redirect()->route('citas.index')->with('success','La cita ha sido borrado con éxito');
+        return redirect()->route('citas.index')->with('deleted','El cita fue borrada con éxito');
     }
 
     //Método para descargar el archivo
