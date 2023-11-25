@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class UserAction extends Model
 {
@@ -16,5 +17,11 @@ class UserAction extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    //Se implementa un Accessor para mostrar la fecha en el formato d-m-a, ya que se guarda como a-m-d
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
     }
 }
