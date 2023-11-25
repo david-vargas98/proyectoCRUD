@@ -73,7 +73,7 @@ class UserController extends Controller
         //Registro de la acción del usuario
         $this->logUserAction('Desbloqueo', 'Usuarios', $user->id);
         //Se redirige
-        return redirect()->route('admin.users.edit', $user)->with('success','El usuario fue desbloqueado correctamente');
+        return redirect()->route('admin.users.edit', $user)->with('desbloqueo','El usuario fue desbloqueado correctamente');
     }
 
     // Función para registrar la acción del usuario
@@ -94,6 +94,6 @@ class UserController extends Controller
         // Registro de la acción del usuario
         $this->logUserAction('Quitar Todos los Roles', 'Usuarios', $user->id);
 
-        return redirect()->route('admin.users.edit', $user)->with('success', 'Se quitaron todos los roles correctamente');
+        return redirect()->route('admin.users.edit', $user)->with('roles', 'Se quitaron todos los roles correctamente');
     }
 }
