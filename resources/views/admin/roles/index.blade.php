@@ -7,13 +7,6 @@
 @stop
 
 @section('content')
-    {{-- Mensaje de confirmación --}}
-    @if (session('success'))
-        <div class="alert alert-success" id="successMessage">
-            {{ session('success') }}
-        </div>
-    @endif
-
     @if ($roles->count())
         <div class="card">
             <div class="card-body">
@@ -36,7 +29,7 @@
                                             <i class="fas fa-edit"></i> Editar
                                         </button>
                                     </a>
-                                    <form action="{{ route('admin.roles.destroy', $role) }}" method="POST">
+                                    <form action="{{ route('admin.roles.destroy', $role) }}" method="POST" class="formulario-eliminar">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
@@ -63,13 +56,35 @@
 @stop
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success') == 'El rol se eliminó con éxito')
+        <script>
+            Swal.fire({
+                title: "!Es un hecho!",
+                text: "El rol fue borrado con éxito.",
+                icon: "success"
+            });
+        </script>
+    @endif
+    {{-- Script que lleva acabo la pregunta de confirmación --}}
     <script>
-        // Función para ocultar el mensaje después de 5 segundos (5000 milisegundos)
-        //Esta función se usa para ejecutar una acción después de un cierto tiempo
-        setTimeout(function() { //Función anónima, no tiene un nombre, se declara y se ejecuta al mismo tiempo.
-            //Esto selecciona un elemento HTML usando su id, le pasamos el del mensaje y se pone none (sin mostrar)
-            //Y se le dice que espero 5 seg antes de ejecutar lo anterior
-            document.getElementById('successMessage').style.display = 'none';
-        }, 5000);
+        $('.formulario-eliminar').submit(function(e) {
+            e.preventDefault(); //Se detiene el envío del formulario
+            //En su lugar, saldrá la alerta
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "El rol va a ser borrado",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Borrar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //Se envía el formulario si es true, y se envía con submit para borrar el registro
+                    this.submit();
+                }
+            });
+        });
     </script>
 @stop
