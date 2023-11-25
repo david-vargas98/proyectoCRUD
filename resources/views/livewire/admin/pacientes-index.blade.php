@@ -5,6 +5,12 @@
             {{ session('success') }}
         </div>
     @endif
+    {{-- Mensaje de error --}}
+    @if (session('error'))
+        <div class="alert alert-danger" id="successMessage">
+            {{ session('error') }}
+        </div>
+    @endif
 
     @if ($pacientes->count())
         <div class="card-header">
