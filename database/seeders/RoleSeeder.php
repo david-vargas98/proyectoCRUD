@@ -32,7 +32,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.roles.destroy', 'description' => 'Borrar roles'])->assignRole($roleOne);
 
         //Permisos para las rutas de acciones de usuarios (solo admin)
-        Permission::create(['name' => 'admin.useractions.index', 'description' => 'Ver y buscar en el listado de acciones realizadas por los usuarios']);
+        Permission::create(['name' => 'admin.useractions.index', 'description' => 'Ver y buscar en el listado de acciones realizadas por los usuarios'])->assignRole($roleOne);
 
         //Permisos para las rutas de elementos militares (admin puede ver, administrativo todo y psicólogo solo ver)
         Permission::create(['name' => 'elementosMilitares.index', 'description' => 'Ver y buscar en el listado de elementos militares'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
