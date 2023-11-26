@@ -37,4 +37,4 @@ Route::get('userActions', function () { //El controlador es la función anónima
     $userActions = UserAction::latest()->get();
     //Después de obtener los registros, se retorna la vista partials.user_actions_table y se pasa la variable $userActions
     return view('partials.user_actions_table', compact('userActions'));
-})->name('user_actions.index'); //Se asigna un nombre a la ruta
+})->name('admin.useractions.index'); //Se asigna un nombre a la ruta
