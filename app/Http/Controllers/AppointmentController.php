@@ -11,6 +11,20 @@ use Illuminate\Support\Facades\Storage;
 
 class AppointmentController extends Controller
 {
+    //Método constructor para el manejo de las rutas protegidas
+    public function __construct()
+    {
+        //Protección a la ruta index
+        $this->middleware('can:citas.index')->only('index');
+        //Protección a la ruta create y store
+        $this->middleware('can:citas.create')->only('create', 'store');
+        //Protección a la ruta edit y update
+        $this->middleware('can:citas.edit')->only('edit', 'update');
+        //Protección a la ruta show
+        $this->middleware('can:citas.show')->only('show');
+        //Protección a la ruta destroy
+        $this->middleware('can:citas.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */

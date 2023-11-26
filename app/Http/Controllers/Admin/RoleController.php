@@ -11,6 +11,17 @@ use Spatie\Permission\Models\Permission; //Se importa el modelo de los permisos
 
 class RoleController extends Controller
 {
+    //Método constructor para el manejo de las rutas protegidas
+    public function __construct()
+    {
+        //Protección a la ruta create y store
+        $this->middleware('can:admin.roles.create')->only('create', 'store');
+        //Protección a la ruta edit y update
+        $this->middleware('can:admin.roles.edit')->only('edit', 'update');
+        //Protección a la ruta destroy
+        $this->middleware('can:admin.roles.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */

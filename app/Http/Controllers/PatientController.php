@@ -15,6 +15,20 @@ use Spatie\Permission\Models\Role;
 
 class PatientController extends Controller
 {
+    //Método constructor para el manejo de las rutas protegidas
+    public function __construct()
+    {
+        //Protección a la ruta index
+        $this->middleware('can:pacientes.index')->only('index');
+        //Protección a la ruta create y store
+        $this->middleware('can:pacientes.create')->only('create', 'store');
+        //Protección a la ruta edit y update
+        $this->middleware('can:pacientes.edit')->only('edit', 'update');
+        //Protección a la ruta show
+        $this->middleware('can:pacientes.show')->only('show');
+        //Protección a la ruta destroy
+        $this->middleware('can:pacientes.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */

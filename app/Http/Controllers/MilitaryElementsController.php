@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class MilitaryElementsController extends Controller
 {
+    //Método constructor para el manejo de las rutas protegidas
+    public function __construct()
+    {
+        //Protección a la ruta index
+        $this->middleware('can:elementosMilitares.index')->only('index');
+        //Protección a la ruta create y store
+        $this->middleware('can:elementosMilitares.create')->only('create', 'store');
+        //Protección a la ruta edit y update
+        $this->middleware('can:elementosMilitares.edit')->only('edit', 'update');
+        //Protección a la ruta show
+        $this->middleware('can:elementosMilitares.show')->only('show');
+        //Protección a la ruta destroy
+        $this->middleware('can:elementosMilitares.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
