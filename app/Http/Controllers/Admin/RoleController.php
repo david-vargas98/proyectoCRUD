@@ -14,6 +14,8 @@ class RoleController extends Controller
     //Método constructor para el manejo de las rutas protegidas
     public function __construct()
     {
+        //Protección a la ruta index
+        $this->middleware('can:admin.roles.index')->only('index');
         //Protección a la ruta create y store
         $this->middleware('can:admin.roles.create')->only('create', 'store');
         //Protección a la ruta edit y update
