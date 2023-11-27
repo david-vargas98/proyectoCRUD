@@ -19,13 +19,13 @@ Route::resource('asociaciones', ClienteUserController::class)->names('empleado.a
 
 //Pegasus
 //Rutas para las funcionalidades del personal administrativo
-Route::resource('administrativo/elementosMilitares', MilitaryElementsController::class)->parameters(['elementosMilitares' => 'elemento']); //Se modifica el parameters para modificar el nombre de la variable que espera
+Route::resource('administrativo/elementosMilitares', MilitaryElementsController::class)->parameters(['elementosMilitares' => 'elemento'])->middleware('auth'); //Se modifica el parameters para modificar el nombre de la variable que espera
 //Para desginar elementos a pacientes
-Route::resource('administrativo/pacientes', PatientController::class);
+Route::resource('administrativo/pacientes', PatientController::class)->middleware('auth');
 
 //Ruta para la descarga del archivo de citas
 route::get('psicologo/citas/descargaArchivos/{cita}', [AppointmentController::class, 'descargar'])->name('citas.descargar');
 //Ruta para la visualización del archivo de citas
 route::get('psicologo/citas/verArchivos/{cita}', [AppointmentController::class, 'ver'])->name('citas.ver');
 //Rutas para las citas
-Route::resource('psicologo/citas', AppointmentController::class);
+Route::resource('psicologo/citas', AppointmentController::class)->middleware('auth');

@@ -18,7 +18,7 @@ route::match(['put', 'patch'],'users/{user}/desbloqueo', [UserController::class,
 //Ruta para quitar todos los roles
 route::match(['put', 'patch'],'admin/users/{user}/removeAllRoles', [UserController::class, 'removeAllRoles'])->name('admin.users.removeAllRoles');
 //Grupo de rutas para usuarios y se les da nombre
-route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('admin.users');
+route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('admin.users')->middleware('auth');
 
 //El "resorce" es un estándar que sirve para crear las rutas de nuestra tabla
 Route::resource('inventario', InventarioController::class)->middleware('auth');
@@ -27,7 +27,7 @@ Route::resource('inventario', InventarioController::class)->middleware('auth');
 Route::resource('insumo', InsumoController::class);
 
 //Se agrega el controlador para el crud de permisos, la url inicia en 'roles', administrado por RoleController
-Route::resource('roles', RoleController::class)->names('admin.roles'); //se le da nombre de rutas
+Route::resource('roles', RoleController::class)->names('admin.roles')->middleware('auth'); //se le da nombre de rutas
 
 //Ruta para mostrar la tabla de acciones realizadas por usuarios:
 
@@ -37,4 +37,4 @@ Route::get('userActions', function () { //El controlador es la función anónima
     $userActions = UserAction::latest()->get();
     //Después de obtener los registros, se retorna la vista partials.user_actions_table y se pasa la variable $userActions
     return view('partials.user_actions_table', compact('userActions'));
-})->name('admin.useractions.index')->middleware('can:admin.useractions.index'); //Se asigna un nombre a la ruta
+})->name('admin.useractions.index')->middleware('can:admin.useractions.index', 'auth'); //Se asigna un nombre a la ruta
