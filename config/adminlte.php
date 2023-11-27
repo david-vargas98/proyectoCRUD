@@ -317,13 +317,13 @@ return [
             'text' => 'Usuarios',
             'route'  => 'admin.users.index',
             'icon' => 'fas fa-users',
-            'can' => '',
+            'can' => 'admin.users.index',
         ],
         [
             'text' => 'Lista de roles',
             'route'  => 'admin.roles.index',
             'icon' => 'fas fa-users-cog',
-            'can' => '',
+            'can' => 'admin.roles.index',
         ],
         // [
         //     'text' => 'Clientes',
@@ -353,7 +353,7 @@ return [
             'text' => 'Acciones de usuarios',
             'url'  => 'admin/userActions',
             'icon' => 'far fa-eye',
-            'can' => '',
+            'can' => 'admin.useractions.index',
         ],
         [
             'text' => 'Elementos militares',
