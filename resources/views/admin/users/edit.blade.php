@@ -67,6 +67,11 @@
             @endif
         </div>
     </div>
+    <div class="text-center">
+        <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-primary">
+            <i class="fas fa-angle-double-left"></i> Regresar al índice
+        </a>
+    </div>
 @stop
 
 @section('js')

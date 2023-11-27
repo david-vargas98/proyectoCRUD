@@ -69,12 +69,10 @@
                         <div class="mb-2">
                             <p>Archivo actual: {{ $cita->observations_name }}</p>
                             <div class="btn-group">
-                                <a class="btn btn-sm btn-info mt-2 mr-2"
-                                    href="{{ route('citas.ver', $cita) }}">
+                                <a class="btn btn-sm btn-info mt-2 mr-2" href="{{ route('citas.ver', $cita) }}">
                                     <i class="far fa-eye"></i> Vizualizar archivo
                                 </a>
-                                <a class="btn btn-sm btn-success mt-2 mr-2"
-                                    href="{{ route('citas.descargar', $cita) }}">
+                                <a class="btn btn-sm btn-success mt-2 mr-2" href="{{ route('citas.descargar', $cita) }}">
                                     <i class="fas fa-file-download"></i> Descargar archivo
                                 </a>
                             </div>
@@ -91,7 +89,14 @@
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
-                <button class="btn btn-primary">Actualizar cita</button>
+                <div class="text-center">
+                    <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-edit"></i> Actualizar cita
+                    </button>
+                    <a href="{{ route('citas.index') }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-angle-double-left"></i> Regresar al índice
+                    </a>
+                </div>
             </form>
         </div>
     </div>

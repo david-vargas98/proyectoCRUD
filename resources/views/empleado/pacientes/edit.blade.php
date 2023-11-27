@@ -59,7 +59,14 @@
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
                 </div>
-                <button class="btn btn-primary">Actualizar paciente</button>
+                <div class="text-center">
+                    <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-edit"></i> Actualizar paciente
+                    </button>
+                    <a href="{{ route('pacientes.index') }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-angle-double-left"></i> Regresar al índice
+                    </a>
+                </div>
             </form>
         </div>
     </div>

@@ -18,7 +18,10 @@
             <form action="{{route('admin.roles.update', $role)}}" method="POST">
                 @method('PUT')
                 @include('admin.roles.partials.form')
-                <button class="btn btn-primary">Editar rol</button>
+                <button class="btn btn-sm btn-primary">Editar rol</button>
+                <a href="{{ route('admin.roles.index') }}" class="btn btn-sm btn-primary">
+                    <i class="fas fa-angle-double-left"></i> Regresar al índice
+                </a>
             </form>
         </div>
     </div>
