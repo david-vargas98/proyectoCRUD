@@ -37,24 +37,26 @@
                                         <i class="far fa-eye"></i>Detalles
                                     </button>
                                 </a>
-                                <a href="{{ route('elementosMilitares.edit', $elemento) }}">
-                                    <button class="btn btn-sm btn-primary mt-2 mr-2">
-                                        <i class="fas fa-edit"></i>Editar
-                                    </button>
-                                </a>
-                                <form action="{{ route('elementosMilitares.destroy', $elemento) }}" method="post"
-                                    style="display: inline;" class="formulario-eliminar">
-                                    {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
-                                    @csrf
-                                    {{-- También se debe cambiar como el patch para que se identifique en el route --}}
-                                    @method('DELETE')
-                                    {{-- Botón para accionar la eliminación --}}
-                                    <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
-                                        <i class="fa fa-trash"></i> Borrar
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
+                                @can('elementosMilitares.create')
+                                    <a href="{{ route('elementosMilitares.edit', $elemento) }}">
+                                        <button class="btn btn-sm btn-primary mt-2 mr-2">
+                                            <i class="fas fa-edit"></i>Editar
+                                        </button>
+                                    </a>
+                                    <form action="{{ route('elementosMilitares.destroy', $elemento) }}" method="post"
+                                        style="display: inline;" class="formulario-eliminar">
+                                        {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
+                                        @csrf
+                                        {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                                        @method('DELETE')
+                                        {{-- Botón para accionar la eliminación --}}
+                                        <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
+                                            <i class="fa fa-trash"></i> Borrar
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>
@@ -67,11 +69,13 @@
             <p class="alert alert-info">No hay registros</p>
         </div>
     @endif
-    <div class="text-center">
-        <a href="{{ route('elementosMilitares.create') }}">
-            <button class="btn btn-sm btn-success mt-2 mr-2">
-                <i class="fa fa-plus"></i> Agregar elemento nuevo
-            </button>
-        </a>
-    </div>
+    @can('elementosMilitares.create')
+        <div class="text-center">
+            <a href="{{ route('elementosMilitares.create') }}">
+                <button class="btn btn-sm btn-success mt-2 mr-2">
+                    <i class="fa fa-plus"></i> Agregar elemento nuevo
+                </button>
+            </a>
+        </div>
+    @endcan
 </div>
