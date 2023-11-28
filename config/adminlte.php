@@ -308,11 +308,11 @@ return [
             'icon' => 'fas fa-universal-access',
             'can' => 'dashboard',
         ],
-        [
-            'text' => 'profile',
-            'url'  => 'profile',
-            'icon' => 'far fa-regular fa-user',
-        ],
+        // [
+        //     'text' => 'profile',
+        //     'url'  => 'profile',
+        //     'icon' => 'far fa-regular fa-user',
+        // ],
         [
             'text' => 'Usuarios',
             'route'  => 'admin.users.index',
