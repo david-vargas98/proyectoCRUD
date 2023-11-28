@@ -17,6 +17,6 @@ class MilitaryElements extends Model
     //Relación 1:1 con paciente
     public function patient()
     {
-        return $this->hasOne(Patient::class);
+        return $this->hasOne(Patient::class, 'military_element_id');
     }
 }
