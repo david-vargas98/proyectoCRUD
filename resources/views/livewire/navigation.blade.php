@@ -38,7 +38,7 @@
                         alt="pegasus.png">
                 </a>
                 <a href="/"
-                    class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Pegasus</a>
+                    class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-xl font-medium">Pegasus</a>
                 {{-- Menú lg --}}
                 {{-- <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
