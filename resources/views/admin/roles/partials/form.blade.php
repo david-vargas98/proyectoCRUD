@@ -1,7 +1,7 @@
 @csrf
 <div class="form-group">
     <label for="name">Nombre</label>
-    <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre del rol" value="{{ isset($role) ? $role->name : old('name') }}" pattern="[A-Za-z\s]+" minlength="6" maxlength="20" required>
+    <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre del rol" value="{{ isset($role) ? $role->name : old('name') }}" minlength="6" maxlength="20" required>
     @error('name') {{-- Error de validación en el campo name --}}
         <small class="text-danger">
             {{$message}}
