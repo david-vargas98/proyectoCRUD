@@ -22,7 +22,9 @@
                 <th>Hora de inicio</th>
                 <th>Hora de fin</th>
                 <th>Estado de la cita</th>
-                <th colspan="2">Observaciones y detalles</th>
+                @can('citas.create')
+                    <th colspan="2">Observaciones y detalles</th>
+                @endcan
             </tr>
         </thead>
         <tbody>
@@ -37,21 +39,22 @@
                     <td class="text-danger">No se estableció hora de fin</td>
                 @endif
                 <td class="text-sm">{{ $cita->appointment_status }}</td>
-                @if ($cita->observations_location != null)
-                    <td>
-                        <a class="btn btn-sm btn-info mt-2 mr-2"
-                            href="{{ route('citas.ver', $cita) }}">
-                            <i class="far fa-eye"></i> Vizualizar archivo
-                        </a>
-                    </td>
-                    <td class="text-sm">
-                        <a class="btn btn-sm btn-success mt-2 mr-2" href="{{ route('citas.descargar', $cita) }}">
-                            <i class="fas fa-file-download"></i> Descargar archivo
-                        </a>
-                    </td>
-                @else
-                    <td class="text-danger">No se anexó ningún archivo</td>
-                @endif
+                @can('citas.create')
+                    @if ($cita->observations_location != null)
+                        <td>
+                            <a class="btn btn-sm btn-info mt-2 mr-2" href="{{ route('citas.ver', $cita) }}">
+                                <i class="far fa-eye"></i> Vizualizar archivo
+                            </a>
+                        </td>
+                        <td class="text-sm">
+                            <a class="btn btn-sm btn-success mt-2 mr-2" href="{{ route('citas.descargar', $cita) }}">
+                                <i class="fas fa-file-download"></i> Descargar archivo
+                            </a>
+                        </td>
+                    @else
+                        <td class="text-danger">No se anexó ningún archivo</td>
+                    @endif
+                @endcan
             </tr>
         </tbody>
     </table>

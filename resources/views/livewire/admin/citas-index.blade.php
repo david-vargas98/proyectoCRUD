@@ -6,19 +6,18 @@
         </div>
     @endif
 
-    @if ($citas->count())
-        <div class="card-header">
-            <div class="input-group">
-                <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
-                    placeholder="Ingrese el nombre del paciente o psicólogo">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
-                    <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
-                </div>
+    <div class="card-header">
+        <div class="input-group">
+            <input wire:model="search" wire:keydown.enter="$refresh" class="form-control"
+                placeholder="Ingrese el nombre del paciente o psicólogo">
+            <div class="input-group-append">
+                <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
+                <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
             </div>
         </div>
+    </div>
 
-
+    @if ($citas->count())
         <table border="1" class="text-center table table-bordered table-striped table-hover">
             <thead>
                 <tr class="text-sm">
@@ -44,22 +43,24 @@
                                             <i class="far fa-eye"></i>Detalles
                                         </button>
                                     </a>
-                                    <a href="{{ route('citas.edit', $cita) }}">
-                                        <button class="btn btn-sm btn-primary mt-2 mr-2">
-                                            <i class="fas fa-edit"></i>Editar
-                                        </button>
-                                    </a>
-                                    <form action="{{ route('citas.destroy', $cita) }}" method="post"
-                                        style="display: inline;" class="formulario-eliminar">
-                                        {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
-                                        @csrf
-                                        {{-- También se debe cambiar como el patch para que se identifique en el route --}}
-                                        @method('DELETE')
-                                        {{-- Botón para accionar la eliminación --}}
-                                        <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
-                                            <i class="fa fa-trash"></i> Borrar
-                                        </button>
-                                    </form>
+                                    @can('citas.create')
+                                        <a href="{{ route('citas.edit', $cita) }}">
+                                            <button class="btn btn-sm btn-primary mt-2 mr-2">
+                                                <i class="fas fa-edit"></i>Editar
+                                            </button>
+                                        </a>
+                                        <form action="{{ route('citas.destroy', $cita) }}" method="post"
+                                            style="display: inline;" class="formulario-eliminar">
+                                            {{-- Se usa para prevenir inyecciones de sql fuera del sistema local, es un token para confirmar que somos nosotros     --}}
+                                            @csrf
+                                            {{-- También se debe cambiar como el patch para que se identifique en el route --}}
+                                            @method('DELETE')
+                                            {{-- Botón para accionar la eliminación --}}
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2 mr-2">
+                                                <i class="fa fa-trash"></i> Borrar
+                                            </button>
+                                        </form>
+                                    @endcan
                                 </div>
                             @endif
                         </td>
