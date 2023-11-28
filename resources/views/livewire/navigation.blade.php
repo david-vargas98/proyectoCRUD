@@ -34,8 +34,8 @@
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 {{-- logotipo --}}
                 <a href="/" class="flex flex-shrink-0 items-center">
-                    <img class="h-12 w-auto" src="vendor/adminlte/dist/img/pegasus Final-modified.png"
-                        alt="pegasus Final-modified.png">
+                    <img class="h-12 w-auto" src="{{asset('vendor/adminlte/dist/img/pegasus Final-modified.png')}}"
+                        alt="pegasus.png">
                 </a>
                 <a href="/"
                     class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Pegasus</a>
