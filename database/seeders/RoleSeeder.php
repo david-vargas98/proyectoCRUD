@@ -52,7 +52,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'citas.index', 'description' => 'Ver y buscar en el listado de citas'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
         Permission::create(['name' => 'citas.create', 'description' => 'Crear registros de citas'])->syncRoles([$roleOne, $roleThree]);
         Permission::create(['name' => 'citas.edit', 'description' => 'Editar registros de citas'])->syncRoles([$roleOne, $roleThree]);
-        Permission::create(['name' => 'citas.show', 'description' => 'Ver detalles de los registros de citas'])->syncRoles([$roleOne, $roleThree]);
+        Permission::create(['name' => 'citas.show', 'description' => 'Ver detalles de los registros de citas'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
         Permission::create(['name' => 'citas.destroy', 'description' => 'Borrar registros de citas'])->syncRoles([$roleOne, $roleThree]);
 
         // //Permisos para las rutas de inventarios
