@@ -34,26 +34,26 @@ class RoleSeeder extends Seeder
         //Permisos para las rutas de acciones de usuarios (solo admin)
         Permission::create(['name' => 'admin.useractions.index', 'description' => 'Ver y buscar en el listado de acciones realizadas por los usuarios'])->assignRole($roleOne);
 
-        //Permisos para las rutas de elementos militares (admin puede ver, administrativo todo y psicólogo solo ver)
+        //Permisos para las rutas de elementos militares (admin puede todo, administrativo todo y psicólogo solo ver)
         Permission::create(['name' => 'elementosMilitares.index', 'description' => 'Ver y buscar en el listado de elementos militares'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
-        Permission::create(['name' => 'elementosMilitares.create', 'description' => 'Crear registros de elementos militares'])->assignRole($roleTwo);
-        Permission::create(['name' => 'elementosMilitares.edit', 'description' => 'Editar registros de elementos militares'])->assignRole($roleTwo);
-        Permission::create(['name' => 'elementosMilitares.show', 'description' => 'Ver detalles de los registros de elementos militares'])->assignRole($roleTwo);
-        Permission::create(['name' => 'elementosMilitares.destroy', 'description' => 'Borrar registros de elementos militares'])->assignRole($roleTwo);
+        Permission::create(['name' => 'elementosMilitares.create', 'description' => 'Crear registros de elementos militares'])->syncRoles([$roleOne, $roleTwo]);
+        Permission::create(['name' => 'elementosMilitares.edit', 'description' => 'Editar registros de elementos militares'])->syncRoles([$roleOne, $roleTwo]);
+        Permission::create(['name' => 'elementosMilitares.show', 'description' => 'Ver detalles de los registros de elementos militares'])->syncRoles([$roleOne, $roleTwo]);
+        Permission::create(['name' => 'elementosMilitares.destroy', 'description' => 'Borrar registros de elementos militares'])->syncRoles([$roleOne, $roleTwo]);
 
-        //Permisos para las rutas de pacientes (admin puede ver, administrativo todo y psicólogo ver, incluyendo actividades)
+        //Permisos para las rutas de pacientes (admin puede todo, administrativo todo y psicólogo ver, incluyendo actividades)
         Permission::create(['name' => 'pacientes.index', 'description' => 'Ver y buscar en el listado de pacientes'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
-        Permission::create(['name' => 'pacientes.create', 'description' => 'Crear registros de pacientes'])->assignRole($roleTwo);
-        Permission::create(['name' => 'pacientes.edit', 'description' => 'Editar registros de pacientes'])->assignRole($roleTwo);
-        Permission::create(['name' => 'pacientes.show', 'description' => 'Ver detalles de los registros de pacientes'])->syncRoles([$roleTwo, $roleThree]);
-        Permission::create(['name' => 'pacientes.destroy', 'description' => 'Borrar registros de pacientes'])->assignRole($roleTwo);
+        Permission::create(['name' => 'pacientes.create', 'description' => 'Crear registros de pacientes'])->syncRoles([$roleOne, $roleTwo]);
+        Permission::create(['name' => 'pacientes.edit', 'description' => 'Editar registros de pacientes'])->syncRoles([$roleOne, $roleTwo]);
+        Permission::create(['name' => 'pacientes.show', 'description' => 'Ver detalles de los registros de pacientes'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
+        Permission::create(['name' => 'pacientes.destroy', 'description' => 'Borrar registros de pacientes'])->syncRoles([$roleOne, $roleTwo]);
 
-        //Permisos para las rutas de citas (admin puede ver, administrativo ver y psicólogo todo)
+        //Permisos para las rutas de citas (admin puede todo, administrativo ver y psicólogo todo)
         Permission::create(['name' => 'citas.index', 'description' => 'Ver y buscar en el listado de citas'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
-        Permission::create(['name' => 'citas.create', 'description' => 'Crear registros de citas'])->assignRole($roleThree);
-        Permission::create(['name' => 'citas.edit', 'description' => 'Editar registros de citas'])->assignRole($roleThree);
-        Permission::create(['name' => 'citas.show', 'description' => 'Ver detalles de los registros de citas'])->assignRole($roleThree);
-        Permission::create(['name' => 'citas.destroy', 'description' => 'Borrar registros de citas'])->assignRole($roleThree);
+        Permission::create(['name' => 'citas.create', 'description' => 'Crear registros de citas'])->syncRoles([$roleOne, $roleThree]);
+        Permission::create(['name' => 'citas.edit', 'description' => 'Editar registros de citas'])->syncRoles([$roleOne, $roleThree]);
+        Permission::create(['name' => 'citas.show', 'description' => 'Ver detalles de los registros de citas'])->syncRoles([$roleOne, $roleThree]);
+        Permission::create(['name' => 'citas.destroy', 'description' => 'Borrar registros de citas'])->syncRoles([$roleOne, $roleThree]);
 
         // //Permisos para las rutas de inventarios
         // Permission::create(['name' => 'inventario.index', 'description' => 'Ver el índice de los inventarios'])->syncRoles([$roleOne, $roleTwo]);
