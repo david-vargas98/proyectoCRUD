@@ -67,16 +67,8 @@
                 <!-- Imagen de Fondo -->
                 <section class="bg-gray-800 py-3 text-center">
                     <h2 class="text-4xl font-bold mb-8 text-gray-200">¡Ayúdanos a guiarte!</h2>
-                    <div class="flex justify-center space-x-4">
-                        <i class="fab fa-twitter text-blue-400 text-2xl"></i>
-                        <a href="#">
-                            <i class="fa-brands fa-facebook"> Facebook</i>
-                        </a>
-                        
-                        <i class="fab fa-instagram text-pink-500 text-2xl"></i>
-                    </div>
                     <p class="text-lg text-gray-300">Descubre cómo podemos transformar juntos el futuro del personal
-                        militar.</p>
+                        militar</p>
                 </section>
             </div>
         </div>
