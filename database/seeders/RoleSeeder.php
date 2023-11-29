@@ -38,7 +38,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'elementosMilitares.index', 'description' => 'Ver y buscar en el listado de elementos militares'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
         Permission::create(['name' => 'elementosMilitares.create', 'description' => 'Crear registros de elementos militares'])->syncRoles([$roleOne, $roleTwo]);
         Permission::create(['name' => 'elementosMilitares.edit', 'description' => 'Editar registros de elementos militares'])->syncRoles([$roleOne, $roleTwo]);
-        Permission::create(['name' => 'elementosMilitares.show', 'description' => 'Ver detalles de los registros de elementos militares'])->syncRoles([$roleOne, $roleTwo]);
+        Permission::create(['name' => 'elementosMilitares.show', 'description' => 'Ver detalles de los registros de elementos militares'])->syncRoles([$roleOne, $roleTwo, $roleThree]);
         Permission::create(['name' => 'elementosMilitares.destroy', 'description' => 'Borrar registros de elementos militares'])->syncRoles([$roleOne, $roleTwo]);
 
         //Permisos para las rutas de pacientes (admin puede todo, administrativo todo y psicólogo ver, incluyendo actividades)
