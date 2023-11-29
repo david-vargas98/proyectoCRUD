@@ -25,7 +25,7 @@ class AppointmentFactory extends Factory
             'appointment_date' => $this->faker->date,
             'start_time' => $this->faker->time,
             'end_time' => $this->faker->optional()->time,
-            'appointment_status' => $this->faker->randomElement(['programada', 'cancelada', 'completada']),
+            'appointment_status' => $this->faker->randomElement(['Programada', 'Cancelada', 'Completada']),
             'observations_location' => $this->faker->optional()->word,
             'observations_name' => $this->faker->optional()->word,
         ];
