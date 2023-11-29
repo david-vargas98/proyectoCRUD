@@ -43,6 +43,11 @@
                             @else
                                 <div class="btn-group" role="group">
                                     @can('citas.create')
+                                        <a href="{{ route('citas.show', $cita) }}">
+                                            <button class="btn btn-sm btn-secondary mt-2 mr-2">
+                                                <i class="fas fa-edit"></i> Ver detalles
+                                            </button>
+                                        </a>
                                         <a href="{{ route('citas.edit', $cita) }}">
                                             <button class="btn btn-sm btn-primary mt-2 mr-2">
                                                 <i class="fas fa-edit"></i>Editar
