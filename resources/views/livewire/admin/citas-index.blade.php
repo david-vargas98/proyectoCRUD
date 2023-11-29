@@ -35,14 +35,13 @@
                         <td class="text-sm">{{ $cita->appointment_date }}</td>
                         <td>
                             @if ($cita->patient->militaryElement->trashed() || $cita->patient->trashed())
-                                <span class="text-danger"> (Paciente borrado)</span>
+                                <a href="{{ route('citas.show', $cita) }}">
+                                    <button class="btn btn-sm btn-danger mt-2 mr-2">
+                                        <i class="far fa-eye"></i> Paciente Borrado
+                                    </button>
+                                </a>
                             @else
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('citas.show', $cita) }}">
-                                        <button class="btn btn-sm btn-secondary mt-2 mr-2">
-                                            <i class="far fa-eye"></i>Detalles
-                                        </button>
-                                    </a>
                                     @can('citas.create')
                                         <a href="{{ route('citas.edit', $cita) }}">
                                             <button class="btn btn-sm btn-primary mt-2 mr-2">
