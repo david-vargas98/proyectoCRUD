@@ -14,6 +14,6 @@ class MilitaryElementsSeeder extends Seeder
     public function run(): void
     {
         //Se llama a la factory
-        MilitaryElements::factory()->count(5)->create();
+        MilitaryElements::factory()->count(140)->create();
     }
 }

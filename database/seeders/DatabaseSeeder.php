@@ -42,13 +42,13 @@ class DatabaseSeeder extends Seeder
         $this->call(ClienteUserSeeder::class);
 
         //Se llamm al seeder de la tabla lowSeverity
-        $this->call(LowSeveritySeeder::class);
+        // $this->call(LowSeveritySeeder::class);
 
         //Se llamm al seeder de la tabla MediumSeverity
-        $this->call(MediumSeveritySeeder::class);
+        // $this->call(MediumSeveritySeeder::class);
 
         //Se llamm al seeder de la tabla HighSeverity
-        $this->call(HighSeveritySeeder::class);
+        // $this->call(HighSeveritySeeder::class);
 
         //Se llamm al seeder de la tabla MilitaryElements
         $this->call(MilitaryElementsSeeder::class);

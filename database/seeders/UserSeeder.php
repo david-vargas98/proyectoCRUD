@@ -30,6 +30,6 @@ class UserSeeder extends Seeder
             'password'=> bcrypt('1234'),
         ])->assignRole('psicologo'); //Se asigna el rol de admin
         //Se usa el modelo User para crear 10 registros fictios usando factories
-        User::factory()->count(10)->create();
+        User::factory()->count(100)->create();
     }
 }
