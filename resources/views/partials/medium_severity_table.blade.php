@@ -10,6 +10,9 @@
             <th>Servicio de transporte</th>
             <th>Servicio de intendencia</th>
             <th>Servicio de justicia</th>
+            <th>Simulacro y ejercicio táctico</th>
+            <th>Entrenamiento físico</th>
+            <th>Proyectos especializados</th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +26,9 @@
                 <td>{{ $record->transport_services }}</td>
                 <td>{{ $record->quartermasters_corp }}</td>
                 <td>{{ $record->justice_services }}</td>
+                <td>{{ $record->drills_and_tactical_exercises }}</td>
+                <td>{{ $record->physical_training }}</td>
+                <td>{{ $record->specialized_projects }}</td>
             </tr>
         @endforeach
     </tbody>

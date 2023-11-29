@@ -10,6 +10,9 @@
             <th>Servicio de transporte</th>
             <th>Servicio de intendencia</th>
             <th>Servicio de justicia</th>
+            <th>Formación básica</th>
+            <th>Actividades grupales</th>
+            <th>Tareas rutinarias</th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +26,9 @@
                 <td>{{ $record->transport_services }}</td>
                 <td>{{ $record->quartermasters_corp }}</td>
                 <td>{{ $record->justice_services }}</td>
+                <td>{{ $record->basic_formation }}</td>
+                <td>{{ $record->group_activities }}</td>
+                <td>{{ $record->routine_tasks }}</td>
             </tr>
         @endforeach
     </tbody>

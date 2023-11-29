@@ -10,6 +10,9 @@
             <th>Servicio de transporte</th>
             <th>Servicio de intendencia</th>
             <th>Servicio de justicia</th>
+            <th>Entrenamiento personalizado</th>
+            <th>Soporte y mentoría</th>
+            <th>Participación opcional</th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +26,9 @@
                 <td>{{ $record->transport_services }}</td>
                 <td>{{ $record->quartermasters_corp }}</td>
                 <td>{{ $record->justice_services }}</td>
+                <td>{{ $record->personalized_training }}</td>
+                <td>{{ $record->support_and_mentoring }}</td>
+                <td>{{ $record->optional_participation }}</td>
             </tr>
         @endforeach
     </tbody>
