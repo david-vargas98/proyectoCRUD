@@ -53,16 +53,16 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
-        'signed' => \App\Http\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'auth' => \App\Http\Middleware\Authenticate::class, //usuario autenticado
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class, //autenticación HTTP básica
+        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class, //sesión aún válida
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class, //configura los encabezados de caché para las respuestas HTTP
+        'can' => \Illuminate\Auth\Middleware\Authorize::class, //autorización basada en capacidad (permisos necesarios para acceder)
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class, //Redirige a los usuarios autenticados lejos de ciertas rutas
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class, //pide al usuario ingresar su contraseña antes de realizar ciertas acciones
+        'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class, //sistema de optimización de precarga 
+        'signed' => \App\Http\Middleware\ValidateSignature::class, //valida que una solicitud tenga una firma válida
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class, //evita abusos y ataques de fuerza bruta limitando la cantidad de solicitudes que un usuario puede hacer
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class, //verifica si la dirección de correo electrónico del usuario está verificada
     ];
 }
