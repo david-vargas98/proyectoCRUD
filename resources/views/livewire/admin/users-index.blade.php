@@ -3,10 +3,11 @@
 
         <div class="card-header">
             <div class="input-group">
+                {{-- Se vincula por medio de search y al dar enter se ejecuta $refresh vinculado a updatingSearch() --}}
                 <input wire:model="search" wire:keydown.enter="$refresh" class="form-control" placeholder="Ingrese el nombre o correo del usuario">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" wire:click="$refresh">Buscar</button>
-                    <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button>
+                    <button class="btn btn-primary" wire:click="$refresh">Buscar</button> {{-- realiza una búsqueda --}}
+                    <button class="btn btn-secondary" wire:click="clearSearch">Limpiar</button> {{-- realiza una limpieza con clearSearch --}}
                 </div>
             </div>
         </div>
