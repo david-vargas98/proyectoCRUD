@@ -9,7 +9,7 @@ class ClienteUser extends Model
 {
     use HasFactory;
 
-    protected $table = 'cliente_user';
+    protected $table = 'cliente_user'; //No seguí la convención, me faltó la "s" jeje
 
     protected $fillable = ['user_id','cliente_id','proyecto', 'presupuesto', 'estado', 'contrato_ubicacion', 'contrato_nombre'];
     public function cliente()
