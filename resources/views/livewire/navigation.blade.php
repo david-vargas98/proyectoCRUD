@@ -1,4 +1,4 @@
-<nav class="bg-gray-800" x-data="{open:false}">
+<nav class="bg-gray-600" x-data="{open:false}">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
 
@@ -34,7 +34,7 @@
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 {{-- logotipo --}}
                 <a href="/" class="flex flex-shrink-0 items-center">
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    <img class="h-8 w-auto" src="{{asset('vendor/adminlte/dist/img/admin.png')}}"
                         alt="Your Company">
                 </a>
                 {{-- Menú lg --}}
