@@ -10,7 +10,8 @@ use Spatie\Permission\Models\Role;  //Se hace la inclusión del modelo para los 
 
 class UserController extends Controller
 {
-    //Método constructor para el manejo de las rutas protegidas
+    //Método constructor para el manejo de las rutas protegidas:
+    // el método constructor (__construct) de un controlador se utiliza para realizar acciones específicas antes de que se ejecute cualquier método en ese controlador
     public function __construct()
     {
         //De esta manera se restringe el acceso a todas las rutas
