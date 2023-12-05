@@ -326,6 +326,12 @@ return [
             'can' => 'admin.users.index',
         ],
         [
+            'text' => 'Acciones de usuarios',
+            'route'  => 'admin.useractions.index',
+            'icon' => 'far fa-eye',
+            'can' => 'admin.useractions.index',
+        ],
+        [
             'text' => 'Clientes',
             'route'  => 'empleado.clientes.index',
             'icon' => 'fas fa-comments-dollar',
