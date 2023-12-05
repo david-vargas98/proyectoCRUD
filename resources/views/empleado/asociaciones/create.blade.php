@@ -61,9 +61,9 @@
                     @error('estado')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
-                    <label for="contrato">Contrato</label>
+                    <label for="contrato">Contrato (Opcional)</label>
                     <br>
-                    <input type="file" name="contrato" required>
+                    <input type="file" name="contrato">
                     @error('contrato')
                         <div class="alert alert-danger mt-3">{{ $message }}</div>
                     @enderror
