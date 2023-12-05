@@ -197,7 +197,7 @@ class ClienteUserController extends Controller
     public function descargar(ClienteUSer $asociacion)
     {
         //Se verifica que el archivo exista en la presunta ubicación, tan tan taaannn
-        if (Storage::exists($asociacion->contrato_ubicacion)) 
+        if ($asociacion->contrato_ubicacion != null && Storage::exists($asociacion->contrato_ubicacion)) 
         {
             //Si es así, se descarga, wuuu :'D El segundo parámetro es el nombre con el que queremos que se descargue
             return Storage::download($asociacion->contrato_ubicacion, $asociacion->contrato_nombre);
