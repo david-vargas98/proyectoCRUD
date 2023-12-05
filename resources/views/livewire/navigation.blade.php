@@ -35,7 +35,7 @@
                 {{-- logotipo --}}
                 <a href="/" class="flex flex-shrink-0 items-center">
                     <img class="h-8 w-auto" src="{{asset('vendor/adminlte/dist/img/admin.png')}}"
-                        alt="Your Company">
+                        alt="Your Company"> S.A.C.I.
                 </a>
                 {{-- Menú lg --}}
                 {{-- <div class="hidden sm:ml-6 sm:block">
