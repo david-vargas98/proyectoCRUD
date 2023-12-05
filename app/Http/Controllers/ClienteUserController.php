@@ -44,7 +44,7 @@ class ClienteUserController extends Controller
             'proyecto'=> 'required|string|max:20',
             'presupuesto'=> 'required|numeric|max:999999',
             'estado'=> ['required', 'in:Iniciado,Activo,Suspendido,Cancelado,Terminado'],
-            'contrato'=> 'required|file|max:20000',
+            'contrato'=> 'file|max:20000|mimes:jpeg,png,jpg,pdf',
         ]);
         //Se asocia al usuario y al cliente usando attach
         //$user = User::find($request->input('user_id')); //Se busca el usuario con el valor del id proporcionado en el form
@@ -117,7 +117,7 @@ class ClienteUserController extends Controller
             'proyecto'=> 'required|string|max:20',
             'presupuesto'=> 'required|numeric|max:999999',
             'estado'=> ['required', 'in:Iniciado,Activo,Suspendido,Cancelado,Terminado'],
-            'contrato'=> 'file|max:20000',
+            'contrato'=> 'file|max:20000|mimes:jpeg,png,jpg,pdf',
         ]);
         //Actualización 
         $asociacion->update([
