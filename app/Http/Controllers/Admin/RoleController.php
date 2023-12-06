@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserAction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role; //Importación del modelo de roles
 use Spatie\Permission\Models\Permission; //Se importa el modelo de los permisos
 
@@ -42,6 +44,8 @@ class RoleController extends Controller
         $role = Role::create($request->all());
         //Sincronización con los permisos seleccionados, para eso se accede a la relación permissions:
         $role->permissions()->sync($request->permissions); //Esta línea asigna los permisos
+        //Registro de la acción del usuario
+        $this->logUserAction('Crear', 'roles', $role->id);
         //Redirección
         return redirect()->route('admin.roles.edit', $role)->with('success','El rol se creó con éxito');
     }
@@ -77,6 +81,8 @@ class RoleController extends Controller
         $role->update($request->all());
         //Se sincroniza el rol con los permisos
         $role->permissions()->sync($request->permissions); //Esta línea asigna los permisos
+        //Registro de la acción del usuario
+        $this->logUserAction('Editar', 'roles', $role->id);
         //Redirección
         return redirect()->route('admin.roles.edit', $role)->with('success','El rol se actualizó con éxito');
     }
@@ -86,7 +92,21 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        //Registro de la acción del usuario
+        $this->logUserAction('Borrar', 'roles', $role->id);
         $role->delete();
         return redirect()->route('admin.roles.index')->with('success','El rol se eliminó con éxito');
+    }
+
+    // Función para registrar la acción del usuario
+    private function logUserAction($action, $tableName, $idPaciente)
+    {
+        //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
+        UserAction::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'table_name' => $tableName,
+            'record_id' => $idPaciente,
+        ]);
     }
 }

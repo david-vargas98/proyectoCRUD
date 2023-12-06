@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventario;
+use App\Models\UserAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; //Se agrega el Auth de "Facades"
 
@@ -61,10 +62,13 @@ class InventarioController extends Controller
         //Simplificación del almacenamiento del registro:
         //Se usa el Mass Assignment, o "Asignación Masiva", es una técnica en Laravel que permite asignar múltiples valores a un modelo al mismo tiempo, generalmente provenientes de un formulario HTTP o de cualquier array asociativo. Esto es especialmente útil al crear o actualizar varios registros a la vez.
         //Nota: Esto supone que los campos en $request->all() deben coincidir con los nombres de las columnas en la tabla de la base de datos.
-        Inventario::create($request->all()); //Después se debe agregar el fillable en el modelo.
+        $inventario = Inventario::create($request->all()); //Después se debe agregar el fillable en el modelo.
         
         //Mensaje flash, la sesión se llama success y se muestra el mensaje del segundo parámetro
         session()->flash('success', 'El registro se ha creado con éxito UwU');
+        
+        //Registro de la acción del usuario
+        $this->logUserAction('Crear', 'inventarios', $inventario->id);
 
         //Se redirige a la url última petición
         return redirect()->route('inventario.index');
@@ -112,6 +116,9 @@ class InventarioController extends Controller
         //Mensaje flash, la sesión se llama update y se muestra el mensaje del segundo parámetro
         session()->flash('update', 'El registro se ha modificado con éxito UvU');
 
+        //Registro de la acción del usuario
+        $this->logUserAction('Editar', 'inventarios', $inventario->id);
+
         //Se redirige a el index
         return redirect()->route('inventario.index');
     }
@@ -121,6 +128,9 @@ class InventarioController extends Controller
      */
     public function destroy(Inventario $inventario)
     {
+        //Registro de la acción del usuario
+        $this->logUserAction('Borrar', 'inventarios', $inventario->id);
+
         //Se usa el objeto con su método deleye
         $inventario->delete();
 
@@ -129,5 +139,17 @@ class InventarioController extends Controller
 
         //Se redirige al index
         return redirect()->route('inventario.index');
+    }
+
+    // Función para registrar la acción del usuario
+    private function logUserAction($action, $tableName, $idPaciente)
+    {
+        //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
+        UserAction::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'table_name' => $tableName,
+            'record_id' => $idPaciente,
+        ]);
     }
 }

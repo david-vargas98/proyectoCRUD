@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Insumo;
 use App\Models\Inventario; //Se agrega el modelo de Inventario
+use App\Models\UserAction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InsumoController extends Controller
 {
@@ -77,6 +79,9 @@ class InsumoController extends Controller
         $inventario = Inventario::find($request->id_inventario);
         $inventario->insumos()->save($insumo); //Se usa la relación 1:m "insumos" para asociar el insumo y se guarda
 
+        //Registro de la acción del usuario
+        $this->logUserAction('Crear', 'insumos', $insumo->id);
+
         //Se redirige después de almacenar el insumo
         return redirect()->route("insumo.index")->with('success', 'Insumo agregado con éxito');
     }
@@ -109,6 +114,9 @@ class InsumoController extends Controller
             'insumocantidad' => ['required', 'numeric'],
         ]);
         $insumo->update($request->all());
+        //Registro de la acción del usuario
+        $this->logUserAction('Editar', 'insumos', $insumo->id);
+
         return redirect()->route("insumo.index")->with('updated', 'Insumo actualizado con éxito');
     }
 
@@ -117,7 +125,21 @@ class InsumoController extends Controller
      */
     public function destroy(Insumo $insumo)
     {
+        //Registro de la acción del usuario
+        $this->logUserAction('Borrar', 'insumos', $insumo->id);
         $insumo->delete();
         return redirect()->route("insumo.index")->with('deleted', 'Insumo eliminado con éxito');
+    }
+
+    // Función para registrar la acción del usuario
+    private function logUserAction($action, $tableName, $idPaciente)
+    {
+        //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
+        UserAction::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'table_name' => $tableName,
+            'record_id' => $idPaciente,
+        ]);
     }
 }

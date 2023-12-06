@@ -6,7 +6,9 @@ use App\Mail\NotificaClienteUser;
 use App\Models\User;
 use App\Models\Cliente;
 use App\Models\ClienteUser; //Modelo de la relación en caso de no usar attach
+use App\Models\UserAction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail; //Modelo para hacer uso del envío de correos
 use Illuminate\Support\Facades\Storage; //Se utiliza para el manejo de los archivos
 
@@ -84,6 +86,9 @@ class ClienteUserController extends Controller
 
         //Envío de correo electrónico al usuario sujeto a la asociación:
         Mail::to($asociacion->user->email)->send(new NotificaClienteUser($asociacion));
+
+        //Registro de la acción del usuario
+        $this->logUserAction('Crear', 'cliente_user', $asociacion->id);
 
         //Redirección al index
         return redirect()->route('empleado.asociaciones.index')->with('success', 'La asociación fue creada con éxito');
@@ -178,6 +183,9 @@ class ClienteUserController extends Controller
                 ]);
             }
         }
+        //Registro de la acción del usuario
+        $this->logUserAction('Editar', 'cliente_user', $asociacion->id);
+
         //Redirección
         return redirect()->route('empleado.asociaciones.index')->with('success', 'La asociación fue actualizada con éxito');
     }
@@ -187,6 +195,8 @@ class ClienteUserController extends Controller
      */
     public function destroy(ClienteUSer $asociacion)
     {
+        //Registro de la acción del usuario
+        $this->logUserAction('Borrar', 'cliente_user', $asociacion->id);
         //Se elimina
         $asociacion->delete();
         //Se redirige, al fin terminé!!
@@ -226,5 +236,17 @@ class ClienteUserController extends Controller
         }
         //Si no se encuentra, da respuesta HTTP 404 indicando que el archivo no se puede encontrar
         abort(404, 'Archivo no encontrado');
+    }
+
+    // Función para registrar la acción del usuario
+    private function logUserAction($action, $tableName, $idPaciente)
+    {
+        //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
+        UserAction::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'table_name' => $tableName,
+            'record_id' => $idPaciente,
+        ]);
     }
 }
