@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/'; //Aquí se puede modificar a donde se redirige cuando se inicia la sesión.
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -35,6 +35,14 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            Route::middleware('web')
+                ->prefix('admin')
+                ->group(base_path('routes/admin.php'));
+            
+            Route::middleware('web')
+                ->prefix('empleado')
+                ->group(base_path('routes/empleado.php'));
         });
     }
 }

@@ -3,17 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventario;
+use App\Models\UserAction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; //Se agrega el Auth de "Facades"
 
 class InventarioController extends Controller
 {
+    //Método constructor para el manejo de las rutas protegidas
+    public function __construct()
+    {
+        //Se especifica el permiso y que ruta proteje
+        $this->middleware('can:inventario.index')->only('index');
+        $this->middleware('can:inventario.create')->only('create', 'store');
+        $this->middleware('can:inventario.edit')->only('edit', 'update');
+        $this->middleware('can:inventario.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //Se regresa todo, se puede usar get() en su lugar, hace casi lo mismo
-        $inventarios = Inventario::all(); //Esta línea la coleeción de los registros de la tabla en la variable
+        $inventarios = Inventario::first()->paginate(4); //Esta línea la coleeción de los registros de la tabla en la variable
         //Retorna la vista a esa ruta en inventario-index.blade.php
         return view('inventario-index', compact('inventarios')); //Se usa compact para pasar la variable a esa vista: Esto significa que la vista tendrá acceso a la variable $inventarios y podrá mostrar la lista de inventarios.
     }
@@ -38,12 +50,28 @@ class InventarioController extends Controller
             'descripcion' => ['required','unique:inventarios','min:3','max:255','string','regex:/^[A-Za-z0-9\s\-]+$/']
         ]);
 
-        //Almacenamiento del registro
-        $inventario = new Inventario(); //Instancia del modelo Inventario
-        $inventario->descripcion = $request->descripcioninv;
-        $inventario->save();
+        //Almacenamiento del registro (Tradicional)
+        //$inventario = new Inventario(); //Instancia del modelo Inventario
+        //$inventario->descripcion = $request->descripcion;
+        //$inventario->save();
+
+        //Antes de agregar el registro, se debe agregar o sobrescribir el valor en la solicitud ($request) antes de que esta sea procesada:
+        //Este método permite fusionar un conjunto de datos con la solicitud actual. En este caso, se está fusionando un array asociativo con la solicitud:-->Está asignando el valor del ID del usuario autenticado (Auth::id()) a la clave user_id.
+        $request->merge(['user_id'=> Auth::id()]); //Aquí se obtiene quién estpa haciendo qué.
+
+        //Simplificación del almacenamiento del registro:
+        //Se usa el Mass Assignment, o "Asignación Masiva", es una técnica en Laravel que permite asignar múltiples valores a un modelo al mismo tiempo, generalmente provenientes de un formulario HTTP o de cualquier array asociativo. Esto es especialmente útil al crear o actualizar varios registros a la vez.
+        //Nota: Esto supone que los campos en $request->all() deben coincidir con los nombres de las columnas en la tabla de la base de datos.
+        $inventario = Inventario::create($request->all()); //Después se debe agregar el fillable en el modelo.
+        
+        //Mensaje flash, la sesión se llama success y se muestra el mensaje del segundo parámetro
+        session()->flash('success', 'El registro se ha creado con éxito UwU');
+        
+        //Registro de la acción del usuario
+        $this->logUserAction('Crear', 'inventarios', $inventario->id);
+
         //Se redirige a la url última petición
-        return redirect()->back();
+        return redirect()->route('inventario.index');
     }
 
     /**
@@ -77,9 +105,20 @@ class InventarioController extends Controller
         ]);
         //Recepción de la modificación de edit para asignar el nuevo valor:
         // Aquí solo se tiene en memoria temporal/ram
-        $inventario->descripcion = $request->descripcion;
+        //$inventario->descripcion = $request->descripcion;
         //Aquí se perpetua con save() en la base de datos
-        $inventario->save();
+        //$inventario->save();
+
+        //Método simplificado para sginar el nuevo valor:
+        //Se busca por id el registro en la tabla 'inventarios' y se actualiza todo excepto los valores indicados:
+        Inventario::where('id', $inventario->id)->update($request->except('_token', '_method')); //Se debe agregar el fillable en el modelo.
+
+        //Mensaje flash, la sesión se llama update y se muestra el mensaje del segundo parámetro
+        session()->flash('update', 'El registro se ha modificado con éxito UvU');
+
+        //Registro de la acción del usuario
+        $this->logUserAction('Editar', 'inventarios', $inventario->id);
+
         //Se redirige a el index
         return redirect()->route('inventario.index');
     }
@@ -89,9 +128,28 @@ class InventarioController extends Controller
      */
     public function destroy(Inventario $inventario)
     {
+        //Registro de la acción del usuario
+        $this->logUserAction('Borrar', 'inventarios', $inventario->id);
+
         //Se usa el objeto con su método deleye
         $inventario->delete();
+
+        //Mensaje flash, la sesión se llama delete y se muestra el mensaje del segundo parámetro
+        session()->flash('delete', 'El registro se ha borrado con éxito UnU');
+
         //Se redirige al index
-        return redirect()->route('inventario.iondex');
+        return redirect()->route('inventario.index');
+    }
+
+    // Función para registrar la acción del usuario
+    private function logUserAction($action, $tableName, $idPaciente)
+    {
+        //Crea un registro de tipo USerAction, se le pasan las columnas a llenar y los datos a usar
+        UserAction::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'table_name' => $tableName,
+            'record_id' => $idPaciente,
+        ]);
     }
 }

@@ -2,15 +2,27 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\UserAction;
+use Illuminate\Contracts\Auth\MustVerifyEmail;  //Se usa para la verificación de correos
+use App\Models\Cliente; //Se agrega el modelo de cleinte
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str; //Para usar la función que pasa la cadena de nombre a minúsculas
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+use Spatie\Permission\Traits\HasRoles; //Se agrega para usar spatie
+
+class User extends Authenticatable implements MustVerifyEmail //implements MustVerifyEmail hace referencia a la verificación de correo
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
+    use HasRoles; //Se le dice que se quiere usar dentro de esta clase
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +43,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -40,6 +54,38 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array<int, string>
+     */
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
+    //Se establece las relaciones entre el modelo de User e Inventario
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
+    }
+
+    //Se establece la relación m:m con cliente, usando tabla pivote
+    public function clientes()
+    {
+        return $this->belongsToMany(Cliente::class)->withPivot('proyecto', 'presupuesto', 'estado', 'contrato_ubicacion', 'contrato_nombre');
+    }
+
+    //Relación con user para poder recuperar el nombre de los usuarios
+    public function actions()
+    {
+        return $this->hasMany(UserAction::class);
+    }
+
+    //Se implementa un mutator para guardar el nombre de usuario siempre en minúsculas
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = Str::lower($value);
+    }
 }

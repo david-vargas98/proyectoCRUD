@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ClienteUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/asociaciones', function () {
+    //Con esto se devuelve un JSON explícito para claridad y consistencia en la respuesta
+    return response()->json([
+        'mensaje' => 'Lista de asociaciones',
+        'información' => ClienteUser::all(),
+    ], 200); //Es el código de estado de éxito en la respuesta, sino se pone laravel lo asume
 });
